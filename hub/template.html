@@ -1,0 +1,360 @@
+<title>Chess Enrichment Hub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a board-like course map (levels as ranks, terms as files), then one course open below it. */
+:root {
+  --bg: #f3f5f2;
+  --surface: #ffffff;
+  --ink: #1d2622;
+  --muted: #5d6b64;
+  --line: #d6ddd8;
+  --square: #e6ece7;
+  --green: #2f5d4e;
+  --green-soft: #dfeae4;
+  --brass: #a3741f;
+  --brass-soft: #f4ead6;
+  --done: #2f7a4f;
+  --display: "Young Serif", Georgia, "Times New Roman", serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141a17; --surface: #1c2420; --ink: #e7ede9; --muted: #9aa9a1; --line: #2e3a34;
+    --square: #222c27; --green: #7fbfa5; --green-soft: #22352d; --brass: #d9aa55; --brass-soft: #3a2f1c;
+    --done: #6fcf97; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141a17; --surface: #1c2420; --ink: #e7ede9; --muted: #9aa9a1; --line: #2e3a34;
+  --square: #222c27; --green: #7fbfa5; --green-soft: #22352d; --brass: #d9aa55; --brass-soft: #3a2f1c;
+  --done: #6fcf97; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.55 var(--body); }
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 32px;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.1; }
+h2 { font-size: 1.6rem; line-height: 1.2; }
+h3 { font-size: 1.15rem; line-height: 1.3; }
+.eyebrow { font: 600 0.75rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); }
+.muted { color: var(--muted); }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+header { display: grid; gap: 12px; }
+header p { margin: 0; max-width: 62ch; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 24px; font: 0.9rem var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.stats b { color: var(--ink); font-weight: 600; }
+
+.search { display: grid; gap: 6px; max-width: 520px; }
+.search label { font-weight: 600; font-size: 0.9rem; }
+.search input {
+  width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface);
+}
+
+/* Course map */
+.map-scroll { overflow-x: auto; }
+.map { display: grid; grid-template-columns: 9.5rem repeat(4, minmax(150px, 1fr)); gap: 6px; min-width: 720px; }
+.map .colhead { font: 600 0.8rem var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 4px 8px; }
+.map .rowhead { display: grid; align-content: center; gap: 2px; padding: 8px; }
+.map .rowhead .piece { font-size: 1.9rem; line-height: 1; color: var(--green); }
+.map .rowhead span:last-child { font-weight: 600; }
+.cell {
+  text-align: left; border: 1px solid transparent; border-radius: 6px; padding: 12px;
+  background: var(--surface); cursor: pointer; display: grid; gap: 8px; align-content: start;
+}
+.cell.dark { background: var(--square); }
+.cell:hover { border-color: var(--green); }
+.cell[aria-current="true"] { border-color: var(--brass); box-shadow: inset 0 0 0 1px var(--brass); }
+.cell .code { font: 600 0.75rem var(--mono); color: var(--brass); }
+.cell .focus { font-size: 0.875rem; color: var(--muted); line-height: 1.4; }
+.bar { height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--done); }
+.cell .count { font: 0.75rem var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Course detail */
+.course { display: grid; gap: 20px; }
+.course-head { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: end; }
+.course-head .intro { display: grid; gap: 6px; min-width: 0; max-width: 65ch; }
+.course-head p { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--surface); text-decoration: none; color: var(--ink);
+  font-size: 0.9rem; font-weight: 500; cursor: pointer;
+}
+.btn:hover { border-color: var(--green); }
+.weeks { display: grid; gap: 8px; }
+.week { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.week summary {
+  list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; gap: 14px;
+  align-items: center; padding: 14px 16px;
+}
+.week summary::-webkit-details-marker { display: none; }
+.wk { font: 600 0.8rem var(--mono); color: var(--muted); width: 3.2rem; }
+.week.taught .wk { color: var(--done); }
+.week summary .t { min-width: 0; display: grid; gap: 2px; }
+.week summary .t span { font-weight: 600; }
+.sp { font-size: 0.85rem; color: var(--muted); }
+.sp b { color: var(--brass); font-weight: 600; }
+.chev { color: var(--muted); transition: transform 0.15s; }
+.week[open] .chev { transform: rotate(90deg); }
+.week-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px 32px; padding: 0 16px 16px calc(16px + 3.2rem + 14px); }
+.week-body h4 { margin: 0 0 6px; font: 600 0.75rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+.week-body ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.taught-toggle { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.taught-toggle input { width: 18px; height: 18px; accent-color: var(--done); }
+.badge { font: 600 0.7rem var(--mono); padding: 3px 8px; border-radius: 99px; background: var(--green-soft); color: var(--green); white-space: nowrap; }
+
+/* Search results */
+.results { display: grid; gap: 8px; }
+.result {
+  text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 8px;
+  padding: 12px 16px; cursor: pointer; display: grid; gap: 4px;
+}
+.result:hover { border-color: var(--green); }
+.result .code { font: 600 0.75rem var(--mono); color: var(--brass); }
+.result .hit { font-size: 0.875rem; color: var(--muted); }
+mark { background: var(--brass-soft); color: inherit; border-radius: 2px; }
+
+@media (max-width: 720px) {
+  .map { grid-template-columns: repeat(2, minmax(0, 1fr)); min-width: 0; }
+  .map .colhead, .map > span:first-child { display: none; }
+  .map .rowhead { grid-column: 1 / -1; grid-auto-flow: column; justify-content: start; align-items: center; gap: 8px; padding: 12px 0 2px; }
+  .map .rowhead .piece { font-size: 1.4rem; }
+}
+@media (max-width: 640px) {
+  .week-body { padding-left: 16px; }
+  .wk { width: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Think. Play. Grow.</span>
+    <h1>Chess Enrichment Hub</h1>
+    <p class="muted">Every course in the program in one place. Pick a term and level on the map to open its 8-week plan, or search for any lesson, tactic or superpower.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="search">
+    <label for="q">Search all lessons</label>
+    <input id="q" type="search" placeholder="Try “fork”, “endgame” or “patience”" autocomplete="off">
+  </div>
+
+  <section id="results" class="results" hidden aria-live="polite"></section>
+
+  <section aria-labelledby="map-title" style="display:grid;gap:12px">
+    <h2 id="map-title">Course map</h2>
+    <div class="map-scroll"><div class="map" id="map"></div></div>
+  </section>
+
+  <section class="course" id="course" aria-live="polite"></section>
+</div>
+
+<script id="curriculum" type="application/json">/*CURRICULUM*/</script>
+<script>
+(() => {
+  const TERMS = JSON.parse(document.getElementById("curriculum").textContent);
+  const LEVELS = [
+    { name: "Beginner", short: "BEG", slug: "beg", piece: "♙︎" },
+    { name: "Intermediate", short: "INT", slug: "int", piece: "♘︎" },
+    { name: "Advanced", short: "ADV", slug: "adv", piece: "♕︎" },
+  ];
+  const STORE_KEY = "chess-hub-taught-v1";
+
+  const readTaught = () => {
+    try { return new Set(JSON.parse(localStorage.getItem(STORE_KEY) || "[]")); }
+    catch { return new Set(); }
+  };
+  const writeTaught = (set) => {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify([...set])); } catch { /* storage unavailable */ }
+  };
+  let taught = readTaught();
+
+  const courseId = (term, slug) => `t${term}-${slug}`;
+  const weekId = (term, slug, week) => `${courseId(term, slug)}-w${week}`;
+  const levelOf = (name) => LEVELS.find((l) => l.name === name);
+  const getCourse = (id) => {
+    const m = /^t([1-4])-(beg|int|adv)$/.exec(id || "");
+    if (!m) return null;
+    const term = TERMS.find((t) => t.term === Number(m[1]));
+    const lvl = LEVELS.find((l) => l.slug === m[2]);
+    return { term: term.term, lvl, data: term.levels.find((l) => l.name === lvl.name) };
+  };
+  const taughtCount = (term, lvl) =>
+    getCourse(courseId(term, lvl.slug)).data.weeks.filter((w) => taught.has(weekId(term, lvl.slug, w.week))).length;
+
+  const el = (tag, attrs = {}, ...kids) => {
+    const n = document.createElement(tag);
+    Object.entries(attrs).forEach(([k, v]) => {
+      if (k === "class") n.className = v;
+      else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v);
+    });
+    kids.flat().forEach((k) => n.append(k instanceof Node ? k : document.createTextNode(k)));
+    return n;
+  };
+
+  let current = null;
+
+  function renderStats() {
+    const total = TERMS.reduce((n, t) => n + t.levels.reduce((m, l) => m + l.weeks.length, 0), 0);
+    const powers = new Set(TERMS.flatMap((t) => t.levels.flatMap((l) => l.weeks.map((w) => w.superpower.name))));
+    document.getElementById("stats").replaceChildren(
+      el("span", {}, el("b", {}, String(TERMS.length)), " terms"),
+      el("span", {}, el("b", {}, String(LEVELS.length)), " levels"),
+      el("span", {}, el("b", {}, String(TERMS.length * LEVELS.length)), " courses"),
+      el("span", {}, el("b", {}, String(total)), " weekly lessons"),
+      el("span", {}, el("b", {}, String(powers.size)), " superpowers"),
+      el("span", {}, el("b", {}, String(taught.size)), " marked taught"),
+    );
+  }
+
+  function renderMap() {
+    const map = document.getElementById("map");
+    const cells = [el("span", {})];
+    TERMS.forEach((t) => cells.push(el("span", { class: "colhead" }, `Term ${t.term}`)));
+    LEVELS.forEach((lvl, r) => {
+      cells.push(el("div", { class: "rowhead" }, el("span", { class: "piece", "aria-hidden": "true" }, lvl.piece), el("span", {}, lvl.name)));
+      TERMS.forEach((t, c) => {
+        const id = courseId(t.term, lvl.slug);
+        const course = getCourse(id);
+        const done = taughtCount(t.term, lvl);
+        const n = course.data.weeks.length;
+        cells.push(el("button", {
+          class: "cell" + ((r + c) % 2 ? " dark" : ""),
+          "aria-current": String(current === id),
+          "aria-label": `Open Term ${t.term} ${lvl.name}`,
+          onclick: () => openCourse(id, true),
+        },
+          el("span", { class: "code" }, `T${t.term} · ${lvl.short}`),
+          el("span", { class: "focus" }, course.data.focus.split(":")[0]),
+          el("span", { class: "bar", "aria-hidden": "true" }, el("i", { style: `width:${(done / n) * 100}%` })),
+          el("span", { class: "count" }, `${done}/${n} weeks taught`),
+        ));
+      });
+    });
+    map.replaceChildren(...cells);
+  }
+
+  function weekCard(term, lvl, w) {
+    const id = weekId(term, lvl.slug, w.week);
+    const isDone = taught.has(id);
+    const box = el("input", { type: "checkbox", id: `cb-${id}` });
+    box.checked = isDone;
+    box.addEventListener("change", () => {
+      box.checked ? taught.add(id) : taught.delete(id);
+      writeTaught(taught);
+      details.classList.toggle("taught", box.checked);
+      badgeSlot.replaceChildren(...(box.checked ? [el("span", { class: "badge" }, "Taught")] : []));
+      renderMap(); renderStats(); renderCourseProgress();
+    });
+    const badgeSlot = el("span", {}, ...(isDone ? [el("span", { class: "badge" }, "Taught")] : []));
+    const details = el("details", { class: "week" + (isDone ? " taught" : ""), id },
+      el("summary", {},
+        el("span", { class: "wk" }, `WK ${w.week}`),
+        el("span", { class: "t" },
+          el("span", {}, w.title),
+          el("span", { class: "sp" }, "Superpower: ", el("b", {}, w.superpower.name), ` · ${w.superpower.meaning}`)),
+        el("span", { style: "display:flex;gap:10px;align-items:center" }, badgeSlot, el("span", { class: "chev", "aria-hidden": "true" }, "›"))),
+      el("div", { class: "week-body" },
+        el("div", {}, el("h4", {}, "Learning goals"), el("ul", {}, w.goals.map((g) => el("li", {}, g)))),
+        el("div", {}, el("h4", {}, "Activities"), el("ul", {}, w.activities.map((a) => el("li", {}, a)))),
+        el("label", { class: "taught-toggle", for: `cb-${id}` }, box, "I've taught this week")),
+    );
+    return details;
+  }
+
+  function renderCourseProgress() {
+    const slot = document.getElementById("course-progress");
+    if (!slot || !current) return;
+    const c = getCourse(current);
+    slot.textContent = `${taughtCount(c.term, c.lvl)} of ${c.data.weeks.length} weeks taught`;
+  }
+
+  function openCourse(id, scroll, openWeek) {
+    const c = getCourse(id);
+    if (!c) return;
+    current = id;
+    try { history.replaceState(null, "", `#${openWeek || id}`); } catch { /* sandboxed */ }
+    const [label, rest] = c.data.focus.split(/:\s*/);
+    const allOpen = () => document.querySelectorAll("#course details").forEach((d) => (d.open = true));
+    const allClose = () => document.querySelectorAll("#course details").forEach((d) => (d.open = false));
+    document.getElementById("course").replaceChildren(
+      el("div", { class: "course-head" },
+        el("div", { class: "intro" },
+          el("span", { class: "eyebrow" }, `Term ${c.term} · ${c.lvl.name} level`),
+          el("h2", {}, label),
+          el("p", { class: "muted" }, rest || ""),
+          el("span", { class: "stats", id: "course-progress" })),
+        el("div", { class: "actions" },
+          el("button", { class: "btn", type: "button", onclick: allOpen }, "Expand all"),
+          el("button", { class: "btn", type: "button", onclick: allClose }, "Collapse all"),
+          el("a", { class: "btn", href: `courses/Term${c.term}.pdf`, target: "_blank", rel: "noopener" }, `Term ${c.term} PDF ↗`))),
+      el("div", { class: "weeks" }, c.data.weeks.map((w) => weekCard(c.term, c.lvl, w))),
+    );
+    renderCourseProgress();
+    renderMap();
+    if (openWeek) {
+      const d = document.getElementById(openWeek);
+      if (d) { d.open = true; d.scrollIntoView({ block: "center" }); }
+    } else if (scroll) {
+      document.getElementById("course").scrollIntoView({ block: "start" });
+    }
+  }
+
+  // Search
+  const INDEX = TERMS.flatMap((t) => t.levels.flatMap((l) => l.weeks.map((w) => ({
+    term: t.term, lvl: levelOf(l.name), w,
+    text: [...w.goals, ...w.activities, w.superpower.name, w.superpower.meaning].join(" • "),
+  }))));
+  const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const highlight = (text, q) => {
+    const parts = text.split(new RegExp(`(${escapeRe(q)})`, "ig"));
+    return parts.map((p, i) => (i % 2 ? el("mark", {}, p) : p));
+  };
+  const snippet = (text, q) => {
+    const i = Math.max(0, text.toLowerCase().indexOf(q.toLowerCase()));
+    const start = Math.max(0, i - 40);
+    return (start ? "…" : "") + text.slice(start, i + q.length + 60) + (i + q.length + 60 < text.length ? "…" : "");
+  };
+
+  const input = document.getElementById("q");
+  const results = document.getElementById("results");
+  input.addEventListener("input", () => {
+    const q = input.value.trim();
+    if (q.length < 2) { results.hidden = true; results.replaceChildren(); return; }
+    const hits = INDEX.filter((x) => `${x.w.title} ${x.text}`.toLowerCase().includes(q.toLowerCase()));
+    results.hidden = false;
+    results.replaceChildren(
+      el("p", { class: "muted", style: "margin:0" }, hits.length ? `${hits.length} lesson${hits.length === 1 ? "" : "s"} match “${q}”` : `No lessons match “${q}”. Try a shorter word.`),
+      ...hits.slice(0, 40).map((x) => el("button", {
+        class: "result", type: "button",
+        onclick: () => openCourse(courseId(x.term, x.lvl.slug), true, weekId(x.term, x.lvl.slug, x.w.week)),
+      },
+        el("span", { class: "code" }, `T${x.term} · ${x.lvl.short} · WK ${x.w.week}`),
+        el("span", { style: "font-weight:600" }, highlight(x.w.title, q)),
+        el("span", { class: "hit" }, highlight(snippet(x.text, q), q)))),
+    );
+  });
+
+  renderStats();
+  const hash = (location.hash || "").slice(1);
+  const m = /^(t[1-4]-(?:beg|int|adv))(?:-w[1-8])?$/.exec(hash);
+  if (m) openCourse(m[1], false, hash !== m[1] ? hash : undefined);
+  else openCourse("t1-beg", false);
+})();
+</script>

@@ -1,0 +1,360 @@
+<title>Chess Enrichment Hub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a board-like course map (levels as ranks, terms as files), then one course open below it. */
+:root {
+  --bg: #f3f5f2;
+  --surface: #ffffff;
+  --ink: #1d2622;
+  --muted: #5d6b64;
+  --line: #d6ddd8;
+  --square: #e6ece7;
+  --green: #2f5d4e;
+  --green-soft: #dfeae4;
+  --brass: #a3741f;
+  --brass-soft: #f4ead6;
+  --done: #2f7a4f;
+  --display: "Young Serif", Georgia, "Times New Roman", serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141a17; --surface: #1c2420; --ink: #e7ede9; --muted: #9aa9a1; --line: #2e3a34;
+    --square: #222c27; --green: #7fbfa5; --green-soft: #22352d; --brass: #d9aa55; --brass-soft: #3a2f1c;
+    --done: #6fcf97; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141a17; --surface: #1c2420; --ink: #e7ede9; --muted: #9aa9a1; --line: #2e3a34;
+  --square: #222c27; --green: #7fbfa5; --green-soft: #22352d; --brass: #d9aa55; --brass-soft: #3a2f1c;
+  --done: #6fcf97; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.55 var(--body); }
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 32px;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.1; }
+h2 { font-size: 1.6rem; line-height: 1.2; }
+h3 { font-size: 1.15rem; line-height: 1.3; }
+.eyebrow { font: 600 0.75rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); }
+.muted { color: var(--muted); }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+header { display: grid; gap: 12px; }
+header p { margin: 0; max-width: 62ch; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 24px; font: 0.9rem var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.stats b { color: var(--ink); font-weight: 600; }
+
+.search { display: grid; gap: 6px; max-width: 520px; }
+.search label { font-weight: 600; font-size: 0.9rem; }
+.search input {
+  width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface);
+}
+
+/* Course map */
+.map-scroll { overflow-x: auto; }
+.map { display: grid; grid-template-columns: 9.5rem repeat(4, minmax(150px, 1fr)); gap: 6px; min-width: 720px; }
+.map .colhead { font: 600 0.8rem var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 4px 8px; }
+.map .rowhead { display: grid; align-content: center; gap: 2px; padding: 8px; }
+.map .rowhead .piece { font-size: 1.9rem; line-height: 1; color: var(--green); }
+.map .rowhead span:last-child { font-weight: 600; }
+.cell {
+  text-align: left; border: 1px solid transparent; border-radius: 6px; padding: 12px;
+  background: var(--surface); cursor: pointer; display: grid; gap: 8px; align-content: start;
+}
+.cell.dark { background: var(--square); }
+.cell:hover { border-color: var(--green); }
+.cell[aria-current="true"] { border-color: var(--brass); box-shadow: inset 0 0 0 1px var(--brass); }
+.cell .code { font: 600 0.75rem var(--mono); color: var(--brass); }
+.cell .focus { font-size: 0.875rem; color: var(--muted); line-height: 1.4; }
+.bar { height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--done); }
+.cell .count { font: 0.75rem var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Course detail */
+.course { display: grid; gap: 20px; }
+.course-head { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: end; }
+.course-head .intro { display: grid; gap: 6px; min-width: 0; max-width: 65ch; }
+.course-head p { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--surface); text-decoration: none; color: var(--ink);
+  font-size: 0.9rem; font-weight: 500; cursor: pointer;
+}
+.btn:hover { border-color: var(--green); }
+.weeks { display: grid; gap: 8px; }
+.week { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.week summary {
+  list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; gap: 14px;
+  align-items: center; padding: 14px 16px;
+}
+.week summary::-webkit-details-marker { display: none; }
+.wk { font: 600 0.8rem var(--mono); color: var(--muted); width: 3.2rem; }
+.week.taught .wk { color: var(--done); }
+.week summary .t { min-width: 0; display: grid; gap: 2px; }
+.week summary .t span { font-weight: 600; }
+.sp { font-size: 0.85rem; color: var(--muted); }
+.sp b { color: var(--brass); font-weight: 600; }
+.chev { color: var(--muted); transition: transform 0.15s; }
+.week[open] .chev { transform: rotate(90deg); }
+.week-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px 32px; padding: 0 16px 16px calc(16px + 3.2rem + 14px); }
+.week-body h4 { margin: 0 0 6px; font: 600 0.75rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+.week-body ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.taught-toggle { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.taught-toggle input { width: 18px; height: 18px; accent-color: var(--done); }
+.badge { font: 600 0.7rem var(--mono); padding: 3px 8px; border-radius: 99px; background: var(--green-soft); color: var(--green); white-space: nowrap; }
+
+/* Search results */
+.results { display: grid; gap: 8px; }
+.result {
+  text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 8px;
+  padding: 12px 16px; cursor: pointer; display: grid; gap: 4px;
+}
+.result:hover { border-color: var(--green); }
+.result .code { font: 600 0.75rem var(--mono); color: var(--brass); }
+.result .hit { font-size: 0.875rem; color: var(--muted); }
+mark { background: var(--brass-soft); color: inherit; border-radius: 2px; }
+
+@media (max-width: 720px) {
+  .map { grid-template-columns: repeat(2, minmax(0, 1fr)); min-width: 0; }
+  .map .colhead, .map > span:first-child { display: none; }
+  .map .rowhead { grid-column: 1 / -1; grid-auto-flow: column; justify-content: start; align-items: center; gap: 8px; padding: 12px 0 2px; }
+  .map .rowhead .piece { font-size: 1.4rem; }
+}
+@media (max-width: 640px) {
+  .week-body { padding-left: 16px; }
+  .wk { width: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Think. Play. Grow.</span>
+    <h1>Chess Enrichment Hub</h1>
+    <p class="muted">Every course in the program in one place. Pick a term and level on the map to open its 8-week plan, or search for any lesson, tactic or superpower.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="search">
+    <label for="q">Search all lessons</label>
+    <input id="q" type="search" placeholder="Try “fork”, “endgame” or “patience”" autocomplete="off">
+  </div>
+
+  <section id="results" class="results" hidden aria-live="polite"></section>
+
+  <section aria-labelledby="map-title" style="display:grid;gap:12px">
+    <h2 id="map-title">Course map</h2>
+    <div class="map-scroll"><div class="map" id="map"></div></div>
+  </section>
+
+  <section class="course" id="course" aria-live="polite"></section>
+</div>
+
+<script id="curriculum" type="application/json">[{"term":1,"levels":[{"name":"Beginner","focus":"Foundation Skills: Learning piece movements, basic rules, and fundamental game concepts","weeks":[{"week":1,"title":"Introduction to Chess & The Board","goals":["Understand the chessboard setup (files, ranks, squares)","Learn piece names and initial positions","Grasp the basic objective of the game"],"activities":["Board scavenger hunt (finding specific squares)","Piece placement race","Chess piece memory game"],"superpower":{"name":"Focus","meaning":"Paying attention to details on the board"}},{"week":2,"title":"Pawn Power & Basic Movement","goals":["Master pawn movement (forward, capture diagonally)","Understand the concept of capturing","Learn basic pawn strategy (advancing, protecting)"],"activities":["Pawn races (first to reach opposite side)","Capture challenges with pawns only","Pawn chain building exercises"],"superpower":{"name":"Patience","meaning":"Taking time to think before moving"}},{"week":3,"title":"Knights & Their Jumps","goals":["Learn the L-shaped knight movement pattern","Understand knight's ability to jump over pieces","Practice knight positioning and control"],"activities":["Knight tour challenges (visiting all squares)","Knight vs. pawns mini-games","Finding all possible knight moves puzzles"],"superpower":{"name":"Creativity","meaning":"Thinking in unique patterns"}},{"week":4,"title":"Bishops & Rooks - The Sliding Pieces","goals":["Master bishop movement (diagonal sliding)","Master rook movement (horizontal/vertical sliding)","Understand how pieces can block each other"],"activities":["Bishop maze navigation","Rook capture challenges","Bishop vs. rook mini-games"],"superpower":{"name":"Strategic Thinking","meaning":"Planning moves ahead"}},{"week":5,"title":"The Queen - The Most Powerful Piece","goals":["Learn queen's combined movement (bishop + rook)","Understand queen's power and value","Practice protecting the queen"],"activities":["Queen vs. multiple pieces challenges","Finding the safest queen moves","Queen rescue missions"],"superpower":{"name":"Confidence","meaning":"Making bold but careful moves"}},{"week":6,"title":"The King & Check","goals":["Master king movement (one square in any direction)","Understand the concept of check","Learn three ways to get out of check"],"activities":["Check identification exercises","Escaping check puzzles","King safety drills"],"superpower":{"name":"Awareness","meaning":"Always protecting what's most important"}},{"week":7,"title":"Checkmate Patterns","goals":["Learn basic checkmate patterns (back rank, queen + king)","Practice delivering checkmate","Recognize checkmate vs. stalemate"],"activities":["One-move checkmate puzzles","Checkmate races","Stalemate avoidance practice"],"superpower":{"name":"Determination","meaning":"Working toward your goal"}},{"week":8,"title":"Playing Complete Games & Review","goals":["Play complete games with all rules","Practice good sportsmanship","Review all pieces and movements"],"activities":["Mini-tournament (15-minute games)","Piece value review games","Certificate ceremony and celebration"],"superpower":{"name":"Respect","meaning":"Being gracious in victory and defeat"}}]},{"name":"Intermediate","focus":"Building on fundamentals: Developing tactical awareness, opening principles, and strategic thinking","weeks":[{"week":1,"title":"Special Moves & Advanced Rules","goals":["Master castling (kingside and queenside)","Learn en passant capture","Understand pawn promotion"],"activities":["Castling timing exercises","En passant recognition drills","Pawn promotion races"],"superpower":{"name":"Adaptability","meaning":"Learning new techniques"}},{"week":2,"title":"Opening Principles","goals":["Control the center of the board","Develop pieces quickly and efficiently","Castle early for king safety"],"activities":["Good vs. bad opening comparison games","Speed development challenges","Opening principles puzzles"],"superpower":{"name":"Planning","meaning":"Thinking several moves ahead"}},{"week":3,"title":"Tactical Patterns - Forks","goals":["Recognize fork opportunities (attacking two pieces)","Execute knight forks effectively","Defend against opponent's forks"],"activities":["Fork identification puzzles","Create your own fork positions","Fork defense drills"],"superpower":{"name":"Opportunism","meaning":"Seizing the moment"}},{"week":4,"title":"Tactical Patterns - Pins & Skewers","goals":["Understand absolute vs. relative pins","Execute skewer tactics","Break pins when possible"],"activities":["Pin and skewer puzzle sets","Positions where pins backfire","Tactics combination games"],"superpower":{"name":"Precision","meaning":"Executing carefully planned tactics"}},{"week":5,"title":"Discovered Attacks & Double Checks","goals":["Recognize discovered attack opportunities","Master double check tactics","Create powerful combinations"],"activities":["Discovered attack puzzles","Double check challenges","Multi-move tactical sequences"],"superpower":{"name":"Insight","meaning":"Seeing hidden possibilities"}},{"week":6,"title":"Endgame Fundamentals","goals":["King and queen vs. king checkmate","King and rook vs. king checkmate","Pawn endgame basics (opposition, key squares)"],"activities":["Basic checkmate drills","Pawn endgame exercises","Opposition practice positions"],"superpower":{"name":"Persistence","meaning":"Never giving up in difficult positions"}},{"week":7,"title":"Game Analysis & Strategy","goals":["Review and analyze own games","Identify mistakes and missed opportunities","Develop a basic opening repertoire"],"activities":["Game notation practice","Replay and analyze famous games","Opening exploration sessions"],"superpower":{"name":"Reflection","meaning":"Learning from experience"}},{"week":8,"title":"Tournament Play & Celebration","goals":["Apply all learned concepts in tournament setting","Practice time management in games","Demonstrate growth and sportsmanship"],"activities":["Swiss-system tournament (4 rounds)","Awards ceremony and recognition","Celebration and looking ahead"],"superpower":{"name":"Growth Mindset","meaning":"Celebrating improvement"}}]},{"name":"Advanced","focus":"Mastery and competition: Advanced tactics, positional understanding, and competitive preparation","weeks":[{"week":1,"title":"Advanced Tactical Combinations","goals":["Master complex tactical motifs (deflection, decoy, interference)","Execute multi-move combinations","Calculate variations accurately"],"activities":["Complex combination puzzles (3-5 move sequences)","Calculation training exercises","Tactical themes deep dive"],"superpower":{"name":"Analytical Thinking","meaning":"Deep calculation skills"}},{"week":2,"title":"Opening Theory & Repertoire Development","goals":["Study major opening systems (Italian, Spanish, Sicilian)","Build personalized opening repertoire","Understand opening ideas and plans"],"activities":["Opening exploration and comparison","Repertoire building workshops","Thematic opening games"],"superpower":{"name":"Knowledge","meaning":"Building expertise through study"}},{"week":3,"title":"Positional Chess & Pawn Structures","goals":["Analyze pawn structures (chains, islands, weaknesses)","Understand piece coordination and outposts","Evaluate positions strategically"],"activities":["Positional evaluation exercises","Pawn structure analysis workshops","Strategic planning games"],"superpower":{"name":"Strategic Vision","meaning":"Seeing the bigger picture"}},{"week":4,"title":"Middlegame Strategy","goals":["Master attacking techniques and king safety","Understand prophylaxis and move prevention","Create and exploit weaknesses"],"activities":["Attack vs. defense scenarios","Prophylactic thinking exercises","Classic middlegame studies"],"superpower":{"name":"Versatility","meaning":"Adapting to different positions"}},{"week":5,"title":"Advanced Endgames","goals":["Master rook endgames (Lucena, Philidor positions)","Learn bishop vs. knight endgames","Understand passed pawn principles"],"activities":["Classical endgame positions","Endgame technique training","Converting advantages exercises"],"superpower":{"name":"Mastery","meaning":"Executing technique perfectly"}},{"week":6,"title":"Tournament Preparation & Psychology","goals":["Develop pre-game preparation routines","Master time management techniques","Build mental resilience and focus"],"activities":["Timed game practice sessions","Mental preparation workshops","Blitz and rapid practice"],"superpower":{"name":"Composure","meaning":"Staying calm under pressure"}},{"week":7,"title":"Game Analysis & Improvement","goals":["Conduct deep game analysis with annotations","Study GM games and extract lessons","Identify personal weaknesses and create improvement plan"],"activities":["Annotate own games with variations","Study classic GM games with themes","Create personal training program"],"superpower":{"name":"Self-Awareness","meaning":"Understanding strengths and weaknesses"}},{"week":8,"title":"Championship Tournament","goals":["Compete at highest level with all skills integrated","Demonstrate competitive excellence","Set goals for continued improvement"],"activities":["Full tournament (5-6 rounds, rated games)","Awards ceremony with trophy presentation","Setting future chess goals and celebration"],"superpower":{"name":"Excellence","meaning":"Striving for mastery"}}]}]},{"term":2,"levels":[{"name":"Beginner","focus":"Expanding knowledge: Building on basics with tactical patterns and game strategy","weeks":[{"week":1,"title":"Review & Piece Value","goals":["Review all piece movements","Understand relative piece values","Make fair trades"],"activities":["Piece value quiz games","Trading exercises","Capture the most valuable piece challenges"],"superpower":{"name":"Judgment","meaning":"Making smart decisions"}},{"week":2,"title":"Protecting Your Pieces","goals":["Defend pieces from attacks","Create defensive chains","Recognize hanging pieces"],"activities":["Find the unprotected piece puzzles","Defense building exercises","Hanging piece prevention drills"],"superpower":{"name":"Vigilance","meaning":"Watching for danger"}},{"week":3,"title":"Simple Tactics - The Fork","goals":["Recognize fork patterns","Create fork opportunities","Defend against forks"],"activities":["Knight fork puzzles","Pawn and queen fork challenges","Fork defense practice"],"superpower":{"name":"Sharpness","meaning":"Spotting opportunities"}},{"week":4,"title":"Controlling the Center","goals":["Occupy central squares","Control center with pieces","Understand center dominance benefits"],"activities":["Center control games","Central pawn structure drills","Center vs. flank battles"],"superpower":{"name":"Dominance","meaning":"Taking control"}},{"week":5,"title":"Basic Endgames","goals":["King and queen checkmate technique","Pawn promotion strategies","Basic king activity"],"activities":["Checkmate the lone king drills","Pawn race games","Active king exercises"],"superpower":{"name":"Finishing","meaning":"Completing what you start"}},{"week":6,"title":"Chess Notation Basics","goals":["Read simple chess notation","Record own moves","Follow game scores"],"activities":["Notation learning games","Move recording practice","Replay notation exercises"],"superpower":{"name":"Documentation","meaning":"Keeping records"}},{"week":7,"title":"Planning Ahead","goals":["Think 2-3 moves ahead","Create simple plans","Follow through on plans"],"activities":["Multi-move puzzle sequences","Planning exercises","Goal-oriented games"],"superpower":{"name":"Foresight","meaning":"Thinking ahead"}},{"week":8,"title":"Term 2 Tournament","goals":["Apply all term 2 concepts","Play longer games","Track improvement"],"activities":["Round-robin tournament","Game analysis session","Term celebration"],"superpower":{"name":"Progress","meaning":"Recognizing growth"}}]},{"name":"Intermediate","focus":"Deepening understanding: Advanced tactics, strategic concepts, and opening repertoire","weeks":[{"week":1,"title":"Removal of the Defender","goals":["Identify defending pieces","Execute removal tactics","Combine with other tactics"],"activities":["Defender removal puzzles","Multi-step tactical sequences","Complex combinations"],"superpower":{"name":"Methodical Thinking","meaning":"Breaking down problems"}},{"week":2,"title":"Back Rank Weaknesses","goals":["Recognize back rank threats","Exploit back rank weakness","Defend against back rank mates"],"activities":["Back rank mate puzzles","Escape route creation","Prophylactic thinking exercises"],"superpower":{"name":"Anticipation","meaning":"Preventing problems"}},{"week":3,"title":"Queen vs. Two Rooks","goals":["Compare piece power dynamics","Play endgames effectively","Understand compensation"],"activities":["Queen vs. rooks endgames","Material imbalance games","Piece activity evaluation"],"superpower":{"name":"Evaluation","meaning":"Assessing positions"}},{"week":4,"title":"Pawn Structures Deep Dive","goals":["Identify pawn structure types","Create favorable structures","Exploit opponent's weak pawns"],"activities":["Structure recognition exercises","Pawn break identification","Structure transformation games"],"superpower":{"name":"Structural Thinking","meaning":"Understanding frameworks"}},{"week":5,"title":"Piece Coordination","goals":["Coordinate pieces effectively","Create piece harmonies","Improve poorly placed pieces"],"activities":["Coordination exercises","Piece improvement drills","Harmony vs. chaos positions"],"superpower":{"name":"Synergy","meaning":"Making pieces work together"}},{"week":6,"title":"Attacking the King","goals":["Recognize attacking chances","Bring pieces into attack","Calculate forcing sequences"],"activities":["King attack patterns","Attacking combinations","Sacrifice for attack puzzles"],"superpower":{"name":"Aggression","meaning":"Calculated boldness"}},{"week":7,"title":"Opening Repertoire Building","goals":["Develop white opening","Prepare black defenses","Understand opening principles deeply"],"activities":["Repertoire planning","Opening traps to know","Thematic games in chosen openings"],"superpower":{"name":"Preparation","meaning":"Coming ready"}},{"week":8,"title":"Rated Tournament","goals":["Compete in serious tournament","Handle tournament pressure","Analyze games afterward"],"activities":["4-round Swiss tournament","Post-game analysis","Rating calculation and celebration"],"superpower":{"name":"Competitive Spirit","meaning":"Embracing challenges"}}]},{"name":"Advanced","focus":"Refinement: Dynamic play, deep calculation, and competitive excellence","weeks":[{"week":1,"title":"Dynamic Imbalances","goals":["Evaluate positions with imbalances","Trade advantages appropriately","Play for compensation"],"activities":["Imbalance identification","Piece vs. pawn dynamics","Complex evaluation exercises"],"superpower":{"name":"Sophistication","meaning":"Understanding complexity"}},{"week":2,"title":"Prophylactic Thinking","goals":["Prevent opponent's ideas","Improve position quietly","Master waiting moves"],"activities":["Prophylaxis identification","Improving worst piece challenges","Strategic maneuvering games"],"superpower":{"name":"Restraint","meaning":"Knowing when to wait"}},{"week":3,"title":"Weak Squares & Outposts","goals":["Create and exploit weak squares","Establish dominant outposts","Prevent opponent's outposts"],"activities":["Weak square identification","Outpost creation exercises","Blockade strategies"],"superpower":{"name":"Exploitation","meaning":"Using weaknesses"}},{"week":4,"title":"Calculation Training","goals":["Calculate 5+ moves deep","Visualize positions accurately","Prune candidate moves efficiently"],"activities":["Deep calculation exercises","Blindfold position recognition","Candidate move selection drills"],"superpower":{"name":"Concentration","meaning":"Deep focus"}},{"week":5,"title":"Endgame Mastery","goals":["Master opposite-colored bishops","Understand fortress positions","Play queen endgames"],"activities":["OCB endgame studies","Drawing resources exercises","Queen endgame technique"],"superpower":{"name":"Technique","meaning":"Executing precisely"}},{"week":6,"title":"Opening Preparation","goals":["Study opponent's games","Prepare novelties","Build opening database"],"activities":["Game database study","Preparation routines","Opening surprise implementation"],"superpower":{"name":"Research","meaning":"Doing homework"}},{"week":7,"title":"Time Management","goals":["Allocate time effectively","Recognize critical moments","Play accurately under time pressure"],"activities":["Time control practice","Critical position identification","Blitz with analysis"],"superpower":{"name":"Time Awareness","meaning":"Managing the clock"}},{"week":8,"title":"Championship Event","goals":["Peak performance competition","Demonstrate all skills","Achieve rating goals"],"activities":["Major tournament (6 rounds)","Live game commentary","Championship celebration"],"superpower":{"name":"Peak Performance","meaning":"Playing your best"}}]}]},{"term":3,"levels":[{"name":"Beginner","focus":"Developing confidence: Strategy fundamentals and creative play","weeks":[{"week":1,"title":"Material Advantage","goals":["Understand material count","Win by accumulating pieces","Convert material advantage"],"activities":["Material counting exercises","Trading when ahead drills","Winning with extra pieces"],"superpower":{"name":"Arithmetic","meaning":"Counting and comparing"}},{"week":2,"title":"Space & Mobility","goals":["Control more squares","Restrict opponent's pieces","Use space advantage"],"activities":["Space control games","Cramping opponent exercises","Mobility comparison activities"],"superpower":{"name":"Expansion","meaning":"Growing your territory"}},{"week":3,"title":"Pawn Chains","goals":["Build strong pawn chains","Attack enemy pawn chains","Understand chain strength"],"activities":["Chain building challenges","Chain-breaking exercises","Base of chain targeting"],"superpower":{"name":"Structure","meaning":"Building solid foundations"}},{"week":4,"title":"Open Files & Ranks","goals":["Recognize open lines","Control open files with rooks","Double rooks effectively"],"activities":["Open file identification","Rook placement exercises","Doubling rooks drills"],"superpower":{"name":"Control","meaning":"Dominating key areas"}},{"week":5,"title":"Simple Combinations","goals":["Combine multiple tactics","Execute 2-3 move combinations","Find forcing sequences"],"activities":["Combination puzzles","Creating your own combos","Combination spotting races"],"superpower":{"name":"Combination","meaning":"Putting it together"}},{"week":6,"title":"Weak Pawns","goals":["Identify weak pawns","Attack weak pawns","Avoid creating weaknesses"],"activities":["Weak pawn targeting","Pawn structure maintenance","Weakness prevention drills"],"superpower":{"name":"Targeting","meaning":"Finding vulnerabilities"}},{"week":7,"title":"Time Trouble Practice","goals":["Play faster when needed","Make reasonable moves quickly","Avoid time pressure"],"activities":["Speed chess sessions","Time management games","Quick decision drills"],"superpower":{"name":"Speed","meaning":"Acting decisively"}},{"week":8,"title":"Creative Chess Day","goals":["Express creativity through chess","Try unconventional ideas","Have fun with the game"],"activities":["Chess variant games","Creative problem solving","Fun tournament and party"],"superpower":{"name":"Joy","meaning":"Playing for fun"}}]},{"name":"Intermediate","focus":"Strategic mastery: Plan formulation, endgame technique, and psychological play","weeks":[{"week":1,"title":"The Initiative","goals":["Seize and maintain initiative","Make threats continuously","Force opponent to react"],"activities":["Initiative exercises","Creating threats","Counter-initiative challenges"],"superpower":{"name":"Momentum","meaning":"Keeping pressure on"}},{"week":2,"title":"Minority Attack","goals":["Execute minority attacks","Undermine pawn chains","Create passed pawns"],"activities":["Minority attack patterns","Queenside play exercises","Pawn majority utilization"],"superpower":{"name":"Strategy","meaning":"Long-term planning"}},{"week":3,"title":"Bishop Pair Advantage","goals":["Utilize bishop pair effectively","Open the position for bishops","Trade appropriately"],"activities":["Bishop pair exercises","Opening lines for bishops","Two bishops endgames"],"superpower":{"name":"Coordination","meaning":"Using piece pairs"}},{"week":4,"title":"Rook Endgames","goals":["Master Lucena position","Understand Philidor defense","Cut off enemy king"],"activities":["Lucena technique","Philidor drawing methods","Rook endgame collection"],"superpower":{"name":"Endgame Precision","meaning":"Technical skill"}},{"week":5,"title":"Positional Sacrifices","goals":["Sacrifice for positional gains","Evaluate long-term compensation","Accept sacrifices correctly"],"activities":["Positional sacrifice studies","Compensation evaluation","Accept or decline exercises"],"superpower":{"name":"Boldness","meaning":"Taking calculated risks"}},{"week":6,"title":"Playing Against Computers","goals":["Understand computer strengths","Find anti-computer strategies","Use engines for training"],"activities":["Engine games and analysis","Finding computer weaknesses","Using analysis tools"],"superpower":{"name":"Adaptation","meaning":"Learning from machines"}},{"week":7,"title":"Chess Psychology","goals":["Manage emotions in games","Read opponent's state","Stay objective"],"activities":["Emotional control exercises","Psychological resilience training","Tilt management discussions"],"superpower":{"name":"Mental Strength","meaning":"Staying composed"}},{"week":8,"title":"Team Championship","goals":["Compete as a team","Support teammates","Contribute to team success"],"activities":["Team tournament","Collaborative analysis","Team celebration"],"superpower":{"name":"Unity","meaning":"Achieving together"}}]},{"name":"Advanced","focus":"Elite performance: Theoretical preparation, professional habits, and mastery","weeks":[{"week":1,"title":"Modern Opening Theory","goals":["Study latest theoretical developments","Understand current trends","Apply modern ideas"],"activities":["Recent GM games analysis","Opening theory updates","Modern preparation methods"],"superpower":{"name":"Currency","meaning":"Staying updated"}},{"week":2,"title":"Piece Sacrifice Techniques","goals":["Execute piece sacrifices","Calculate sacrifice lines deeply","Assess sacrifice soundness"],"activities":["Classic sacrifice patterns","Speculative sacrifices","Sacrifice calculation training"],"superpower":{"name":"Courage","meaning":"Taking big risks"}},{"week":3,"title":"Positional Pawn Sacrifices","goals":["Sacrifice pawns for position","Understand typical pawn sacs","Generate compensation"],"activities":["Positional pawn sacrifice themes","Greek gift variations","Creating attacking chances"],"superpower":{"name":"Investment","meaning":"Giving to gain"}},{"week":4,"title":"Endgame Studies","goals":["Solve artistic endgame studies","Appreciate endgame beauty","Find only moves"],"activities":["Classical study collection","Study composition","Finding brilliant moves"],"superpower":{"name":"Artistry","meaning":"Appreciating beauty"}},{"week":5,"title":"Candidate Master Techniques","goals":["Play at CM/FM level","Maintain consistent performance","Minimize errors"],"activities":["Error reduction training","Consistency challenges","High-level game practice"],"superpower":{"name":"Consistency","meaning":"Reliable performance"}},{"week":6,"title":"Specialized Openings","goals":["Master specialized systems","Prepare surprise weapons","Build complete repertoire"],"activities":["Rare opening exploration","Surprise preparation","Complete repertoire review"],"superpower":{"name":"Specialization","meaning":"Deep expertise"}},{"week":7,"title":"Grandmaster Games","goals":["Study world-class games","Extract high-level concepts","Model GM thinking"],"activities":["Annotated GM game study","Guess the move exercises","GM style emulation"],"superpower":{"name":"Modeling Excellence","meaning":"Learning from the best"}},{"week":8,"title":"Mastery Exhibition","goals":["Demonstrate mastery","Give simultaneous exhibition","Inspire others"],"activities":["Simul display","Teaching demonstrations","Mastery celebration"],"superpower":{"name":"Legacy","meaning":"Inspiring the next generation"}}]}]},{"term":4,"levels":[{"name":"Beginner","focus":"Year-end mastery: Consolidating skills and building confidence for continued growth","weeks":[{"week":1,"title":"All-Around Review","goals":["Review all piece movements and rules","Recall tactical patterns","Play confidently"],"activities":["Skills assessment stations","Memory challenge games","Confident play exercises"],"superpower":{"name":"Confidence","meaning":"Trusting your knowledge"}},{"week":2,"title":"Defensive Skills","goals":["Defend against threats","Create escape squares","Find defensive resources"],"activities":["Defense puzzle collection","Escape square exercises","Defensive technique drills"],"superpower":{"name":"Resilience","meaning":"Defending under pressure"}},{"week":3,"title":"Creating Threats","goals":["Make threats continuously","Force opponent errors","Control the game tempo"],"activities":["Threat creation exercises","Forcing move sequences","Initiative games"],"superpower":{"name":"Assertiveness","meaning":"Taking charge"}},{"week":4,"title":"Checkmate Patterns Review","goals":["Master all basic checkmate patterns","Recognize mate opportunities","Finish games efficiently"],"activities":["Checkmate pattern quiz","Mate in 1, 2, 3 challenges","Finishing games practice"],"superpower":{"name":"Completion","meaning":"Finishing strong"}},{"week":5,"title":"Famous Chess Games","goals":["Learn from famous games","Appreciate chess history","Get inspired"],"activities":["Simplified GM game replay","Chess history stories","Inspiration discussions"],"superpower":{"name":"Inspiration","meaning":"Learning from greatness"}},{"week":6,"title":"Puzzle Solving","goals":["Solve tactical puzzles","Build pattern recognition","Enjoy puzzle solving"],"activities":["Puzzle solving competition","Pattern recognition games","Puzzle creation"],"superpower":{"name":"Problem-Solving","meaning":"Finding solutions"}},{"week":7,"title":"Chess Friends","goals":["Build chess friendships","Support fellow players","Create positive chess culture"],"activities":["Friendship games","Team challenges","Chess community building"],"superpower":{"name":"Friendship","meaning":"Building connections"}},{"week":8,"title":"Year-End Celebration","goals":["Celebrate year's growth","Set future goals","Graduate to next level"],"activities":["Year review showcase","Goal-setting for summer","Graduation ceremony"],"superpower":{"name":"Achievement","meaning":"Celebrating success"}}]},{"name":"Intermediate","focus":"Year completion: Advanced tournament play and pathway to mastery","weeks":[{"week":1,"title":"Complete Game Analysis","goals":["Annotate full games","Identify critical moments","Create improvement plan"],"activities":["Deep game annotation","Turning point analysis","Personal improvement plans"],"superpower":{"name":"Self-Analysis","meaning":"Understanding yourself"}},{"week":2,"title":"Rapid Chess Mastery","goals":["Excel at faster time controls","Make quick quality decisions","Maintain accuracy under speed"],"activities":["Rapid tournament practice","Speed accuracy training","Time pressure management"],"superpower":{"name":"Quick Thinking","meaning":"Fast but accurate"}},{"week":3,"title":"Thematic Tournaments","goals":["Play themed positions","Master specific structures","Deep opening understanding"],"activities":["Thematic tournament rounds","Structure-specific games","Position-type mastery"],"superpower":{"name":"Specialization","meaning":"Focused expertise"}},{"week":4,"title":"Chess Variants","goals":["Explore chess variants","Apply skills to new formats","Have creative fun"],"activities":["Chess960 games","Bughouse team play","Variant exploration"],"superpower":{"name":"Versatility","meaning":"Adapting to new formats"}},{"week":5,"title":"Simultaneous Exhibition","goals":["Play multiple opponents","Manage attention efficiently","Demonstrate growth"],"activities":["Student simul events","Multi-board thinking","Exhibition practice"],"superpower":{"name":"Multi-tasking","meaning":"Managing complexity"}},{"week":6,"title":"Teaching Others","goals":["Teach beginners","Explain concepts clearly","Reinforce own knowledge"],"activities":["Peer teaching sessions","Lesson planning","Mentoring assignments"],"superpower":{"name":"Teaching","meaning":"Helping others learn"}},{"week":7,"title":"Tournament Preparation","goals":["Prepare comprehensively","Peak for major event","Competitive readiness"],"activities":["Preparation workshops","Mental preparation","Physical readiness"],"superpower":{"name":"Readiness","meaning":"Being fully prepared"}},{"week":8,"title":"Championship Finals","goals":["Compete at highest level","Demonstrate year's growth","Celebrate achievements"],"activities":["Year-end championship","Awards ceremony","Future goals discussion"],"superpower":{"name":"Excellence","meaning":"Achieving your best"}}]},{"name":"Advanced","focus":"Mastery culmination: Competitive peak and transition to advanced study","weeks":[{"week":1,"title":"Candidate Master Prep","goals":["Prepare for CM/FM level","Achieve rating milestones","Professional preparation"],"activities":["High-level preparation methods","Rating goal setting","Tournament planning"],"superpower":{"name":"Professionalism","meaning":"Serious dedication"}},{"week":2,"title":"Opening Encyclopedia","goals":["Complete opening repertoire","Document preparation files","Build theory knowledge"],"activities":["Repertoire completion","Opening database building","Theory documentation"],"superpower":{"name":"Thoroughness","meaning":"Comprehensive preparation"}},{"week":3,"title":"Endgame Tablebase","goals":["Study theoretical endgames","Use tablebases effectively","Master complex endings"],"activities":["Tablebase studies","7-piece endgames","Theoretical position mastery"],"superpower":{"name":"Theoretical Knowledge","meaning":"Understanding truth"}},{"week":4,"title":"Psychological Warfare","goals":["Use psychological tactics","Handle pressure situations","Mental game mastery"],"activities":["Psychology in chess discussions","Pressure situation practice","Mental toughness training"],"superpower":{"name":"Mental Warfare","meaning":"Psychological strength"}},{"week":5,"title":"Blindfold Chess","goals":["Play blindfold chess","Develop visualization","Show complete mastery"],"activities":["Blindfold game practice","Visualization training","Memory enhancement"],"superpower":{"name":"Visualization","meaning":"Seeing without looking"}},{"week":6,"title":"Chess Literature","goals":["Study chess books","Understand chess culture","Develop lifelong learning"],"activities":["Classic chess book study","Chess culture exploration","Building personal library"],"superpower":{"name":"Scholarship","meaning":"Lifelong learning"}},{"week":7,"title":"Coaching & Mentorship","goals":["Coach other students","Give lessons","Give back to chess community"],"activities":["Student coaching assignments","Lesson giving practice","Mentorship programs"],"superpower":{"name":"Giving Back","meaning":"Helping others succeed"}},{"week":8,"title":"Grand Finale","goals":["Year culmination event","Showcase complete mastery","Set path for chess future"],"activities":["Major championship event","Graduation to club/tournament play","Grand celebration"],"superpower":{"name":"Mastery","meaning":"Achieving excellence"}}]}]}]</script>
+<script>
+(() => {
+  const TERMS = JSON.parse(document.getElementById("curriculum").textContent);
+  const LEVELS = [
+    { name: "Beginner", short: "BEG", slug: "beg", piece: "♙︎" },
+    { name: "Intermediate", short: "INT", slug: "int", piece: "♘︎" },
+    { name: "Advanced", short: "ADV", slug: "adv", piece: "♕︎" },
+  ];
+  const STORE_KEY = "chess-hub-taught-v1";
+
+  const readTaught = () => {
+    try { return new Set(JSON.parse(localStorage.getItem(STORE_KEY) || "[]")); }
+    catch { return new Set(); }
+  };
+  const writeTaught = (set) => {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify([...set])); } catch { /* storage unavailable */ }
+  };
+  let taught = readTaught();
+
+  const courseId = (term, slug) => `t${term}-${slug}`;
+  const weekId = (term, slug, week) => `${courseId(term, slug)}-w${week}`;
+  const levelOf = (name) => LEVELS.find((l) => l.name === name);
+  const getCourse = (id) => {
+    const m = /^t([1-4])-(beg|int|adv)$/.exec(id || "");
+    if (!m) return null;
+    const term = TERMS.find((t) => t.term === Number(m[1]));
+    const lvl = LEVELS.find((l) => l.slug === m[2]);
+    return { term: term.term, lvl, data: term.levels.find((l) => l.name === lvl.name) };
+  };
+  const taughtCount = (term, lvl) =>
+    getCourse(courseId(term, lvl.slug)).data.weeks.filter((w) => taught.has(weekId(term, lvl.slug, w.week))).length;
+
+  const el = (tag, attrs = {}, ...kids) => {
+    const n = document.createElement(tag);
+    Object.entries(attrs).forEach(([k, v]) => {
+      if (k === "class") n.className = v;
+      else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v);
+    });
+    kids.flat().forEach((k) => n.append(k instanceof Node ? k : document.createTextNode(k)));
+    return n;
+  };
+
+  let current = null;
+
+  function renderStats() {
+    const total = TERMS.reduce((n, t) => n + t.levels.reduce((m, l) => m + l.weeks.length, 0), 0);
+    const powers = new Set(TERMS.flatMap((t) => t.levels.flatMap((l) => l.weeks.map((w) => w.superpower.name))));
+    document.getElementById("stats").replaceChildren(
+      el("span", {}, el("b", {}, String(TERMS.length)), " terms"),
+      el("span", {}, el("b", {}, String(LEVELS.length)), " levels"),
+      el("span", {}, el("b", {}, String(TERMS.length * LEVELS.length)), " courses"),
+      el("span", {}, el("b", {}, String(total)), " weekly lessons"),
+      el("span", {}, el("b", {}, String(powers.size)), " superpowers"),
+      el("span", {}, el("b", {}, String(taught.size)), " marked taught"),
+    );
+  }
+
+  function renderMap() {
+    const map = document.getElementById("map");
+    const cells = [el("span", {})];
+    TERMS.forEach((t) => cells.push(el("span", { class: "colhead" }, `Term ${t.term}`)));
+    LEVELS.forEach((lvl, r) => {
+      cells.push(el("div", { class: "rowhead" }, el("span", { class: "piece", "aria-hidden": "true" }, lvl.piece), el("span", {}, lvl.name)));
+      TERMS.forEach((t, c) => {
+        const id = courseId(t.term, lvl.slug);
+        const course = getCourse(id);
+        const done = taughtCount(t.term, lvl);
+        const n = course.data.weeks.length;
+        cells.push(el("button", {
+          class: "cell" + ((r + c) % 2 ? " dark" : ""),
+          "aria-current": String(current === id),
+          "aria-label": `Open Term ${t.term} ${lvl.name}`,
+          onclick: () => openCourse(id, true),
+        },
+          el("span", { class: "code" }, `T${t.term} · ${lvl.short}`),
+          el("span", { class: "focus" }, course.data.focus.split(":")[0]),
+          el("span", { class: "bar", "aria-hidden": "true" }, el("i", { style: `width:${(done / n) * 100}%` })),
+          el("span", { class: "count" }, `${done}/${n} weeks taught`),
+        ));
+      });
+    });
+    map.replaceChildren(...cells);
+  }
+
+  function weekCard(term, lvl, w) {
+    const id = weekId(term, lvl.slug, w.week);
+    const isDone = taught.has(id);
+    const box = el("input", { type: "checkbox", id: `cb-${id}` });
+    box.checked = isDone;
+    box.addEventListener("change", () => {
+      box.checked ? taught.add(id) : taught.delete(id);
+      writeTaught(taught);
+      details.classList.toggle("taught", box.checked);
+      badgeSlot.replaceChildren(...(box.checked ? [el("span", { class: "badge" }, "Taught")] : []));
+      renderMap(); renderStats(); renderCourseProgress();
+    });
+    const badgeSlot = el("span", {}, ...(isDone ? [el("span", { class: "badge" }, "Taught")] : []));
+    const details = el("details", { class: "week" + (isDone ? " taught" : ""), id },
+      el("summary", {},
+        el("span", { class: "wk" }, `WK ${w.week}`),
+        el("span", { class: "t" },
+          el("span", {}, w.title),
+          el("span", { class: "sp" }, "Superpower: ", el("b", {}, w.superpower.name), ` · ${w.superpower.meaning}`)),
+        el("span", { style: "display:flex;gap:10px;align-items:center" }, badgeSlot, el("span", { class: "chev", "aria-hidden": "true" }, "›"))),
+      el("div", { class: "week-body" },
+        el("div", {}, el("h4", {}, "Learning goals"), el("ul", {}, w.goals.map((g) => el("li", {}, g)))),
+        el("div", {}, el("h4", {}, "Activities"), el("ul", {}, w.activities.map((a) => el("li", {}, a)))),
+        el("label", { class: "taught-toggle", for: `cb-${id}` }, box, "I've taught this week")),
+    );
+    return details;
+  }
+
+  function renderCourseProgress() {
+    const slot = document.getElementById("course-progress");
+    if (!slot || !current) return;
+    const c = getCourse(current);
+    slot.textContent = `${taughtCount(c.term, c.lvl)} of ${c.data.weeks.length} weeks taught`;
+  }
+
+  function openCourse(id, scroll, openWeek) {
+    const c = getCourse(id);
+    if (!c) return;
+    current = id;
+    try { history.replaceState(null, "", `#${openWeek || id}`); } catch { /* sandboxed */ }
+    const [label, rest] = c.data.focus.split(/:\s*/);
+    const allOpen = () => document.querySelectorAll("#course details").forEach((d) => (d.open = true));
+    const allClose = () => document.querySelectorAll("#course details").forEach((d) => (d.open = false));
+    document.getElementById("course").replaceChildren(
+      el("div", { class: "course-head" },
+        el("div", { class: "intro" },
+          el("span", { class: "eyebrow" }, `Term ${c.term} · ${c.lvl.name} level`),
+          el("h2", {}, label),
+          el("p", { class: "muted" }, rest || ""),
+          el("span", { class: "stats", id: "course-progress" })),
+        el("div", { class: "actions" },
+          el("button", { class: "btn", type: "button", onclick: allOpen }, "Expand all"),
+          el("button", { class: "btn", type: "button", onclick: allClose }, "Collapse all"),
+          el("a", { class: "btn", href: `courses/Term${c.term}.pdf`, target: "_blank", rel: "noopener" }, `Term ${c.term} PDF ↗`))),
+      el("div", { class: "weeks" }, c.data.weeks.map((w) => weekCard(c.term, c.lvl, w))),
+    );
+    renderCourseProgress();
+    renderMap();
+    if (openWeek) {
+      const d = document.getElementById(openWeek);
+      if (d) { d.open = true; d.scrollIntoView({ block: "center" }); }
+    } else if (scroll) {
+      document.getElementById("course").scrollIntoView({ block: "start" });
+    }
+  }
+
+  // Search
+  const INDEX = TERMS.flatMap((t) => t.levels.flatMap((l) => l.weeks.map((w) => ({
+    term: t.term, lvl: levelOf(l.name), w,
+    text: [...w.goals, ...w.activities, w.superpower.name, w.superpower.meaning].join(" • "),
+  }))));
+  const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const highlight = (text, q) => {
+    const parts = text.split(new RegExp(`(${escapeRe(q)})`, "ig"));
+    return parts.map((p, i) => (i % 2 ? el("mark", {}, p) : p));
+  };
+  const snippet = (text, q) => {
+    const i = Math.max(0, text.toLowerCase().indexOf(q.toLowerCase()));
+    const start = Math.max(0, i - 40);
+    return (start ? "…" : "") + text.slice(start, i + q.length + 60) + (i + q.length + 60 < text.length ? "…" : "");
+  };
+
+  const input = document.getElementById("q");
+  const results = document.getElementById("results");
+  input.addEventListener("input", () => {
+    const q = input.value.trim();
+    if (q.length < 2) { results.hidden = true; results.replaceChildren(); return; }
+    const hits = INDEX.filter((x) => `${x.w.title} ${x.text}`.toLowerCase().includes(q.toLowerCase()));
+    results.hidden = false;
+    results.replaceChildren(
+      el("p", { class: "muted", style: "margin:0" }, hits.length ? `${hits.length} lesson${hits.length === 1 ? "" : "s"} match “${q}”` : `No lessons match “${q}”. Try a shorter word.`),
+      ...hits.slice(0, 40).map((x) => el("button", {
+        class: "result", type: "button",
+        onclick: () => openCourse(courseId(x.term, x.lvl.slug), true, weekId(x.term, x.lvl.slug, x.w.week)),
+      },
+        el("span", { class: "code" }, `T${x.term} · ${x.lvl.short} · WK ${x.w.week}`),
+        el("span", { style: "font-weight:600" }, highlight(x.w.title, q)),
+        el("span", { class: "hit" }, highlight(snippet(x.text, q), q)))),
+    );
+  });
+
+  renderStats();
+  const hash = (location.hash || "").slice(1);
+  const m = /^(t[1-4]-(?:beg|int|adv))(?:-w[1-8])?$/.exec(hash);
+  if (m) openCourse(m[1], false, hash !== m[1] ? hash : undefined);
+  else openCourse("t1-beg", false);
+})();
+</script>
