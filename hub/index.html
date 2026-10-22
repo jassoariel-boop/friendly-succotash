@@ -1,0 +1,641 @@
+<title>Coach Ari's Course Hub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a baseplate grid of 12 courses (levels x terms); each course opens into an 8-week build log. Toolkit sits below. */
+:root {
+  --bg: #eef2ee;
+  --panel: #ffffff;
+  --sunk: #e3e9e4;
+  --fg: #1b2420;
+  --muted: #5a6862;
+  --line: #cfd8d2;
+  --accent: #0d6b5b;
+  --accent-ink: #ffffff;
+  --beg: #e8b10f;
+  --beg-ink: #2a2000;
+  --int: #2369ad;
+  --int-ink: #ffffff;
+  --adv: #b3372d;
+  --adv-ink: #ffffff;
+  --mark: #ffe27a;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111613; --panel: #1a211d; --sunk: #232b26; --fg: #e5ece7; --muted: #9aa8a1; --line: #303a35;
+    --accent: #4fc2a9; --accent-ink: #062019; --beg: #f2c234; --beg-ink: #2a2000; --int: #5b9be0; --int-ink: #06172a;
+    --adv: #e2675c; --adv-ink: #2a0805; --mark: #6b5a12; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111613; --panel: #1a211d; --sunk: #232b26; --fg: #e5ece7; --muted: #9aa8a1; --line: #303a35;
+  --accent: #4fc2a9; --accent-ink: #062019; --beg: #f2c234; --beg-ink: #2a2000; --int: #5b9be0; --int-ink: #06172a;
+  --adv: #e2675c; --adv-ink: #2a0805; --mark: #6b5a12; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 36px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.1; }
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: 1.6rem; font-weight: 800; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; }
+.label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+a { color: var(--accent); }
+
+/* header */
+header { display: grid; gap: 14px; }
+.tagline { font-family: var(--display); font-weight: 600; font-size: 1.1rem; color: var(--accent); }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 20px; font-family: var(--mono); font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.facts b { color: var(--fg); font-weight: 500; }
+
+/* controls */
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.search { flex: 1 1 280px; position: relative; }
+.search input { width: 100%; padding: 12px 14px 12px 40px; border: 2px solid var(--line); border-radius: 10px; background: var(--panel); font-size: 1rem; }
+.search input:focus { border-color: var(--accent); outline: none; }
+.search svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; fill: none; stroke: var(--muted); stroke-width: 2; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 2px solid var(--line); background: var(--panel); border-radius: 999px; padding: 7px 14px; cursor: pointer; font-weight: 700; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; }
+.chip[aria-pressed="true"] { border-color: var(--fg); background: var(--fg); color: var(--bg); }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none; box-shadow: inset 0 -2px 0 rgba(0,0,0,.18); }
+.dot.beg { background: var(--beg); } .dot.int { background: var(--int); } .dot.adv { background: var(--adv); }
+
+/* course map */
+.map { display: grid; grid-template-columns: 130px repeat(4, minmax(0, 1fr)); gap: 10px; }
+.map .colhead { font-family: var(--display); font-weight: 800; font-size: 1.05rem; padding: 0 4px 2px; align-self: end; }
+.map .rowhead { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+.course { text-align: left; border: 2px solid var(--line); background: var(--panel); border-radius: 12px; padding: 14px; cursor: pointer; display: grid; gap: 10px; align-content: start; min-width: 0; transition: transform .12s ease, border-color .12s ease; }
+.course:hover { transform: translateY(-2px); border-color: var(--fg); }
+.course[aria-current="true"] { border-color: var(--fg); box-shadow: 0 0 0 2px var(--fg); }
+.course .focus { font-size: 0.88rem; color: var(--muted); }
+.course .first { font-weight: 700; font-size: 0.95rem; }
+.studs { display: flex; gap: 5px; }
+.studs i { width: 14px; height: 14px; border-radius: 50%; display: block; box-shadow: inset 0 -2px 0 rgba(0,0,0,.2), inset 0 2px 0 rgba(255,255,255,.35); }
+.lv-beg .studs i { background: var(--beg); } .lv-int .studs i { background: var(--int); } .lv-adv .studs i { background: var(--adv); }
+.course .badge { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; }
+.map.filtered .course.dim, .map.filtered .rowhead.dim { opacity: .28; }
+
+/* course detail */
+.detail { display: grid; gap: 18px; scroll-margin-top: 16px; }
+.dhead { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: end; justify-content: space-between; border-bottom: 3px solid var(--fg); padding-bottom: 14px; }
+.dhead .meta { display: grid; gap: 6px; min-width: 0; }
+.dhead .focus { color: var(--muted); max-width: 62ch; }
+.lvtag { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; width: fit-content; }
+.lvtag.beg { background: var(--beg); color: var(--beg-ink); } .lvtag.int { background: var(--int); color: var(--int-ink); } .lvtag.adv { background: var(--adv); color: var(--adv-ink); }
+.dactions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { border: 2px solid var(--fg); background: transparent; border-radius: 8px; padding: 8px 14px; font-weight: 700; cursor: pointer; text-decoration: none; color: var(--fg); font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.weeks { display: grid; gap: 12px; }
+.week { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 4px 16px; scroll-margin-top: 16px; }
+.week.flash { animation: flash 1.6s ease; }
+@keyframes flash { 0%, 40% { box-shadow: 0 0 0 3px var(--accent); } 100% { box-shadow: 0 0 0 0 transparent; } }
+.wnum { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; display: grid; justify-items: start; gap: 2px; }
+.wnum b { font-family: var(--display); font-size: 2rem; color: var(--fg); line-height: 1; font-weight: 800; }
+.wbody { display: grid; gap: 10px; min-width: 0; }
+.wtop { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.power { font-size: 0.88rem; color: var(--muted); }
+.power b { color: var(--accent); }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px 20px; }
+.cols ul { margin: 4px 0 0; padding-left: 18px; }
+.cols li { margin: 2px 0; }
+.blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.blk { background: var(--sunk); border-radius: 8px; padding: 10px 12px; display: grid; gap: 4px; align-content: start; }
+.blk p { font-size: 0.93rem; }
+.vocab { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.vocab span { font-family: var(--mono); font-size: 0.78rem; border: 1px solid var(--line); background: var(--panel); border-radius: 4px; padding: 1px 7px; }
+.flag { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: .05em; background: var(--accent); color: var(--accent-ink); padding: 2px 7px; border-radius: 4px; width: fit-content; }
+.hint { font-size: 0.9rem; color: var(--muted); }
+mark { background: var(--mark); color: inherit; border-radius: 2px; }
+
+/* search results */
+.results { display: grid; gap: 10px; }
+.result { text-align: left; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; align-items: start; }
+.result:hover { border-color: var(--fg); }
+.result .where { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+.result .snip { font-size: 0.9rem; color: var(--muted); grid-column: 2; }
+.empty { padding: 24px; background: var(--panel); border: 2px dashed var(--line); border-radius: 12px; color: var(--muted); }
+
+/* toolkit */
+.toolkit { display: grid; gap: 22px; }
+.tk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.timeline { display: flex; height: 46px; border-radius: 8px; overflow: hidden; border: 2px solid var(--fg); }
+.timeline div { display: grid; place-items: center; font-family: var(--mono); font-size: 0.75rem; font-weight: 500; border-right: 2px solid var(--fg); min-width: 0; overflow: hidden; white-space: nowrap; }
+.timeline div:last-child { border-right: 0; }
+.timeline .recess { background: repeating-linear-gradient(45deg, var(--sunk) 0 6px, var(--panel) 6px 12px); flex: 0 0 34px; }
+.sched { display: grid; gap: 8px; }
+.sched .row { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 12px; font-size: 0.93rem; }
+.sched .row .t { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
+.index-card { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 16px 18px 14px; background-image: linear-gradient(var(--panel) 30px, transparent 30px), repeating-linear-gradient(var(--panel) 0 29px, var(--line) 29px 30px); background-position: 0 0, 0 4px; display: grid; gap: 6px; line-height: 30px; font-size: 0.95rem; }
+.index-card .top { border-bottom: 2px solid var(--adv); line-height: 1.4; padding-bottom: 6px; font-weight: 700; }
+.lengths { display: grid; gap: 6px; }
+.lengths .row { display: grid; grid-template-columns: 110px minmax(0,1fr) 72px; gap: 10px; align-items: center; font-size: 0.9rem; }
+.lengths .bar { height: 10px; border-radius: 5px; }
+.lengths .n { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.checklist { display: grid; gap: 4px; }
+.checklist label { display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 10px; align-items: start; padding: 6px 4px; border-radius: 6px; cursor: pointer; }
+.checklist label:hover { background: var(--sunk); }
+.checklist input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--accent); }
+.checklist input:checked + span { color: var(--muted); text-decoration: line-through; }
+.tk-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.note { border-left: 4px solid var(--beg); padding: 8px 12px; background: var(--sunk); border-radius: 0 8px 8px 0; font-size: 0.93rem; }
+.pdfs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.pdf { display: grid; grid-template-columns: 40px minmax(0,1fr); gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); text-decoration: none; color: var(--fg); }
+.pdf:hover { border-color: var(--fg); }
+.pdf .ic { width: 40px; height: 48px; border-radius: 4px; background: var(--sunk); display: grid; place-items: center; font-family: var(--mono); font-size: 0.65rem; color: var(--adv); font-weight: 500; border: 1px solid var(--line); }
+.pdf small { color: var(--muted); display: block; }
+footer { color: var(--muted); font-size: 0.85rem; }
+
+@media (max-width: 820px) {
+  .map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .map .colhead, .map .corner { display: none; }
+  .map .rowhead { grid-column: 1 / -1; padding-top: 8px; }
+  .course .tterm { display: block; }
+}
+@media (min-width: 821px) { .course .tterm { display: none; } }
+@media (max-width: 480px) {
+  .week { grid-template-columns: minmax(0, 1fr); }
+  .wnum { display: flex; gap: 8px; align-items: baseline; }
+  .wnum b { font-size: 1.4rem; }
+  .map { grid-template-columns: minmax(0, 1fr); }
+  .lengths .row { grid-template-columns: 90px minmax(0,1fr) 64px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="label">LEGO Design Enrichment Program · Coach Ari</p>
+    <h1>Course Hub</h1>
+    <p class="tagline">Think. Play. Grow.</p>
+    <div class="facts" id="facts"></div>
+  </header>
+
+  <div class="controls">
+    <div class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+      <input id="q" type="search" placeholder="Search themes, superpowers, vocab, activities…" aria-label="Search all courses" autocomplete="off">
+    </div>
+    <div class="chips" role="group" aria-label="Filter by level" id="levelChips"></div>
+  </div>
+
+  <section id="resultsWrap" hidden>
+    <div class="results" id="results"></div>
+  </section>
+
+  <section id="mapWrap" aria-labelledby="mapTitle" style="display:grid;gap:14px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap">
+      <h2 id="mapTitle">Year at a glance</h2>
+      <span class="label">Pick a course · each stud is one week</span>
+    </div>
+    <div class="map" id="map"></div>
+  </section>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <section class="toolkit" id="toolkit" aria-labelledby="tkTitle">
+    <div style="display:grid;gap:6px">
+      <h2 id="tkTitle">Teaching toolkit</h2>
+      <p class="hint">The 90-minute class structure, literacy routine, and weekly prep, from the Term 1 literacy guide. Every class follows the same five blocks.</p>
+    </div>
+    <div class="tk-grid">
+      <div class="card">
+        <h3>Daily schedule · 90 min</h3>
+        <div class="timeline" aria-hidden="true" id="timeline"></div>
+        <div class="sched" id="sched"></div>
+      </div>
+      <div class="card">
+        <h3>Read &amp; Learn · 10 min</h3>
+        <p class="label">Passage length by level</p>
+        <div class="lengths" id="lengths"></div>
+        <p class="label" style="margin-top:4px">Rotate one reading format per week</p>
+        <ul style="margin:0;padding-left:18px;font-size:0.93rem">
+          <li><b>Echo reading:</b> Coach reads a sentence, students repeat it. Best for Beginner.</li>
+          <li><b>Popcorn reading:</b> students take turns reading one sentence each.</li>
+          <li><b>Partner reading:</b> pairs trade paragraphs.</li>
+        </ul>
+        <p style="font-size:0.93rem">Three bolded vocabulary words per passage. Say each word, hear a kid-friendly definition, spot it in the reading. End with one comprehension question.</p>
+        <p class="note"><b>Tablet research weeks</b> replace the passage with 10 minutes of guided lookup. Pairs find two facts, write them on a sticky note, and use at least one in their build. Keep tablets on a bookmarked kid-safe search page.</p>
+      </div>
+      <div class="card">
+        <h3>Builder Card</h3>
+        <p class="hint">Every competition entry gets an index card. Cards stay with the build for judging and the Week 8 gallery walk. Beginners can draw and label, or dictate to a helper.</p>
+        <div class="index-card">
+          <div class="top">Builder Card</div>
+          <div>1. Name of my build: ________</div>
+          <div>2. My build is ____ because ____.</div>
+          <div style="color:var(--muted);font-size:0.85rem;line-height:1.3">(Use one vocabulary word.)</div>
+          <div>3. My Superpower today was ____.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tk-foot">
+          <h3>Weekly prep checklist</h3>
+          <button class="btn" id="resetPrep" type="button">Clear all</button>
+        </div>
+        <div class="checklist" id="prep"></div>
+        <p class="hint">Check-offs are saved in this browser only.</p>
+      </div>
+    </div>
+    <p class="note"><b>Open question from Term 1:</b> do the schools want reading passages matched to a specific grade level or reading standard? If so, passage length and vocabulary can be adjusted per site.</p>
+  </section>
+
+  <section aria-labelledby="pdfTitle" style="display:grid;gap:12px">
+    <h2 id="pdfTitle">Original curriculum files</h2>
+    <div class="pdfs" id="pdfs"></div>
+  </section>
+
+  <footer>4 terms · 3 levels · 8 weeks each. Coach Ari (Ariel Jasso).</footer>
+</div>
+
+<script>
+const LEVELS = [
+  { id: "beg", key: "beginner", name: "Beginner" },
+  { id: "int", key: "intermediate", name: "Intermediate" },
+  { id: "adv", key: "advanced", name: "Advanced" }
+];
+
+// Term 1 weeks: [theme, superpower, morning circle, read & learn, vocab, research?, build challenge, competition]
+const T1 = {
+  beg: {
+    focus: "Foundation skills: basic building techniques, structural stability, and creative expression.",
+    tip: "Beginner passages are short, and echo reading works best.",
+    weeks: [
+      ["Introduction to LEGO Building", "Organization", "Show the main brick types (brick, plate, tile, slope) and how studs connect. Why sorted pieces make building faster.", "Passage: \"What Is a LEGO Brick?\"", ["stud", "plate", "stable"], false, "Brick sorting and identification game, then color and shape pattern creation.", "Tower building: tallest tower in 5 minutes, then a wobble test for most stable."],
+      ["Building Strong Foundations", "Persistence", "Compare a straight stack to overlapped bricks, like a real brick wall. Push both to see which holds.", "Passage: \"How Builders Make Walls Strong.\"", ["foundation", "overlap", "weight"], false, "Foundation strength tests and smooth walls with no visible studs.", "Bridge building: span a gap between two books and hold the most weight."],
+      ["Symmetry & Patterns", "Attention to Detail", "Symmetry in butterflies, faces, and buildings. Demo with a small mirror.", "Passage: \"Symmetry All Around Us.\"", ["symmetry", "pattern", "mirror"], false, "Mirror image building with a partner and pattern completion challenges.", "Symmetrical creature creation, judged on how well the two sides match."],
+      ["Animals & Creatures", "Imagination", "Real animals vs. fantasy creatures. How eyes, tails, and wings tell you what kind of animal it is.", "Pairs find 2 facts about an animal or dinosaur.", ["habitat", "feature", "creature"], true, "Zoo animal build that shows at least one fact they found.", "Dragon or monster design challenge. Builder Card names one real animal feature they borrowed."],
+      ["Vehicles & Transportation", "Problem-Solving", "How wheels and axles work. Show a car that rolls and one that doesn't, and ask why.", "Passage: \"Wheels That Changed the World.\"", ["axle", "wheel", "motion"], false, "Race car build, plus a boat or flying machine design.", "Ramp race for distance, with a bonus boat float test."],
+      ["Buildings & Architecture", "Planning", "Parts of a building: doors, windows, roofs. Architects plan before they build; show a simple sketch.", "Passage: \"What Does an Architect Do?\"", ["architect", "blueprint", "roof"], false, "Sketch a dream house, then build it with interior details.", "Store or shop building, then connect every build into one neighborhood."],
+      ["Storytelling with LEGO", "Communication", "Parts of a story: character, setting, problem. Model a quick scene.", "Read a short prepared story (a fable works well) aloud together.", ["character", "setting", "plot"], false, "Recreate a favorite story or build your own story scene.", "Mini-theater presentations. Each student reads a 2 to 3 sentence story caption aloud."],
+      ["Final Showcase & Celebration", "Pride", "Look back at the past 7 weeks and every Superpower earned.", "Students read their favorite past Builder Card to a partner, then play a vocabulary review game.", [], false, "Free build challenge with a theme: your personal masterpiece.", "Gallery walk and presentations for peers and families. Each student reads their Builder Card. Awards ceremony during prizes."]
+    ]
+  },
+  int: {
+    focus: "Advancing skills: mechanical functions, advanced techniques, and collaborative building.",
+    tip: "Popcorn and partner reading work well at this level.",
+    weeks: [
+      ["Advanced Building Techniques", "Versatility", "SNOT (Studs Not On Top) explained. Show brackets and a build with studs facing sideways.", "Passage: \"Building Sideways.\"", ["bracket", "texture", "orientation"], false, "Sideways building challenges and texture experiments.", "SNOT mosaic (a picture or initial), judged on clean, smooth surfaces."],
+      ["Simple Machines & Mechanisms", "Curiosity", "Gears, levers, and pulleys. Quick demo of each.", "Passage: \"Simple Machines Make Work Easier.\"", ["lever", "gear", "mechanical advantage"], false, "Gear train construction and a pulley system challenge.", "Catapult or trebuchet contest: hit the target from a set distance."],
+      ["Scale & Proportion", "Precision", "What scale means. Show a car that is too big for a minifigure and ask what went wrong.", "Look up the real size of a landmark or vehicle.", ["scale", "proportion", "ratio"], true, "Minifigure-scale room or vehicle.", "Landmark recreation at scale, judged on proportion and how recognizable it is."],
+      ["Collaborative Megastructures", "Teamwork", "Real cities are built by teams. Assign roles: planner, builder, sorter, inspector.", "Partner reading: \"Teams That Built Big.\"", ["collaborate", "module", "plan"], false, "Team planning, then modular building sections for a team city.", "Castle or fortress collaboration, judged on how well sections connect. Team Builder Card with one line from each member."],
+      ["Moving Creations", "Innovation", "Suspension and linkages. Push a stiff car and a sprung car over a bumpy surface.", "Passage: \"How Animals and Machines Walk.\"", ["suspension", "linkage", "kinetic"], false, "Off-road vehicle with working suspension, plus a kinetic sculpture.", "Walking creature race using linkages."],
+      ["Architecture & Interior Design", "Vision", "Interior design, modular buildings, and forced perspective (smaller things look farther away).", "Passage: \"Tricks Artists Use to Show Distance.\"", ["perspective", "interior", "modular"], false, "Multi-story building with rooms, connected to a modular street system.", "Forced perspective cityscape, judged from one marked viewing spot."],
+      ["Themed World Building", "Creativity", "What makes a world feel complete: matching colors, a clear theme, and a story.", "2 facts about a historical period, or ideas for a future city.", ["theme", "era", "environment"], true, "Teams choose a fantasy realm, historical period, or future city and build several related structures.", "World presentations. Each team reads a short \"travel guide\" paragraph from its Builder Card."],
+      ["Competition & Exhibition", "Confidence", "How to present like a professional. Coach models a 30-second presentation.", "Students write and practice a short presentation script with a partner.", ["exhibit", "judge", "criteria"], false, "Finish exhibition pieces and set up the exhibition.", "Speed building competition, then gallery walk. Awards and reflection during prizes."]
+    ]
+  },
+  adv: {
+    focus: "Mastery: complex mechanisms, sculptural techniques, and engineering principles.",
+    tip: "Advanced students write more on their Builder Cards and lead parts of the reading.",
+    weeks: [
+      ["Complex Mechanical Systems", "Engineering Mindset", "Multi-stage gears, gear ratios, and rack and pinion. Demo a small gear speeding up a big one.", "Passage: \"Inside a Clock.\"", ["gear ratio", "rack and pinion", "automaton"], false, "Clock mechanism recreation and an automated lifting system.", "Walking robot race to a finish line."],
+      ["Sculptural Building Techniques", "Artistry", "Making curves from square bricks. Show photos of large LEGO sculptures.", "Reference photos and 2 facts about the animal they will sculpt.", ["contour", "organic", "proportion"], true, "Animal sculpture with realistic features, then a human figure.", "Abstract sculpture challenge. Builder Card is written like a museum label."],
+      ["Structural Engineering", "Analysis", "Load, tension, and compression. Why triangles (trusses) make structures stronger.", "Passage: \"Why Bridges Stand Up.\"", ["load", "tension", "compression"], false, "Cantilever design and an earthquake-resistant building tested on a shake table.", "Bridge engineering weight test. Most weight held wins."],
+      ["Miniature & Microscale", "Efficiency", "Microscale examples. One brick can stand for a whole floor.", "2 facts about a famous landmark.", ["microscale", "vignette", "detail"], true, "Group city in microscale plus a detailed vignette.", "Famous landmark at mini scale. Classmates guess the landmark before reading the Builder Card."],
+      ["Kinetic Art & Motion", "Synthesis", "Artists who build moving art. Marble runs, cranks, and momentum.", "Passage: \"Can Anything Move Forever?\" (why perpetual motion is impossible).", ["kinetic", "crank", "momentum"], false, "Crank-operated animation and a \"perpetual motion\" sculpture that runs as long as possible.", "Marble run with multiple paths. Longest run time wins."],
+      ["MOC Design Process", "Design Thinking", "MOC means \"My Own Creation.\" Steps: sketch, gather pieces, prototype, document.", "Read a real set of step-by-step building instructions aloud.", ["prototype", "iterate", "sequence"], false, "Original MOC: sketch, prototype, and write building instructions.", "Instruction swap. A partner builds from your written instructions. Closest match wins."],
+      ["Master Builder Challenge", "Resourcefulness", "Real engineers work under limits on time, money, and materials.", "Students read the week's design brief aloud like a real client request.", ["constraint", "criteria", "brief"], false, "Specific theme with piece restrictions.", "Mystery piece challenge, then a time-limited masterpiece."],
+      ["Portfolio & Exhibition", "Mastery", "What a portfolio is and what makes a good mentor.", "Students write a short technical explanation of their best build and read it to a partner.", ["portfolio", "mentor", "technical"], false, "Portfolio development using photos and past Builder Cards.", "Exhibition with technical presentations, plus a helping-beginner-builders event if a younger group is available."]
+    ]
+  }
+};
+
+// Terms 2-4 weeks: [theme, [learning goals], [activities], superpower, superpower tagline]
+const LATER = {
+  2: {
+    beg: { focus: "Expanding creativity: Thematic building, color theory, and collaborative projects.", weeks: [
+      ["Underwater World", ["Build sea creatures and submarines", "Use blue and green effectively", "Create underwater scenes"], ["Fish and shark building", "Submarine design challenge", "Coral reef collaboration"], "Theme Development", "Building cohesive worlds"],
+      ["Space Exploration", ["Design rockets and spaceships", "Build alien creatures", "Create space stations"], ["Rocket launch competition", "Alien design contest", "Space station module building"], "Futuristic Thinking", "Imagining tomorrow"],
+      ["Medieval Castles", ["Build castle structures", "Create knights and dragons", "Add defensive features"], ["Castle tower building", "Drawbridge mechanics", "Knight and dragon battles"], "Historical Imagination", "Building the past"],
+      ["Robots & Automatons", ["Design robot characters", "Add movable joints", "Create robot functions"], ["Robot design challenge", "Articulated joint practice", "Robot story creation"], "Mechanical Thinking", "Making things move"],
+      ["Nature & Gardens", ["Build trees and flowers", "Create park scenes", "Use natural colors effectively"], ["Botanical garden creation", "Tree building techniques", "Landscape design"], "Organic Building", "Curved and natural forms"],
+      ["Sports Stadium", ["Build sports venues", "Create playing fields", "Add spectator areas"], ["Stadium construction", "Field design (soccer, baseball)", "Scoreboard building"], "Scale Building", "Large structures"],
+      ["Color Mastery", ["Understand color combinations", "Build monochromatic creations", "Use color for emphasis"], ["Rainbow building challenge", "Single-color masterpieces", "Color accent exercises"], "Artistic Eye", "Using color effectively"],
+      ["Gallery Exhibition", ["Curate personal collection", "Present creations", "Appreciate others' work"], ["Gallery setup", "Presentation practice", "Exhibition celebration"], "Presentation", "Showcasing work"]
+    ]},
+    int: { focus: "Technical advancement: Gear trains, advanced structures, and design challenges.", weeks: [
+      ["Gear Systems", ["Build multi-stage gear trains", "Understand gear ratios", "Create gear-driven machines"], ["Gear ratio experiments", "Mechanical advantage challenges", "Gear-powered vehicles"], "Mechanical Engineering", "Power transmission"],
+      ["Bridge Engineering", ["Design different bridge types", "Test load capacity", "Optimize structure-to-weight ratio"], ["Arch bridge construction", "Suspension bridge challenges", "Weight-bearing tests"], "Engineering Analysis", "Testing and improving"],
+      ["Technic Building", ["Use Technic pieces effectively", "Build sturdy frameworks", "Create functional models"], ["Technic frame construction", "Lifting mechanisms", "Heavy-duty vehicle building"], "Technical Building", "Using specialized pieces"],
+      ["Rube Goldberg Machines", ["Design chain reaction machines", "Connect multiple actions", "Create entertaining contraptions"], ["Simple chain reactions", "Multi-step machines", "Rube Goldberg competition"], "Sequential Thinking", "One thing leads to another"],
+      ["Architecture Styles", ["Study architectural periods", "Build in different styles", "Understand design elements"], ["Gothic architecture", "Modern minimalist design", "Frank Lloyd Wright inspired"], "Architectural Knowledge", "Understanding styles"],
+      ["Lighting & Effects", ["Incorporate light elements", "Create visual effects", "Design for display"], ["Light brick integration", "Transparent piece usage", "Display-worthy builds"], "Showmanship", "Making it spectacular"],
+      ["Constraint Building", ["Build with limited pieces", "Maximize efficiency", "Problem-solve creatively"], ["Mystery bag challenges", "Color-restricted builds", "Size-limited challenges"], "Constraint Creativity", "Limits inspire innovation"],
+      ["Design Competition", ["Compete in building challenges", "Present under pressure", "Judge others' work"], ["Timed competition rounds", "Judging workshop", "Awards and celebration"], "Competition Readiness", "Performing under pressure"]
+    ]},
+    adv: { focus: "Sophisticated design: Advanced mechanics, artistic building, and professional techniques.", weeks: [
+      ["Pneumatics & Hydraulics", ["Build pneumatic systems", "Understand pressure principles", "Create powered mechanisms"], ["Pneumatic lifts", "Hydraulic arms", "Pressure-powered machines"], "Fluid Mechanics", "Working with pressure"],
+      ["Organic Sculpture", ["Create lifelike animals", "Master curved surfaces", "Build at larger scale"], ["Life-size animal sculptures", "Human figure building", "Organic form mastery"], "Sculptural Mastery", "Creating life from bricks"],
+      ["Architectural Detailing", ["Add intricate details", "Create realistic textures", "Master fine-scale work"], ["Detailed facade building", "Interior decoration", "Texture technique exploration"], "Detail Orientation", "Perfecting small elements"],
+      ["Modular City Planning", ["Design compatible modules", "Create city infrastructure", "Plan urban environments"], ["Street grid system", "Modular building sections", "City expansion planning"], "Urban Planning", "Designing cities"],
+      ["Advanced Kinetics", ["Build complex moving sculptures", "Create continuous motion", "Synchronize multiple movements"], ["Multi-axis movement", "Synchronized mechanisms", "Kinetic art projects"], "Motion Choreography", "Orchestrating movement"],
+      ["Historical Landmarks", ["Recreate famous buildings", "Research architectural history", "Build to accurate scale"], ["Eiffel Tower or Statue of Liberty", "Taj Mahal or Colosseum", "Local landmark recreation"], "Historical Recreation", "Building history"],
+      ["Stop Motion Animation", ["Build poseable figures", "Plan animation sequences", "Create short films"], ["Articulated figure building", "Scene construction", "Animation production"], "Animation", "Bringing builds to life"],
+      ["Master Builder Showcase", ["Complete signature build", "Document building process", "Inspire others"], ["Signature MOC completion", "Process documentation", "Master builder exhibition"], "Signature Style", "Developing unique voice"]
+    ]}
+  },
+  3: {
+    beg: { focus: "Creative exploration: Fantasy building, problem-solving, and group projects.", weeks: [
+      ["Fantasy Creatures", ["Design mythical creatures", "Combine animal features", "Add magical elements"], ["Dragon with moving wings", "Unicorn and phoenix builds", "Creature feature design"], "Mythical Imagination", "Creating legends"],
+      ["Amusement Park", ["Build carnival rides", "Create game booths", "Design entertainment venues"], ["Ferris wheel construction", "Roller coaster design", "Midway games"], "Entertainment Design", "Creating fun"],
+      ["Emergency Vehicles", ["Build police cars and fire trucks", "Add emergency features", "Create action scenes"], ["Fire truck with ladder", "Police station design", "Ambulance and rescue vehicles"], "Heroic Building", "Creating helpers"],
+      ["Jungle Adventure", ["Build tropical environments", "Create jungle animals", "Design exploration scenes"], ["Rainforest tree building", "Monkey and tiger creation", "Temple ruins exploration"], "Adventure Creation", "Building excitement"],
+      ["City Services", ["Build essential city buildings", "Create service vehicles", "Understand community helpers"], ["Post office and library", "Garbage truck and street sweeper", "Community building"], "Community Understanding", "Building society"],
+      ["Winter Wonderland", ["Build snowy scenes", "Create winter activities", "Use white and blue effectively"], ["Ski slope construction", "Igloo and snow fort", "Ice skating rink"], "Seasonal Building", "Capturing seasons"],
+      ["Music & Performance", ["Build musical instruments", "Create performance stages", "Design concert venues"], ["Guitar and drum builds", "Stage with lights", "Concert hall creation"], "Performance Space", "Building for entertainment"],
+      ["Dream Project Day", ["Build anything imagined", "Complete ambitious projects", "Share creative visions"], ["Open-ended dream builds", "Support and collaboration", "Dream showcase celebration"], "Unlimited Creativity", "Building dreams"]
+    ]},
+    int: { focus: "Engineering focus: Structural challenges, advanced mechanisms, and problem-based learning.", weeks: [
+      ["Crane Engineering", ["Build functioning cranes", "Create lifting mechanisms", "Design stable bases"], ["Tower crane construction", "Mobile crane building", "Lifting competition"], "Lift Engineering", "Defeating gravity"],
+      ["Renewable Energy", ["Build wind turbines", "Create solar panel arrays", "Design eco-friendly structures"], ["Wind farm construction", "Solar power station", "Green building design"], "Sustainability", "Building for the future"],
+      ["Robotics Basics", ["Introduce programmable elements", "Build robot chassis", "Create simple programs"], ["Robot base construction", "Motor placement", "Simple programming tasks"], "Programming Basics", "Controlling machines"],
+      ["Medieval Siege Weapons", ["Build catapults and trebuchets", "Understand mechanical advantage", "Test projectile motion"], ["Catapult construction", "Trebuchet engineering", "Siege weapon competition"], "Physics Application", "Using leverage"],
+      ["Skyscraper Engineering", ["Build tall stable structures", "Understand center of gravity", "Design vertical transportation"], ["Tall building competition", "Elevator system design", "Earthquake resistance testing"], "Vertical Building", "Reaching heights"],
+      ["Transportation Systems", ["Design complete transport networks", "Build stations and terminals", "Create vehicle fleets"], ["Airport or train station", "Bus and subway system", "Integrated transport planning"], "Systems Thinking", "Connecting elements"],
+      ["Art Installation", ["Create abstract art pieces", "Build for visual impact", "Express artistic concepts"], ["Abstract sculpture", "Installation art pieces", "Gallery-quality builds"], "Abstract Expression", "Art through bricks"],
+      ["Innovation Challenge", ["Solve real-world problems", "Pitch creative solutions", "Build prototypes"], ["Problem identification", "Solution brainstorming", "Prototype building and presentation"], "Problem-Solving", "Creating solutions"]
+    ]},
+    adv: { focus: "Expert level: Complex systems, artistic mastery, and professional portfolio development.", weeks: [
+      ["Clockwork Mechanisms", ["Build functioning clock movements", "Create escapement mechanisms", "Master precision timing"], ["Clock face construction", "Gear timing systems", "Pendulum mechanisms"], "Precision Timing", "Mechanical accuracy"],
+      ["Naval Architecture", ["Design ship hulls", "Build maritime vessels", "Create naval fleets"], ["Aircraft carrier building", "Submarine design", "Historic ship recreation"], "Maritime Design", "Building for water"],
+      ["Landscape Architecture", ["Design outdoor spaces", "Create terrain features", "Build park systems"], ["Topographical building", "Garden design", "Public space planning"], "Environmental Design", "Shaping land"],
+      ["Steampunk Design", ["Master Victorian-tech aesthetic", "Combine gears and pipes", "Create anachronistic machines"], ["Steampunk vehicles", "Mechanical contraptions", "Victorian-inspired builds"], "Aesthetic Synthesis", "Blending styles"],
+      ["Competition Preparation", ["Prepare for competitions", "Build under strict rules", "Perfect presentation skills"], ["Competition rule study", "Timed building practice", "Presentation rehearsal"], "Competition Excellence", "Winning performances"],
+      ["Professional Photography", ["Photograph builds effectively", "Use lighting and angles", "Create portfolio quality images"], ["Photography techniques", "Lighting setup", "Portfolio building"], "Visual Documentation", "Capturing work"],
+      ["Teaching & Instruction", ["Create building instructions", "Teach building techniques", "Mentor younger builders"], ["Instruction manual creation", "Workshop leading", "Mentorship sessions"], "Instruction", "Teaching others"],
+      ["Portfolio Presentation", ["Compile year's work", "Present to audience", "Demonstrate growth"], ["Portfolio curation", "Professional presentation", "Portfolio showcase event"], "Professional Presentation", "Showing expertise"]
+    ]}
+  },
+  4: {
+    beg: { focus: "Year culmination: Celebration building, skill integration, and creative confidence.", weeks: [
+      ["All-Time Favorites", ["Build personal favorite themes", "Recreate best builds", "Improve on past work"], ["Favorite theme exploration", "Best build recreation", "Improvement challenge"], "Self-Reflection", "Recognizing growth"],
+      ["Fairy Tale Scenes", ["Build story settings", "Create character builds", "Bring stories to life"], ["Castle for Cinderella", "Gingerbread house", "Jack's beanstalk"], "Story Building", "Bringing tales alive"],
+      ["Dinosaur World", ["Build various dinosaurs", "Create prehistoric environments", "Learn about dinosaur features"], ["T-Rex and Triceratops", "Volcano landscape", "Dinosaur museum display"], "Prehistoric Imagination", "Building ancient life"],
+      ["Farm & Countryside", ["Build farm buildings", "Create farm animals", "Design rural scenes"], ["Barn and silo construction", "Tractor and farm equipment", "Animal pen building"], "Rural Building", "Creating countryside"],
+      ["Secret Agent Base", ["Build spy headquarters", "Create gadgets and vehicles", "Design hidden features"], ["Secret base construction", "Spy gadget building", "Hidden compartment designs"], "Secret Building", "Hidden features"],
+      ["Celebration Party", ["Build party scenes", "Create decorations", "Design festive buildings"], ["Party venue building", "Birthday cake creation", "Festive decoration design"], "Celebration", "Building joy"],
+      ["Friendship Collaboration", ["Work with friends", "Build together", "Create group masterpiece"], ["Partner building challenges", "Group mosaic creation", "Collaborative mega-build"], "Friendship", "Building together"],
+      ["Year-End Showcase", ["Display year's best work", "Celebrate growth", "Graduate to next level"], ["Best-of-year gallery", "Growth reflection", "Graduation ceremony"], "Pride", "Celebrating achievements"]
+    ]},
+    int: { focus: "Year completion: Advanced integration, competition, and pathways forward.", weeks: [
+      ["Year in Review", ["Revisit favorite projects", "Identify growth areas", "Set future goals"], ["Portfolio review", "Skill assessment", "Goal setting workshop"], "Growth Recognition", "Seeing progress"],
+      ["Challenge Gauntlet", ["Complete varied challenges", "Demonstrate versatility", "Perform under pressure"], ["Speed building", "Mystery piece challenges", "Theme challenges"], "Versatile Excellence", "Doing it all"],
+      ["Futuristic Cities", ["Design cities of tomorrow", "Incorporate technology", "Build sustainable futures"], ["Flying car designs", "Eco-friendly skyscrapers", "Future city planning"], "Future Vision", "Imagining tomorrow"],
+      ["Artistic Masterpieces", ["Recreate famous artworks", "Build sculptures", "Express artistic vision"], ["Famous painting recreation", "Abstract sculpture", "Personal art expression"], "Artistic Expression", "Building art"],
+      ["Engineering Olympics", ["Compete in engineering challenges", "Test designs", "Optimize performance"], ["Speed race vehicles", "Distance catapults", "Strength competitions"], "Engineering Competition", "Testing designs"],
+      ["Mentor Day", ["Teach younger students", "Share knowledge", "Build leadership"], ["Leading beginner sessions", "Creating teaching demos", "Mentorship practice"], "Mentorship", "Giving knowledge"],
+      ["Dream Build Finale", ["Complete ambitious project", "Execute full vision", "Create masterpiece"], ["Large-scale project completion", "Detail perfection", "Final touches"], "Vision Completion", "Finishing dreams"],
+      ["Grand Exhibition", ["Showcase all work", "Present professionally", "Celebrate year"], ["Exhibition setup", "Professional presentations", "Grand celebration"], "Mastery Display", "Showing excellence"]
+    ]},
+    adv: { focus: "Mastery achievement: Portfolio completion, exhibition, and builder identity.", weeks: [
+      ["Builder's Philosophy", ["Define building style", "Articulate design principles", "Establish identity"], ["Style analysis", "Philosophy documentation", "Identity development"], "Self-Knowledge", "Understanding your style"],
+      ["Competition Showcase", ["Compete at highest level", "Execute competition strategy", "Achieve peak performance"], ["Competition entry creation", "Strategy execution", "Peak performance"], "Peak Performance", "Best work"],
+      ["Technical Documentation", ["Create professional instructions", "Document complex builds", "Share knowledge"], ["Instruction writing", "Step-by-step documentation", "Digital rendering"], "Documentation", "Professional recording"],
+      ["Community Project", ["Build for community", "Create donation pieces", "Give back through building"], ["Community build project", "Donation to schools/libraries", "Public installation"], "Community Service", "Building for others"],
+      ["Online Portfolio", ["Create digital presence", "Share work online", "Build following"], ["Website/social creation", "Photography portfolio", "Online community engagement"], "Digital Presence", "Online identity"],
+      ["Workshop Leadership", ["Lead building workshops", "Teach advanced techniques", "Inspire others"], ["Workshop planning", "Technique teaching", "Leadership practice"], "Leadership", "Guiding others"],
+      ["Legacy Project", ["Create lasting contribution", "Build permanent installation", "Leave mark"], ["Major build completion", "Installation planning", "Legacy documentation"], "Legacy Building", "Lasting impact"],
+      ["Master Builder Celebration", ["Celebrate mastery", "Recognize achievements", "Launch builder career"], ["Master builder certification", "Grand exhibition opening", "Future pathway discussion"], "Mastery", "Achieving excellence"]
+    ]}
+  }
+};
+
+const TERMS = [
+  { n: 1, title: "Term 1", sub: "8-Week Curriculum with Literacy", pdf: "pdfs/term-1.pdf", pages: 7 },
+  { n: 2, title: "Term 2", sub: "8-Week Curriculum Guide", pdf: "pdfs/term-2.pdf", pages: 9 },
+  { n: 3, title: "Term 3", sub: "8-Week Curriculum Guide", pdf: "pdfs/term-3.pdf", pages: 9 },
+  { n: 4, title: "Term 4", sub: "8-Week Curriculum Guide", pdf: "pdfs/term-4.pdf", pages: 9 }
+];
+
+// Normalize everything into one list of courses with uniform week records.
+const COURSES = [];
+for (const t of TERMS) {
+  for (const lv of LEVELS) {
+    let focus, tip = "", weeks;
+    if (t.n === 1) {
+      const c = T1[lv.id];
+      focus = c.focus; tip = c.tip;
+      weeks = c.weeks.map(([theme, power, circle, read, vocab, research, build, comp], i) => ({
+        n: i + 1, theme, power, tagline: "", circle, read, vocab, research, build, comp, goals: [], acts: []
+      }));
+    } else {
+      const c = LATER[t.n][lv.id];
+      focus = c.focus;
+      weeks = c.weeks.map(([theme, goals, acts, power, tagline], i) => ({ n: i + 1, theme, goals, acts, power, tagline }));
+    }
+    COURSES.push({ id: `t${t.n}-${lv.key}`, term: t, level: lv, focus, tip, weeks, literacy: t.n === 1 });
+  }
+}
+for (const c of COURSES) {
+  for (const w of c.weeks) {
+    w.text = [w.theme, w.power, w.tagline, w.circle, w.read, (w.vocab || []).join(" "), w.build, w.comp, ...w.goals, ...w.acts].filter(Boolean).join(" · ");
+  }
+}
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+
+let state = { course: null, level: "all", q: "" };
+
+function hl(text, q) {
+  const safe = esc(text);
+  if (!q) return safe;
+  const re = new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
+  return safe.replace(re, "<mark>$1</mark>");
+}
+
+function renderFacts() {
+  const weeks = COURSES.reduce((a, c) => a + c.weeks.length, 0);
+  const research = COURSES.reduce((a, c) => a + c.weeks.filter((w) => w.research).length, 0);
+  $("#facts").innerHTML = [
+    ["4", "terms"], ["3", "levels"], [String(COURSES.length), "courses"], [String(weeks), "weeks"], ["90", "min per class"], [String(research), "tablet research weeks"]
+  ].map(([n, l]) => `<span><b>${n}</b> ${l}</span>`).join("");
+}
+
+function renderChips() {
+  const opts = [{ id: "all", name: "All levels" }, ...LEVELS];
+  $("#levelChips").innerHTML = opts.map((o) =>
+    `<button class="chip" type="button" data-level="${o.id}" aria-pressed="${state.level === o.id}">${o.id !== "all" ? `<span class="dot ${o.id}"></span>` : ""}${o.name}</button>`
+  ).join("");
+}
+
+function renderMap() {
+  const map = $("#map");
+  const parts = [`<div class="corner"></div>`, ...TERMS.map((t) => `<div class="colhead">${t.title}</div>`)];
+  for (const lv of LEVELS) {
+    const dim = state.level !== "all" && state.level !== lv.id ? " dim" : "";
+    parts.push(`<div class="rowhead${dim}"><span class="dot ${lv.id}"></span>${lv.name}</div>`);
+    for (const t of TERMS) {
+      const c = COURSES.find((x) => x.term.n === t.n && x.level.id === lv.id);
+      const first = c.weeks.slice(0, 3).map((w) => w.theme).join(", ");
+      parts.push(`<button type="button" class="course lv-${lv.id}${dim}" data-course="${c.id}" aria-current="${state.course === c.id}" aria-label="${t.title} ${lv.name}">
+        <span class="label tterm">${t.title} · ${lv.name}</span>
+        <span class="studs" aria-hidden="true">${"<i></i>".repeat(c.weeks.length)}</span>
+        <span class="first">${esc(c.focus.split(":")[0])}</span>
+        <span class="focus">${esc(first)}…</span>
+        ${c.literacy ? `<span class="badge">Literacy plan included</span>` : ""}
+      </button>`);
+    }
+  }
+  map.innerHTML = parts.join("");
+  map.classList.toggle("filtered", state.level !== "all");
+}
+
+function weekHTML(c, w) {
+  const power = `<span class="power">Superpower: <b>${esc(w.power)}</b>${w.tagline ? ` · ${esc(w.tagline)}` : ""}</span>`;
+  let body;
+  if (c.literacy) {
+    body = `<div class="blocks">
+      <div class="blk"><span class="label">Morning Circle · 15 min</span><p>${esc(w.circle)}</p></div>
+      <div class="blk"><span class="label">Read &amp; Learn · 10 min</span>${w.research ? `<span class="flag">Tablet research</span>` : ""}<p>${esc(w.read)}</p>${w.vocab.length ? `<div class="vocab">${w.vocab.map((v) => `<span>${esc(v)}</span>`).join("")}</div>` : ""}</div>
+      <div class="blk"><span class="label">Build Challenge · 25 min</span><p>${esc(w.build)}</p></div>
+      <div class="blk"><span class="label">Competition · 25 min</span><p>${esc(w.comp)}</p></div>
+    </div>`;
+  } else {
+    body = `<div class="cols">
+      <div><span class="label">Learning goals</span><ul>${w.goals.map((g) => `<li>${esc(g)}</li>`).join("")}</ul></div>
+      <div><span class="label">Activities</span><ul>${w.acts.map((a) => `<li>${esc(a)}</li>`).join("")}</ul></div>
+    </div>`;
+  }
+  return `<article class="week" id="${c.id}-w${w.n}">
+    <div class="wnum">Week<b>${w.n}</b></div>
+    <div class="wbody"><div class="wtop"><h3>${esc(w.theme)}</h3>${power}</div>${body}</div>
+  </article>`;
+}
+
+function renderDetail() {
+  const el = $("#detail");
+  const c = COURSES.find((x) => x.id === state.course);
+  if (!c) { el.innerHTML = ""; el.hidden = true; return; }
+  el.hidden = false;
+  const lv = c.level;
+  el.innerHTML = `
+    <div class="dhead">
+      <div class="meta">
+        <span class="lvtag ${lv.id}">${lv.name}</span>
+        <h2>${c.term.title} · ${lv.name}</h2>
+        <p class="focus">${esc(c.focus)}${c.tip ? ` ${esc(c.tip)}` : ""}</p>
+      </div>
+      <div class="dactions">
+        <a class="btn" href="${c.term.pdf}" target="_blank" rel="noopener">Open ${c.term.title} PDF</a>
+        <button class="btn primary" type="button" data-close>Back to all courses</button>
+      </div>
+    </div>
+    ${c.literacy ? "" : `<p class="hint">This term's guide lists goals and activities. Run each class with the same 90-minute structure in the toolkit below.</p>`}
+    <div class="weeks">${c.weeks.map((w) => weekHTML(c, w)).join("")}</div>`;
+}
+
+function renderResults() {
+  const wrap = $("#resultsWrap"), box = $("#results");
+  const q = state.q.trim().toLowerCase();
+  if (!q) { wrap.hidden = true; $("#mapWrap").hidden = false; return; }
+  wrap.hidden = false; $("#mapWrap").hidden = true;
+  const hits = [];
+  for (const c of COURSES) {
+    if (state.level !== "all" && c.level.id !== state.level) continue;
+    for (const w of c.weeks) if (w.text.toLowerCase().includes(q)) hits.push([c, w]);
+  }
+  if (!hits.length) {
+    box.innerHTML = `<div class="empty">No weeks match "${esc(state.q)}". Try a theme like "bridge", a superpower like "Teamwork", or a vocab word like "gear".</div>`;
+    return;
+  }
+  box.innerHTML = `<p class="label">${hits.length} week${hits.length === 1 ? "" : "s"} match</p>` + hits.map(([c, w]) => {
+    const parts = w.text.split(" · ");
+    const snip = parts.find((p, i) => i > 0 && p.toLowerCase().includes(q)) || "";
+    return `<button type="button" class="result" data-course="${c.id}" data-week="${w.n}">
+      <span class="dot ${c.level.id}" style="margin-top:6px"></span>
+      <span><b>${hl(w.theme, state.q)}</b> <span class="where">· ${c.term.title} · ${c.level.name} · Week ${w.n}</span></span>
+      ${snip ? `<span class="snip">${hl(snip, state.q)}</span>` : ""}
+    </button>`;
+  }).join("");
+}
+
+function openCourse(id, week) {
+  state.course = id;
+  state.q = ""; $("#q").value = "";
+  renderResults(); renderMap(); renderDetail();
+  try { history.replaceState(null, "", "#" + id); } catch {}
+  const target = week ? document.getElementById(`${id}-w${week}`) : $("#detail");
+  if (target) {
+    target.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    if (week) { target.classList.remove("flash"); void target.offsetWidth; target.classList.add("flash"); }
+  }
+}
+
+function closeCourse() {
+  state.course = null;
+  renderMap(); renderDetail();
+  try { history.replaceState(null, "", location.pathname + location.search); } catch {}
+  $("#mapWrap").scrollIntoView({ block: "start" });
+}
+
+// Toolkit
+const SCHEDULE = [
+  ["Morning Circle", 15, "Students settle in on the carpet or in a circle. Coach Ari introduces the weekly theme and Superpower with a short teaching presentation and a sample build or picture."],
+  ["Read & Learn", 10, "Students read a short prepared passage aloud about the weekly theme and go over 3 vocabulary words. On research weeks, students use tablets to look up facts for their build."],
+  ["Build Challenge", 25, "Students move to their seats and work on the weekly challenge, applying what they heard and read."],
+  ["Recess", 0, "Break. Not counted in the 90 minutes."],
+  ["Competition", 25, "Students come back from recess and go straight into the timed or judged competition. Each entry gets a Builder Card."],
+  ["Cleanup & Prizes", 15, "8 minutes of sorting bricks back into bins, then 7 minutes for prizes, Superpower shout-outs, and one vocabulary word recap."]
+];
+const PREP = [
+  "Print the week's reading passage, one copy per student, with the 3 vocabulary words in bold",
+  "Write one comprehension question for the end of Read & Learn",
+  "Prepare the Morning Circle demo build or pictures",
+  "Research weeks: charge tablets and load a bookmarked kid-safe search page",
+  "Bring index cards for Builder Cards and sticky notes for research facts",
+  "Set up judging criteria and prizes for the competition",
+  "Write the vocabulary words on a whiteboard or poster for the prize-time recap"
+];
+const BLOCK_FILL = ["var(--accent)", "var(--beg)", "var(--int)", null, "var(--adv)", "var(--sunk)"];
+const BLOCK_INK = ["var(--accent-ink)", "var(--beg-ink)", "var(--int-ink)", null, "var(--adv-ink)", "var(--fg)"];
+
+function renderToolkit() {
+  $("#timeline").innerHTML = SCHEDULE.map(([name, min], i) => min
+    ? `<div style="flex:${min} 1 0;background:${BLOCK_FILL[i]};color:${BLOCK_INK[i]}" title="${name}">${min}′</div>`
+    : `<div class="recess" title="Recess"></div>`).join("");
+  $("#sched").innerHTML = SCHEDULE.map(([name, min, what]) =>
+    `<div class="row"><span class="t">${min ? min + " min" : "break"}</span><span><b>${esc(name)}.</b> ${esc(what)}</span></div>`).join("");
+  $("#lengths").innerHTML = [["Beginner", "beg", 100, 150], ["Intermediate", "int", 150, 200], ["Advanced", "adv", 200, 300]].map(([n, id, lo, hi]) =>
+    `<div class="row"><span>${n}</span><span style="position:relative;height:10px;background:var(--sunk);border-radius:5px"><span class="bar" style="position:absolute;left:${lo / 3}%;width:${(hi - lo) / 3}%;background:var(--${id})"></span></span><span class="n">${lo}–${hi} w</span></div>`).join("");
+  const done = store.get("prep-done", []);
+  $("#prep").innerHTML = PREP.map((p, i) =>
+    `<label for="prep-${i}"><input type="checkbox" id="prep-${i}" data-prep="${i}" ${done.includes(i) ? "checked" : ""}><span>${esc(p)}</span></label>`).join("");
+  $("#pdfs").innerHTML = TERMS.map((t) =>
+    `<a class="pdf" href="${t.pdf}" target="_blank" rel="noopener"><span class="ic">PDF</span><span><b>${t.title}</b><small>${t.sub} · ${t.pages} pages</small></span></a>`).join("");
+}
+
+document.addEventListener("click", (e) => {
+  const chip = e.target.closest("[data-level]");
+  if (chip) { state.level = chip.dataset.level; store.set("level", state.level); renderChips(); renderMap(); renderResults(); return; }
+  const course = e.target.closest("[data-course]");
+  if (course) { openCourse(course.dataset.course, course.dataset.week ? Number(course.dataset.week) : null); return; }
+  if (e.target.closest("[data-close]")) { closeCourse(); return; }
+  if (e.target.closest("#resetPrep")) { store.set("prep-done", []); renderToolkit(); }
+});
+document.addEventListener("change", (e) => {
+  if (!e.target.matches("[data-prep]")) return;
+  const done = [...document.querySelectorAll("[data-prep]:checked")].map((x) => Number(x.dataset.prep));
+  store.set("prep-done", done);
+});
+$("#q").addEventListener("input", (e) => { state.q = e.target.value; renderResults(); });
+
+state.level = store.get("level", "all");
+if (!["all", ...LEVELS.map((l) => l.id)].includes(state.level)) state.level = "all";
+const fromHash = location.hash.slice(1);
+state.course = COURSES.some((c) => c.id === fromHash) ? fromHash : "t1-beginner";
+renderFacts(); renderChips(); renderMap(); renderToolkit(); renderDetail();
+</script>
