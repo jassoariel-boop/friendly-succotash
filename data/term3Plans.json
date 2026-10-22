@@ -1,0 +1,1085 @@
+{
+  "term": 3,
+  "frame": {
+    "title": "How to use these plans",
+    "intro": "Every class runs the same 90 minutes plus recess. Each lesson below fills in this frame.",
+    "blocks": [
+      {
+        "name": "Morning Circle",
+        "time": "15 min",
+        "what": "3 min welcome and Superpower, 5 min Read & Learn (echo read, 3 words), 5 min demo on the big board, 2 min challenge intro"
+      },
+      {
+        "name": "Board Challenge",
+        "time": "25 min",
+        "what": "Practice in pairs at tables, using the challenge card"
+      },
+      {
+        "name": "Recess",
+        "time": "20 min",
+        "what": "Pieces stay on the boards, nobody touches a game in progress"
+      },
+      {
+        "name": "Competition Round",
+        "time": "40 min",
+        "what": "25 to 30 min of play, then 10 to 15 min of scoring and one game shown on the demo board"
+      },
+      {
+        "name": "Cleanup & Prizes",
+        "time": "10 min",
+        "what": "5 min pack sets and count 32 pieces, 5 min prizes, Superpower shout-out, 2 check questions"
+      }
+    ],
+    "notes": [
+      {
+        "label": "Challenge tiers",
+        "text": "Every challenge card has three tiers. Everyone starts on Tier 1. A player who finishes and passes the partner check moves to Tier 2, then Tier 3. Tiers follow skill, not grade, so a strong 2nd grader can reach Tier 3."
+      },
+      {
+        "label": "Grades 1 and 2",
+        "text": "Read the passage to them and have them echo it. Thinker Cards can be drawn and labeled. Full games are fine, but keep a pieces-only mini-game ready for anyone who gets lost in a full board. Give a 2-minute warning before every switch."
+      },
+      {
+        "label": "Grades 3 to 5",
+        "text": "Students read aloud in popcorn style and write full Thinker Card sentences. Give them the scorekeeping, timing and results-chart jobs."
+      },
+      {
+        "label": "Seniors",
+        "text": "Each lesson ends with a seniors note. Run it as 60 minutes in pairs or teams of 2 or 3 sharing one board, with a real-world talking point. Skip prizes unless the group enjoys them. Memory care (45 min): one piece at a time, a large-piece set if you have one, and no clocks."
+      },
+      {
+        "label": "Read & Learn",
+        "text": "Each week has a short passage (under 80 words) written below, so it fits the 5 minutes. Week 8 of every level uses Thinker Cards instead."
+      },
+      {
+        "label": "Levels",
+        "text": "Beginner, Intermediate and Advanced run the same frame. Each level has its own 8 weeks below."
+      }
+    ],
+    "kit": {
+      "title": "Chess kit tote",
+      "intro": "One tote per instructor, reused every week at every site.",
+      "items": [
+        "Demo board (hanging or magnetic) with its pieces",
+        "Roll-up boards and full sets, 1 per pair plus 2 spares, each set in a zip bag labeled “32 pieces”",
+        "4 chess clocks, or phones with a free clock app",
+        "Puzzle cards for the week, printed, 1 set per table",
+        "Scoresheets and pencils",
+        "Index cards (Thinker Cards) and sticky notes",
+        "Painter's tape and a marker for table numbers and the results chart",
+        "Coins or small counters for marking squares",
+        "4 file folders (privacy screens for memory games)",
+        "Phone or stopwatch for timing",
+        "Small prize box (stickers, pawn erasers, certificates)"
+      ]
+    },
+    "setup": "Every-week setup (10 min before class): 1 board per pair, pieces in their bags until the Board Challenge starts. Puzzle cards on the tables. Vocabulary words on the board. Demo board on the easel with the Morning Circle position already set. Results chart taped up at the front."
+  },
+  "levels": {
+    "Beginner": [
+      {
+        "objective": "Students can count the material on both sides and use an extra piece to win.",
+        "vocabulary": [
+          {
+            "word": "material",
+            "meaning": "all the pieces a player has, counted in points"
+          },
+          {
+            "word": "ahead",
+            "meaning": "having more points of material than your opponent"
+          },
+          {
+            "word": "trade down",
+            "meaning": "when you're ahead, trade pieces so your extra material counts more"
+          }
+        ],
+        "readLearn": {
+          "title": "Count It Up",
+          "text": "Chess players count material all game long. Add up the points: pawns 1, knights and bishops 3, rooks 5, queen 9. If you have more, you're ahead. When you're ahead, trade pieces, not pawns. With fewer pieces left, your extra piece matters even more and is easier to use."
+        },
+        "materials": "Demo board, sets, material count cards, up-a-piece starting cards, results chart.",
+        "morningCircle": "Say: “Welcome back, chess players! This term we play with strategy.” Read the passage. Demo: set a position where White has a rook, a bishop and 5 pawns, and Black has a rook, a knight and 4 pawns. Ask the class to count. (White 13, Black 12.) Then take Black's rook off the board and ask: “White is a whole rook ahead. Should White trade bishop for knight?” (Yes, trading pieces makes the extra rook count more.) Say: “Arithmetic wins games.”",
+        "boardChallenge": {
+          "intro": "Material counting exercises at tables.",
+          "tiers": [
+            "Tier 1: count the material on 6 cards and say who is ahead and by how much.",
+            "Tier 2: on 4 cards, find a trade that helps the side that's ahead.",
+            "Tier 3: start a game a knight up and win it within 30 moves."
+          ]
+        },
+        "competition": "Up a piece. Each game starts with one player missing a knight. The player who is ahead tries to win, and the other tries to hold a draw or come back. Swap sides each game. A win with the extra piece scores 2, and a draw or win with the missing piece scores 3. Rotate partners. Post totals on the results chart.",
+        "check": [
+          "“When you're ahead, should you trade pieces or pawns?”",
+          "“Count this position out loud with me.”"
+        ],
+        "sideways": [
+          "Kids forget to count: count at moves 10 and 20, out loud.",
+          "The player ahead attacks wildly and loses pieces: trade first, then attack.",
+          "Early finishers: start up a pawn instead of a knight."
+        ],
+        "seniors": "Teams count material on big cards. Talking point: budgeting, and keeping track of what you have. Memory care: count the pieces in each bag together."
+      },
+      {
+        "objective": "Students can use pawns to gain space and restrict the opponent's pieces.",
+        "vocabulary": [
+          {
+            "word": "space",
+            "meaning": "the squares behind your pawns where your pieces can move freely"
+          },
+          {
+            "word": "mobility",
+            "meaning": "how many moves your pieces have"
+          },
+          {
+            "word": "cramped",
+            "meaning": "having so little space that your pieces get in each other's way"
+          }
+        ],
+        "readLearn": {
+          "title": "Room to Move",
+          "text": "Pawns that move forward claim space. Behind them, your pieces have room to move. The opponent's pieces get squeezed and run out of good squares. Count your pieces' moves. More moves means more mobility, and more mobility usually means a better game."
+        },
+        "materials": "Demo board, sets, mobility count cards, coins, timer.",
+        "morningCircle": "Read the passage. Demo: from the starting position, count the moves of White's light-squared bishop (0). Play 1.e4 and count again (5). Then show a position where Black's pawns are on the 6th rank and Black's pieces have almost no moves. Ask: “Whose pieces are happier?” Say: “Expand your space and your pieces will thank you.”",
+        "boardChallenge": {
+          "intro": "Mobility comparison at tables. Use coins to mark squares.",
+          "tiers": [
+            "Tier 1: count the moves of every piece on one side on 3 cards.",
+            "Tier 2: on 4 cards, find a pawn move that gains space.",
+            "Tier 3: on 3 cards, find a move that takes away the most squares from an enemy piece."
+          ]
+        },
+        "competition": "Space race. Play full games, and at move 10 both players stop and count how many moves their pieces have. The player with more mobility scores 2. Then finish the game, and a win scores 3. Play 2 games, rotating partners. In the last 10 min, show the most cramped position of the day.",
+        "check": [
+          "“What does mobility mean?”",
+          "“Show me with your arms how a cramped piece feels.”"
+        ],
+        "sideways": [
+          "Kids push every pawn and leave weaknesses: push pawns that claim space and stay protected.",
+          "Counting takes too long: count only knights and bishops.",
+          "Early finishers: find the piece with the fewest moves and free it."
+        ],
+        "seniors": "Teams count mobility on the demo board. Talking point: “A home or room that felt crowded, and what you did about it.”"
+      },
+      {
+        "objective": "Students can build a pawn chain, find its base, and attack an enemy chain at the base.",
+        "vocabulary": [
+          {
+            "word": "pawn chain",
+            "meaning": "pawns in a diagonal line, each protecting the one in front"
+          },
+          {
+            "word": "base",
+            "meaning": "the back pawn of a chain, which no pawn protects"
+          },
+          {
+            "word": "undermine",
+            "meaning": "attack the base of a chain so the rest of it is weakened"
+          }
+        ],
+        "readLearn": {
+          "title": "Strong Foundations",
+          "text": "A pawn chain is strong because each pawn protects the next. But the pawn at the back, the base, has no pawn protecting it. Attack the base, and the whole chain gets weaker. A good rule: attack a pawn chain at its base."
+        },
+        "materials": "Demo board, sets, pawn chain cards, timer.",
+        "morningCircle": "Read the passage. Demo: white pawns on d4 and e5, black pawns on e6 and d5. Ask: “Which white pawn protects the other?” (d4 protects e5.) “Which pawn is the base?” (d4.) Show Black playing ...c5 to attack the base. Say: “Structure is strong at the top and weak at the bottom.”",
+        "boardChallenge": {
+          "intro": "Chain challenges at tables.",
+          "tiers": [
+            "Tier 1: build a chain of 4 pawns with your partner checking each pawn is protected.",
+            "Tier 2: on 4 cards, name the base of each chain.",
+            "Tier 3: on 4 cards, find the pawn move that attacks the enemy chain at its base."
+          ]
+        },
+        "competition": "Chain breakers. Pawn-only games with kings: each player starts with a 4-pawn chain from the card. The first to promote a pawn that isn't captured right away wins. Breaking the enemy chain at the base earns a bonus point. Swap sides and rotate partners. Show the best chain break on the demo board in the last 10 min.",
+        "check": [
+          "“Why is the base the weak point?”",
+          "“Make a pawn chain with your fingers.”"
+        ],
+        "sideways": [
+          "Kids attack the front of the chain: point out it's protected, so go to the base.",
+          "Chains fall apart because kids push the base: the base stays home.",
+          "Early finishers: build a double chain and defend it."
+        ],
+        "seniors": "Teams build chains and take turns attacking them. Talking point: foundations of a building or a family, and what keeps them strong."
+      },
+      {
+        "objective": "Students can find open files, put rooks on them, and double rooks for more power.",
+        "vocabulary": [
+          {
+            "word": "open file",
+            "meaning": "a file with no pawns on it"
+          },
+          {
+            "word": "half-open file",
+            "meaning": "a file with only enemy pawns on it"
+          },
+          {
+            "word": "doubled rooks",
+            "meaning": "two rooks on the same file or rank, one behind the other"
+          }
+        ],
+        "readLearn": {
+          "title": "Highways for Rooks",
+          "text": "Rooks need open lines. A rook behind its own pawns can't do much. Put your rooks on open files, where nothing blocks them. Two rooks on the same open file are twice as strong. Push them to the 7th rank, and they'll eat the enemy pawns."
+        },
+        "materials": "Demo board, sets, open file cards, timer.",
+        "morningCircle": "Read the passage. Demo: show a position with an open d-file. Put White's rook on a1 and ask how many squares it controls. Move it to d1 and count again. Then double the rooks on the d-file and push one to d7. Ask: “What can the rook on the 7th rank attack?” Say: “Control the open file and you control the board.”",
+        "boardChallenge": {
+          "intro": "Open file identification at tables.",
+          "tiers": [
+            "Tier 1: mark every open and half-open file on 5 cards.",
+            "Tier 2: on 4 cards, move a rook to the best open file in one move.",
+            "Tier 3: on 3 cards, double your rooks on an open file and reach the 7th rank."
+          ]
+        },
+        "competition": "Rook highway games. Play full games for 25 min. Putting a rook on an open file earns 1 point, doubling rooks on an open file earns 2, and a rook on the opponent's 7th rank earns 2. A win scores 3. Your partner checks every claim. Then 15 min of rook placement drills on the demo board.",
+        "check": [
+          "“What is an open file?”",
+          "“Why are doubled rooks strong?”"
+        ],
+        "sideways": [
+          "Kids put rooks on closed files: count the pawns on the file first.",
+          "Rooks come out too early and get chased: develop knights and bishops first.",
+          "Early finishers: rook endgames from cards."
+        ],
+        "seniors": "Teams play rook highway games. Talking point: “What roads or train lines did you take every day?”"
+      },
+      {
+        "objective": "Students can put two or three tactics together in a forcing combination.",
+        "vocabulary": [
+          {
+            "word": "combination",
+            "meaning": "a series of forcing moves, often with a sacrifice, that wins something"
+          },
+          {
+            "word": "sacrifice",
+            "meaning": "giving up material on purpose to get more back"
+          },
+          {
+            "word": "forcing sequence",
+            "meaning": "moves that leave the opponent only one good answer each time"
+          }
+        ],
+        "readLearn": {
+          "title": "Putting It Together",
+          "text": "One tactic can win a piece. Two tactics in a row can win the game. A combination often starts with a check or a sacrifice that forces the opponent's answer, and ends with a fork, a pin or a mate. Look for forcing moves first, then see where they lead."
+        },
+        "materials": "Demo board, sets, combination cards, blank diagram sheets, timer.",
+        "morningCircle": "Read the passage. Demo: white king g1, rook h1, knight e5. Black king g8, knight f8, pawns f7 and g7, queen d6. The h-file is open. Play Rh8+. Ask: “What can Black do?” (Only Kxh8.) Then Nxf7+ forks the king and the queen, and Nxd6 wins the queen. Say: “Give a rook, win a queen. That's a combination.”",
+        "boardChallenge": {
+          "intro": "Combination puzzles at tables.",
+          "tiers": [
+            "Tier 1: solve 5 two-move combinations.",
+            "Tier 2: solve 4 three-move combinations, writing every move first.",
+            "Tier 3: build your own two-move combination for your partner."
+          ]
+        },
+        "competition": "Combination race. Teams of 3 race through 12 face-down cards worth 1, 2 or 3 points by length. A full written line is needed to score. 25 min of racing. Then 15 min where teams swap their own combination cards and try to solve them.",
+        "check": [
+          "“What kind of move starts most combinations?”",
+          "“Why was giving up the rook worth it?”"
+        ],
+        "sideways": [
+          "Kids stop after the sacrifice: always write the whole sequence.",
+          "Kids sacrifice without a follow-up: if you can't name the next move, don't sacrifice.",
+          "Early finishers: four-move combination cards."
+        ],
+        "seniors": "Teams solve combinations together. Talking point: recipes and projects where steps had to go in the right order."
+      },
+      {
+        "objective": "Students can name weak pawns, attack them, and avoid creating them.",
+        "vocabulary": [
+          {
+            "word": "isolated pawn",
+            "meaning": "a pawn with no friendly pawns on the files next to it"
+          },
+          {
+            "word": "doubled pawns",
+            "meaning": "two pawns of the same color on the same file"
+          },
+          {
+            "word": "backward pawn",
+            "meaning": "a pawn left behind its neighbors that can't move forward safely"
+          }
+        ],
+        "readLearn": {
+          "title": "Targets on the Board",
+          "text": "A weak pawn can't be protected by another pawn, so your pieces have to guard it. That ties them down. Isolated, doubled and backward pawns are all weak. Pile up attackers on a weak pawn and win it. And before you push a pawn, check that you aren't making a weakness of your own."
+        },
+        "materials": "Demo board, sets, weak pawn cards, coins, timer.",
+        "morningCircle": "Read the passage. Demo: white isolated pawn on d4. Put a black queen on d7, a black rook on d8 and a black knight on f5, all aiming at d4. Ask: “How many black pieces attack the pawn? How many white pieces must stay home to defend it?” Say: “Find the target, then attack it with more pieces than it has defenders.”",
+        "boardChallenge": {
+          "intro": "Weak pawn targeting at tables.",
+          "tiers": [
+            "Tier 1: label the weak pawns on 5 cards.",
+            "Tier 2: on 4 cards, attack the weak pawn with more pieces than it has defenders.",
+            "Tier 3: on 3 cards, choose between two pawn moves and explain which one creates a weakness."
+          ]
+        },
+        "competition": "Target practice. Play full games for 25 min. Winning an isolated, doubled or backward pawn earns 1 bonus point, and a win scores 3. Your partner checks the claim. Then 15 min of weakness prevention drills on the demo board, with the class voting on the safest pawn move.",
+        "check": [
+          "“Name the three kinds of weak pawns.”",
+          "“Point to a weak pawn on this card.”"
+        ],
+        "sideways": [
+          "Kids attack a weak pawn with one piece: count attackers and defenders.",
+          "Kids create weaknesses by pushing pawns early: ask what squares the pawn leaves behind.",
+          "Early finishers: find a weak pawn that is actually strong because it controls key squares."
+        ],
+        "seniors": "Teams find targets on the cards. Talking point: “A weak spot in a team or a house that needed extra attention.”"
+      },
+      {
+        "objective": "Students can make reasonable moves quickly and stay out of time trouble.",
+        "vocabulary": [
+          {
+            "word": "clock",
+            "meaning": "the timer that limits how long each player can think"
+          },
+          {
+            "word": "flag",
+            "meaning": "when a player's time runs out, which loses the game"
+          },
+          {
+            "word": "blitz",
+            "meaning": "a fast game with 10 minutes or less per player"
+          }
+        ],
+        "readLearn": {
+          "title": "Beat the Clock",
+          "text": "In a timed game, running out of time loses, even with more pieces. Good players move fast when the move is easy, like a recapture or a known opening move. They save time for hard positions. When time is short, they make safe, simple moves and keep their pieces protected."
+        },
+        "materials": "Demo board, sets, chess clocks or phones with a clock app, quick decision cards.",
+        "morningCircle": "Read the passage. Demo: set a clock to 1 minute for you and 5 minutes for a volunteer, and play a quick game in front of the class. Ask: “Which moves did I play fast? Which ones did I think about?” Say: “Speed means acting decisively, not rushing.”",
+        "boardChallenge": {
+          "intro": "Quick decision drills at tables. Each card gets 10 seconds.",
+          "tiers": [
+            "Tier 1: answer 10 quick-decision cards in 10 seconds each: safe move or blunder?",
+            "Tier 2: play a 5-minute game and finish with time on your clock.",
+            "Tier 3: play a 3-minute game without leaving a piece hanging."
+          ]
+        },
+        "competition": "Speed chess tournament. Play 5-minute games, rotating partners every game. A win scores 2, a draw 1, and a loss on time 0 even if you were ahead. Players who finish every game with time left earn a bonus point. Post scores on the results chart.",
+        "check": [
+          "“Which moves should you play fast?”",
+          "“What does it mean to flag?”"
+        ],
+        "sideways": [
+          "Clocks get slammed: press gently, with the same hand that moves.",
+          "Kids panic and leave pieces hanging: one safety check, then move.",
+          "No clocks: use a phone app, or give 10 seconds a move counted by a partner."
+        ],
+        "seniors": "Teams play with a relaxed clock or none, and try quick decision cards. Talking point: “A time you had to make a fast decision.” Memory care: no clocks."
+      },
+      {
+        "objective": "Students can play chess variants, try an unusual idea, and explain what they enjoyed.",
+        "vocabulary": [
+          {
+            "word": "variant",
+            "meaning": "a game that changes some chess rules for fun"
+          },
+          {
+            "word": "unconventional",
+            "meaning": "different from the usual way of doing things"
+          }
+        ],
+        "readLearn": {
+          "title": "Thinker Card share",
+          "text": "Each student reads their favorite Thinker Card from the term to a partner."
+        },
+        "materials": "Everything from the term, variant rule cards, results chart, certificates, party snacks if allowed.",
+        "morningCircle": "Walk through the 7 Superpowers of the term. Quick vocabulary game: you say a definition, and kids shout the word. Show the variant stations: Pawn Game (only kings and pawns), Knight Quest (knights only), and Capture Chess (if you can capture, you must).",
+        "boardChallenge": {
+          "intro": "Variant stations. Spend 8 minutes at each station and rotate.",
+          "tiers": [
+            "Tier 1: play one game at each station.",
+            "Tier 2: explain the winning idea at one station to your partner.",
+            "Tier 3: invent a new variant rule and test it with your partner."
+          ]
+        },
+        "competition": "Fun tournament. Each round draws a variant card. Play 4 rounds of 8 minutes, rotating partners. A win is 1 point, a draw half. In the last 5 min, the class votes on the best invented variant, and its inventor teaches it on the demo board.",
+        "cleanup": "A certificate for everyone, naming the Superpower they showed most. Awards: Most Creative Move, Best New Variant, Joy Award.",
+        "check": [
+          "Each student says one word they learned this term and what it means."
+        ],
+        "sideways": [
+          "Capture Chess arguments: if any capture is possible, a capture must be made, and you referee.",
+          "Invented rules are too complicated: one rule change only.",
+          "Party runs long: skip the vote and post the variants on the board."
+        ],
+        "seniors": "A variant afternoon with residents and staff. Talking point: house rules people played with in card games and board games.",
+        "vocabularyNote": "Review all 21 words from the term. New words:"
+      }
+    ],
+    "Intermediate": [
+      {
+        "objective": "Students can take the initiative with forcing moves and keep making threats.",
+        "vocabulary": [
+          {
+            "word": "initiative",
+            "meaning": "being the player who makes the threats while the opponent has to react"
+          },
+          {
+            "word": "threat",
+            "meaning": "a move that would win something next turn if it isn't stopped"
+          },
+          {
+            "word": "counterattack",
+            "meaning": "answering a threat with a bigger threat of your own"
+          }
+        ],
+        "readLearn": {
+          "title": "Keep the Pressure On",
+          "text": "The player with the initiative makes threats, and the other player spends every move defending. Each threat should create the next one. If you stop to make a slow move, your opponent may grab the initiative back with a counterattack. Momentum is hard to win and easy to lose."
+        },
+        "materials": "Demo board, sets, initiative cards, timer.",
+        "morningCircle": "Read the passage. Demo: play the Fried Liver Attack: 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Nxd5 6.Nxf7 Kxf7 7.Qf3+ Ke6 8.Nc3. Ask: “Is Black's king safe? Who is making the threats?” Say: “White gave a knight for momentum. Now every move must keep the pressure on.”",
+        "boardChallenge": {
+          "intro": "Initiative exercises at tables.",
+          "tiers": [
+            "Tier 1: on 5 cards, find a move that makes a threat.",
+            "Tier 2: on 4 cards, keep the initiative for 3 moves in a row.",
+            "Tier 3: on 3 cards, find the counterattack that takes the initiative back."
+          ]
+        },
+        "competition": "Pressure games. Play full games for 25 min. Each player keeps a tally of threats they make in a row, and the longest streak in a game earns 2 bonus points. A win scores 3. Then 15 min of counter-initiative challenges: cards where you are under attack and must find the counterattack.",
+        "check": [
+          "“What is the initiative?”",
+          "“What happens if you make a slow move during an attack?”"
+        ],
+        "sideways": [
+          "Threats that aren't real: if the opponent can ignore it, it isn't a threat.",
+          "Kids chase with the queen alone: bring more pieces with each threat.",
+          "Early finishers: play the Fried Liver from both sides."
+        ],
+        "seniors": "Teams play pressure games together. Talking point: “A time when keeping momentum mattered, in work or sport.”"
+      },
+      {
+        "objective": "Students can run a minority attack to create a weak pawn and use a pawn majority to make a passed pawn.",
+        "vocabulary": [
+          {
+            "word": "minority attack",
+            "meaning": "attacking with fewer pawns to break up the opponent's larger group"
+          },
+          {
+            "word": "pawn majority",
+            "meaning": "more pawns than the opponent on one side of the board"
+          },
+          {
+            "word": "passed pawn",
+            "meaning": "a pawn with no enemy pawns in front of it or on the files next to it"
+          }
+        ],
+        "readLearn": {
+          "title": "Fewer Can Win",
+          "text": "It sounds backward, but two pawns can attack three. In the minority attack, White pushes the b-pawn to break up Black's queenside pawns. After the trades, Black is left with a weak pawn White can attack. A pawn majority, on the other hand, can create a passed pawn that marches toward promotion."
+        },
+        "materials": "Demo board, sets, minority attack cards, pawn majority cards, timer.",
+        "morningCircle": "Read the passage. Demo: white pawns a2, b2, d4 and e3; black pawns a7, b7, c6 and d5. Show White playing b4, b5 and bxc6. Ask: “What's left on Black's queenside?” (A weak c-pawn or isolated pawns.) Say: “Strategy means a long-term plan, not just the next move.”",
+        "boardChallenge": {
+          "intro": "Minority attack patterns at tables.",
+          "tiers": [
+            "Tier 1: on 4 cards, find the pawn that starts the minority attack.",
+            "Tier 2: play a minority attack card for 15 moves and create a weak pawn.",
+            "Tier 3: play a pawn majority card and create a passed pawn."
+          ]
+        },
+        "competition": "Queenside battles. Each card starts from the minority attack structure with rooks and minor pieces. Play for 12 minutes, then swap sides. Creating a weak pawn or a passed pawn earns 1 bonus point, and a win scores 3. In the last 10 min, show the best minority attack on the demo board.",
+        "check": [
+          "“How can fewer pawns attack more pawns?”",
+          "“What is a passed pawn?”"
+        ],
+        "sideways": [
+          "Kids push the b-pawn without support: bring a rook to the b-file first.",
+          "The attack runs out of steam: aim at the c6 pawn after the trades.",
+          "Early finishers: defend against the minority attack."
+        ],
+        "seniors": "Teams play the queenside battle. Talking point: “A small group that made a big change.”"
+      },
+      {
+        "objective": "Students can use two bishops on an open board and choose good trades.",
+        "vocabulary": [
+          {
+            "word": "bishop pair",
+            "meaning": "having both bishops while the opponent doesn't"
+          },
+          {
+            "word": "open position",
+            "meaning": "a position with few pawns in the center and open lines"
+          },
+          {
+            "word": "closed position",
+            "meaning": "a position with locked pawns that block lines"
+          }
+        ],
+        "readLearn": {
+          "title": "Two Bishops Together",
+          "text": "One bishop covers only half the board, the light or the dark squares. Two bishops cover it all. In an open position, the bishop pair can be stronger than a bishop and knight. So the player with the two bishops tries to open the position, and the other player tries to keep it closed."
+        },
+        "materials": "Demo board, sets, bishop pair cards, timer.",
+        "morningCircle": "Read the passage. Demo: put two white bishops on c4 and c3 on an open board, and a black knight and bishop in the center. Count the squares each side controls. Then add locked pawns on d4, e5, d5 and e6 and count again. Ask: “When are the bishops happier?” Say: “Coordination means two pieces covering what one can't.”",
+        "boardChallenge": {
+          "intro": "Bishop pair exercises at tables.",
+          "tiers": [
+            "Tier 1: count the squares controlled by the bishop pair on 4 cards.",
+            "Tier 2: on 4 cards, find the pawn move that opens the position for your bishops.",
+            "Tier 3: play a bishop pair endgame card and win against bishop and knight."
+          ]
+        },
+        "competition": "Bishop pair games. Each card gives one side the bishop pair. Play for 12 minutes, then swap sides. A win scores 3, a draw 1. Opening a file or diagonal for your bishops earns a bonus point. In the last 10 min, show the best use of two bishops on the demo board.",
+        "check": [
+          "“Why are two bishops stronger in an open position?”",
+          "“What kind of position does the knight side want?”"
+        ],
+        "sideways": [
+          "Kids trade a bishop away for nothing: keep the pair until a trade wins something.",
+          "Positions stay closed: look for a pawn break.",
+          "Early finishers: play the knight side and try to keep it closed."
+        ],
+        "seniors": "Teams play bishop pair cards. Talking point: “Two people who worked better together than apart.”"
+      },
+      {
+        "objective": "Students can cut off the enemy king, win the Lucena position, and hold the Philidor defense.",
+        "vocabulary": [
+          {
+            "word": "cut off",
+            "meaning": "use your rook to stop the enemy king from crossing a file or rank"
+          },
+          {
+            "word": "Lucena position",
+            "meaning": "a winning rook ending where the stronger side uses its rook to shield its king from checks"
+          },
+          {
+            "word": "Philidor position",
+            "meaning": "a drawing rook ending where the defender's rook guards the third rank from its own side"
+          }
+        ],
+        "readLearn": {
+          "title": "Two Positions Every Player Knows",
+          "text": "Rook endings are the most common endings in chess. Two positions are the keys. In the Lucena, the side with a pawn on the 7th wins by blocking the checks with its rook. In the Philidor, the defender keeps the rook on its third rank until the pawn moves up, then checks from behind."
+        },
+        "materials": "Demo board, sets, Lucena cards, Philidor cards, timer.",
+        "morningCircle": "Read the passage. Demo 1: show the Lucena with the white king on d8, a pawn on d7, rooks for both sides, and the black king cut off on the f-file. Play the rook to the 4th rank and use it to block the checks. Demo 2: show the Philidor with the black rook on its 6th rank. Ask: “Why can't the white king come forward?” Say: “Endgame precision turns half-points into whole ones.”",
+        "boardChallenge": {
+          "intro": "Rook endgame drills at tables.",
+          "tiers": [
+            "Tier 1: on 4 cards, cut off the enemy king with one rook move.",
+            "Tier 2: win the Lucena from the card against your partner.",
+            "Tier 3: hold the Philidor for 20 moves against your partner."
+          ]
+        },
+        "competition": "Rook endgame challenge. Pairs play each card twice, swapping sides. Winning a Lucena scores 3, holding a Philidor scores 3, and losing a won or drawn position scores 0. 25 min of play, then 15 min of a rook endgame collection race: 6 cards, win or draw?",
+        "check": [
+          "“What does building a bridge mean in the Lucena?”",
+          "“Where does the defender's rook go in the Philidor?”"
+        ],
+        "sideways": [
+          "Kids forget to cut off the king first: the rook's first job is the cut-off.",
+          "Kids check from the front in the Philidor: check from behind, from far away.",
+          "Early finishers: rook and pawn vs. rook with the pawn on the 6th."
+        ],
+        "seniors": "Teams try the Lucena together. Talking point: “A skill you practiced until it was second nature.”"
+      },
+      {
+        "objective": "Students can give up material for long-term advantages and decide when to accept a sacrifice.",
+        "vocabulary": [
+          {
+            "word": "the exchange",
+            "meaning": "the difference between a rook and a bishop or knight, about 2 points"
+          },
+          {
+            "word": "exchange sacrifice",
+            "meaning": "giving a rook for a bishop or knight to get a positional advantage"
+          },
+          {
+            "word": "long-term advantage",
+            "meaning": "an advantage that lasts many moves, like a better structure or a safer king"
+          }
+        ],
+        "readLearn": {
+          "title": "Calculated Risks",
+          "text": "Some sacrifices aren't for checkmate. A player gives up the exchange to wreck the opponent's pawns, win a center pawn, or get an unstoppable knight. These positional sacrifices pay off slowly. The defender must decide: accept the material and suffer, or decline and stay solid."
+        },
+        "materials": "Demo board, sets, positional sacrifice cards, accept-or-decline cards, timer.",
+        "morningCircle": "Read the passage. Demo: show a Sicilian position where Black plays ...Rxc3. After bxc3, White's queenside pawns are broken, and Black's pieces aim at the weak pawns and the e4 pawn. Ask: “Black is down 2 points. What did Black get?” Say: “Boldness means taking a calculated risk.”",
+        "boardChallenge": {
+          "intro": "Positional sacrifice studies at tables.",
+          "tiers": [
+            "Tier 1: on 4 cards, name what the sacrificing side gets for the material.",
+            "Tier 2: on 4 accept-or-decline cards, decide and explain.",
+            "Tier 3: play a positional sacrifice card for 15 moves and show the compensation."
+          ]
+        },
+        "competition": "Sacrifice matches. Each card starts right after a positional sacrifice. Play for 12 minutes, then swap sides. A win scores 3, a draw 1. The sacrificing side earns a bonus point if it wins back material by move 20. In the last 10 min, the class votes on the best sacrifice of the day.",
+        "check": [
+          "“What is the exchange worth?”",
+          "“Name two things you can get for the exchange.”"
+        ],
+        "sideways": [
+          "Kids sacrifice without a reason: write the reason before the sacrifice.",
+          "The defender gives back material right away: hold on to it and defend.",
+          "Early finishers: find a pawn sacrifice for the initiative."
+        ],
+        "seniors": "Teams discuss accept-or-decline cards. Talking point: “A sacrifice you made that paid off years later.”"
+      },
+      {
+        "objective": "Students can explain how engines work, try strategies against chess bots, and use an engine as a training tool.",
+        "vocabulary": [
+          {
+            "word": "engine",
+            "meaning": "a computer program that plays and analyzes chess"
+          },
+          {
+            "word": "evaluation",
+            "meaning": "the engine's score for a position: +1.0 means White is about a pawn better"
+          },
+          {
+            "word": "bot",
+            "meaning": "a computer opponent set to play at a chosen strength"
+          }
+        ],
+        "readLearn": {
+          "title": "Learning From Machines",
+          "text": "Chess engines are now far stronger than any human. They calculate millions of positions a second and rarely miss a tactic. That makes them perfect training partners. Play bots set to your level, then use the full engine to check your games. But think first, then check, or you won't learn."
+        },
+        "materials": "Demo board, sets, tablets with a free chess app if available, engine evaluation cards, scoresheets.",
+        "morningCircle": "Read the passage. Demo: show an evaluation bar on a tablet or a printed card. Ask: “What does +2.5 mean? What does -0.3 mean?” Then show a game where the bar jumps after one move. Ask: “What happened here?” (A blunder.) Say: “Adaptation means learning from every tool you have.”",
+        "boardChallenge": {
+          "intro": "Engine games and analysis. Pairs share a tablet.",
+          "tiers": [
+            "Tier 1: play a bot set to your level and record the game.",
+            "Tier 2: check your game with the engine and find your biggest evaluation drop.",
+            "Tier 3: find a closed, slow position where the bot plays aimlessly, and explain why."
+          ]
+        },
+        "competition": "Human vs. bot challenge. Each pair plays the class bot at a set level, taking turns choosing moves together. A win scores 3, a draw 2. Then 15 min of analysis: each pair shows one moment where the engine found a better move and explains why it's better.",
+        "check": [
+          "“What does a + evaluation mean?”",
+          "“Why should you think before checking the engine?”"
+        ],
+        "sideways": [
+          "No tablets or Wi-Fi: use printed engine evaluation cards and play humans on a handicap instead.",
+          "Kids check the engine after every move: think first, check after the game.",
+          "Early finishers: raise the bot's level."
+        ],
+        "seniors": "Teams play a bot together on one tablet, or use printed cards. Talking point: how computers changed their work or daily life."
+      },
+      {
+        "objective": "Students can name their feelings during a game, use a reset routine, and stay objective after a mistake.",
+        "vocabulary": [
+          {
+            "word": "tilt",
+            "meaning": "playing badly because you're upset about an earlier mistake"
+          },
+          {
+            "word": "reset routine",
+            "meaning": "a short habit to calm down and refocus, like a deep breath and a board scan"
+          },
+          {
+            "word": "objective",
+            "meaning": "judging the position as it really is, not as you hope or fear"
+          }
+        ],
+        "readLearn": {
+          "title": "Staying Composed",
+          "text": "Every player makes mistakes. What matters is the next move. After a blunder, many players get upset and make another one. That's tilt. A reset routine stops it: sit back, take three slow breaths, scan the whole board, then ask what the position really needs. Stay objective, not hopeful or scared."
+        },
+        "materials": "Demo board, sets, emotion cards, reset routine cards, timer.",
+        "morningCircle": "Read the passage. Demo: play a short game against a volunteer, and leave a piece hanging on purpose. Show the reset routine out loud: sit back, three breaths, scan, “What does this position need?” Ask: “What would happen if I rushed my next move?” Say: “Mental strength means staying composed.”",
+        "boardChallenge": {
+          "intro": "Emotional control exercises at tables.",
+          "tiers": [
+            "Tier 1: after a mistake in a practice game, do the reset routine before your next move.",
+            "Tier 2: on 4 cards, give an objective evaluation of a position that looks scary.",
+            "Tier 3: play a game, then write how you felt at three moments and how it affected your moves."
+          ]
+        },
+        "competition": "Comeback games. Each game starts with one player down a pawn. Play for 12 minutes, then swap. A comeback win scores 3, and holding the lead scores 2. Before each move after a capture, players must do a one-breath reset. In the last 10 min, talk about tilt as a group: what does it feel like, and what helps?",
+        "check": [
+          "“What is tilt?”",
+          "“Show me your reset routine.”"
+        ],
+        "sideways": [
+          "Tears or anger: the reset routine works away from the board too. Take a 2-minute walk.",
+          "Kids mock a mistake: Mental Strength includes being kind to others.",
+          "Early finishers: write your own reset routine card."
+        ],
+        "seniors": "Teams discuss staying calm under pressure. Talking point: “What helped you stay calm in a hard moment?”"
+      },
+      {
+        "objective": "Students can compete as a team, support teammates, and analyze games together.",
+        "vocabulary": [
+          {
+            "word": "board order",
+            "meaning": "the order of players on a team, strongest on board 1"
+          },
+          {
+            "word": "match point",
+            "meaning": "points a team earns for winning or drawing a team match"
+          }
+        ],
+        "readLearn": {
+          "title": "Thinker Card share",
+          "text": "Each student reads their favorite Thinker Card from the term to a partner."
+        },
+        "materials": "Everything from the term, chess clocks, team score sheets, results chart, certificates.",
+        "morningCircle": "Walk through the 7 Superpowers of the term. Quick vocabulary game: you say a definition, and kids shout the word. Explain the team championship: teams of 4, board order by rating, and each game counts toward the team score. Teammates can cheer, but not give advice during a game.",
+        "boardChallenge": {
+          "intro": "Team warm-up. Teams solve 6 puzzle cards together and choose their board order.",
+          "tiers": [
+            "Tier 1: solve 2 puzzles with your team.",
+            "Tier 2: explain one puzzle to a teammate who didn't see it.",
+            "Tier 3: help your team choose the board order and explain why."
+          ]
+        },
+        "competition": "Team championship. Teams of 4 play 3 rounds of 10-minute games. Each game win is 1 board point. The team with more board points wins the match and scores 2 match points, and a tied match scores 1 each. After each round, teams spend 2 minutes on collaborative analysis of their games.",
+        "cleanup": "A certificate for everyone, naming the Superpower they showed most. Awards: Team Champions, Best Teammate, Clutch Win.",
+        "check": [
+          "Each student says one word they learned this term and what it means."
+        ],
+        "sideways": [
+          "Uneven teams: a team of 3 plays a bot or a volunteer on board 4.",
+          "Teammates coach during games: one warning, then the board loses half a point.",
+          "Running long: drop round 3 and decide on board points."
+        ],
+        "seniors": "A team match between residents and staff, or two resident teams. Talking point: “Your favorite team, at work, in sport or in your community.”",
+        "vocabularyNote": "Review all 21 words from the term. New words:"
+      }
+    ],
+    "Advanced": [
+      {
+        "objective": "Students can explain current opening trends and apply a modern idea in their own games.",
+        "vocabulary": [
+          {
+            "word": "theory",
+            "meaning": "the known best moves in an opening, studied by strong players"
+          },
+          {
+            "word": "trend",
+            "meaning": "an opening or idea that becomes popular at the top level"
+          },
+          {
+            "word": "sideline",
+            "meaning": "a less common move order that avoids the main line"
+          }
+        ],
+        "readLearn": {
+          "title": "What's New",
+          "text": "Opening theory never stops changing. In 2000, Kramnik used the Berlin Defense to beat Kasparov for the world title, and it became a top-level favorite. Engines have since revived old ideas, like early h-pawn pushes. Strong players keep up with trends, but they understand the ideas, not just the newest moves."
+        },
+        "materials": "Demo board, sets, recent GM game printouts, prep file notebooks, tablets if available.",
+        "morningCircle": "Read the passage. Demo: play 1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.O-O Nxe4 and show the Berlin endgame after the queen trade. Ask: “Why would a world champion choose such a quiet line?” Then show a modern game with an early h4. Say: “Currency means staying up to date.”",
+        "boardChallenge": {
+          "intro": "Recent GM game analysis. Pairs study one printed recent game.",
+          "tiers": [
+            "Tier 1: find the opening name and the first new idea in your game.",
+            "Tier 2: write the main idea of the opening in your prep file.",
+            "Tier 3: explain the modern idea to another pair in 2 minutes."
+          ]
+        },
+        "competition": "Theory test. Each pair draws a modern opening card and plays it from move 6. Swap colors and play again. A win scores 3, a draw 1, and using the opening's main idea in the game earns a bonus point (your partner judges). In the last 10 min, two pairs present their modern idea on the demo board.",
+        "check": [
+          "“What made the Berlin Defense famous?”",
+          "“What's the difference between theory and understanding?”"
+        ],
+        "sideways": [
+          "No tablets: use the printed games and an opening book.",
+          "Students memorize without understanding: ask, “Why this move?”",
+          "Early finishers: find a sideline in your opening and prepare against it."
+        ],
+        "seniors": "Teams discuss how chess and games have changed in their lifetime. Talking point: “What new idea in your field took everyone by surprise?”"
+      },
+      {
+        "objective": "Students can recognize classic piece sacrifice patterns and calculate whether a sacrifice is sound.",
+        "vocabulary": [
+          {
+            "word": "sound sacrifice",
+            "meaning": "a sacrifice that still works against the best defense"
+          },
+          {
+            "word": "speculative sacrifice",
+            "meaning": "a sacrifice whose result can't be fully calculated"
+          },
+          {
+            "word": "double bishop sacrifice",
+            "meaning": "sacrificing both bishops on h7 and g7 to strip the king's shelter"
+          }
+        ],
+        "readLearn": {
+          "title": "Taking Big Risks",
+          "text": "A piece sacrifice gives away 3 points or more. It must get something big back: mate, more material, or a crushing attack. A sound sacrifice works against any defense. A speculative one is a gamble. In 1889, Emanuel Lasker sacrificed both bishops against Johann Bauer, and that pattern still wins games today."
+        },
+        "materials": "Demo board, sets, classic sacrifice cards, Lasker vs. Bauer printout, timer.",
+        "morningCircle": "Read the passage. Demo: play through the key moves of Lasker vs. Bauer, Amsterdam 1889, from the printout, stopping at Bxh7+ and Bxg7. Ask: “What did Lasker give? What did he get?” (Both bishops, for a broken king and then winning material.) Say: “Courage means taking big risks after big calculation.”",
+        "boardChallenge": {
+          "intro": "Sacrifice calculation training at tables.",
+          "tiers": [
+            "Tier 1: on 4 cards, name the sacrifice pattern.",
+            "Tier 2: on 4 cards, calculate the sacrifice to the end and say sound or speculative.",
+            "Tier 3: on 3 cards, find the defense that refutes a speculative sacrifice."
+          ]
+        },
+        "competition": "Sacrifice duels. Each card starts with a sacrifice available. The attacker decides whether to sacrifice, then plays for 12 minutes. Swap sides. A win after a sound sacrifice scores 4, a win without sacrificing scores 2, and a successful defense scores 3. In the last 10 min, review the boldest sacrifice of the day.",
+        "check": [
+          "“What makes a sacrifice sound?”",
+          "“What did Lasker get for his two bishops?”"
+        ],
+        "sideways": [
+          "Students sacrifice every game: only with a written line.",
+          "Students refuse to sacrifice ever: some positions need it, so calculate before saying no.",
+          "Early finishers: compose a sacrifice puzzle."
+        ],
+        "seniors": "Teams play through Lasker vs. Bauer together. Talking point: “The biggest risk you ever took, and how you decided.”"
+      },
+      {
+        "objective": "Students can sacrifice pawns for development and attack, and know when the Greek gift works.",
+        "vocabulary": [
+          {
+            "word": "gambit",
+            "meaning": "an opening that sacrifices a pawn for faster development or attack"
+          },
+          {
+            "word": "development lead",
+            "meaning": "having more pieces in play than the opponent"
+          },
+          {
+            "word": "Greek gift",
+            "meaning": "the bishop sacrifice Bxh7+ against a castled king, followed by Ng5+ and Qh5"
+          }
+        ],
+        "readLearn": {
+          "title": "Giving to Gain",
+          "text": "A pawn is a small price for a big attack. Gambits give a pawn to develop faster and open lines toward the king. The Greek gift gives a whole bishop on h7. It works when White has a bishop on d3, a knight ready for g5, and a queen that reaches h5, and Black has no knight on f6 to defend."
+        },
+        "materials": "Demo board, sets, gambit cards, Greek gift cards (works or doesn't), timer.",
+        "morningCircle": "Read the passage. Demo: set the Greek gift: White bishop d3, knight f3, queen d1, pawn e5; Black king g8, rook f8, pawns f7, g7 and h7, no knight on f6. Play Bxh7+ Kxh7 Ng5+ Kg8 Qh5. Ask: “What's the threat?” (Qh7#.) Then move a black knight to f6 and ask why it fails now. Say: “Investment means giving now to gain later.”",
+        "boardChallenge": {
+          "intro": "Greek gift variations at tables.",
+          "tiers": [
+            "Tier 1: on 4 cards, say whether the Greek gift works and why.",
+            "Tier 2: on 4 gambit cards, name what the gambit side gets for the pawn.",
+            "Tier 3: play a Greek gift card against your partner and either mate or win back the material."
+          ]
+        },
+        "competition": "Gambit tournament. Each round draws a gambit card, such as the King's Gambit or the Danish, and plays from move 3. Swap colors. A win for the gambit side scores 3, a win for the defender scores 3, and a draw scores 1. Playing a sound Greek gift in a game earns 2 bonus points. In the last 10 min, show the best gambit win.",
+        "check": [
+          "“What three white pieces does the Greek gift need?”",
+          "“Name one gambit and what it gives.”"
+        ],
+        "sideways": [
+          "Students play the Greek gift with a black knight on f6: check the conditions first.",
+          "The gambit side forgets to develop: a gambit is only worth it if you use the time.",
+          "Early finishers: find a pawn sacrifice in the middlegame, not the opening."
+        ],
+        "seniors": "Teams play a famous gambit together. Talking point: “An investment of time or money that paid off.”"
+      },
+      {
+        "objective": "Students can solve classic endgame studies, find only moves, and compose a simple study.",
+        "vocabulary": [
+          {
+            "word": "study",
+            "meaning": "a composed position with a hidden, often beautiful solution"
+          },
+          {
+            "word": "only move",
+            "meaning": "the single move that keeps the win or the draw"
+          },
+          {
+            "word": "underpromotion",
+            "meaning": "promoting a pawn to a rook, bishop or knight instead of a queen"
+          }
+        ],
+        "readLearn": {
+          "title": "Beauty on the Board",
+          "text": "Endgame studies are chess as art. In the Réti study, a king that looks too slow chases two pawns at once and saves the game. In the Saavedra, promoting to a queen only draws, but promoting to a rook wins. Studies train you to find the only move."
+        },
+        "materials": "Demo board, sets, classic study cards, blank diagram sheets, timer.",
+        "morningCircle": "Read the passage. Demo: Réti study. White king h8 and pawn c6; Black king a6 and pawn h5. White to play and draw. Let the class try. Then show 1.Kg7 h4 2.Kf6, and the king either catches the h-pawn or supports the c-pawn. Then show the Saavedra finale: 6.c8=R! Ask: “Why not a queen?” (It would be stalemate after ...Rc4+ and Rxc4.) Say: “Artistry means seeing beauty in precision.”",
+        "boardChallenge": {
+          "intro": "Classical study collection at tables.",
+          "tiers": [
+            "Tier 1: solve 2 study cards with hints.",
+            "Tier 2: solve 3 study cards without hints, writing every only move.",
+            "Tier 3: compose a study of 5 pieces or fewer with one surprising move."
+          ]
+        },
+        "competition": "Study solving contest. Pairs solve study cards worth 2 to 5 points by difficulty. Full written solutions only. 25 min of solving. Then 15 min where composers show their own studies on the demo board and the class tries to solve them.",
+        "check": [
+          "“What is an only move?”",
+          "“Why did the Saavedra pawn become a rook?”"
+        ],
+        "sideways": [
+          "Students guess: every move must answer the opponent's best defense.",
+          "Composed studies have two solutions: test with a partner before showing.",
+          "Early finishers: harder studies from the collection."
+        ],
+        "seniors": "Teams solve the Réti study together. Talking point: “What's something beautiful you've seen that was also simple?”"
+      },
+      {
+        "objective": "Students can use a blunder check on every move and reduce errors in long games.",
+        "vocabulary": [
+          {
+            "word": "blunder check",
+            "meaning": "a last look before moving: checks, captures and threats for both sides"
+          },
+          {
+            "word": "consistency",
+            "meaning": "playing well game after game, not just sometimes"
+          },
+          {
+            "word": "practical decision",
+            "meaning": "choosing a good, safe move when the perfect one would take too long to find"
+          }
+        ],
+        "readLearn": {
+          "title": "Fewer Mistakes",
+          "text": "At the Candidate Master level, the biggest gains don't come from brilliant moves. They come from fewer mistakes. Before every move, do a blunder check: what are all the checks, captures and threats, for both sides? Make practical decisions, play solid moves, and let your opponent make the errors."
+        },
+        "materials": "Demo board, sets, blunder check cards, chess clocks, error log sheets.",
+        "morningCircle": "Read the passage. Demo: show three of your own old games, or games from the class, and find the move where the game turned. Ask: “Was it a brilliant move or a mistake that decided it?” (Usually a mistake.) Say: “Consistency means playing your normal good game every single time.”",
+        "boardChallenge": {
+          "intro": "Error reduction training at tables.",
+          "tiers": [
+            "Tier 1: do a blunder check out loud for 5 cards and find the hidden threat.",
+            "Tier 2: play a 15-minute game and log every move where you skipped the blunder check.",
+            "Tier 3: play 3 rapid games in a row with no blunder over 2 points."
+          ]
+        },
+        "competition": "Consistency challenge. Play 2 games of 15 minutes. Scoring: a win scores 3, a draw 1, and any game with no blunder over 2 points (checked by your opponent after the game) earns 2 bonus points. In the last 10 min, students fill in an error log: what kind of mistakes do they make most?",
+        "check": [
+          "“What are the three parts of a blunder check?”",
+          "“What is a practical decision?”"
+        ],
+        "sideways": [
+          "Students check so long they run out of time: the check takes 10 seconds.",
+          "Students get bored with solid play: count the points they gained from fewer errors.",
+          "Early finishers: review the error log and pick one habit to fix."
+        ],
+        "seniors": "Teams play a consultation game with a blunder check before each move. Talking point: “Habits that kept you safe at work.”"
+      },
+      {
+        "objective": "Students can choose a surprise weapon, prepare its key move orders, and fit it into a complete repertoire.",
+        "vocabulary": [
+          {
+            "word": "surprise weapon",
+            "meaning": "a rare opening that catches an unprepared opponent"
+          },
+          {
+            "word": "move order",
+            "meaning": "the order in which moves are played, which can avoid or allow certain lines"
+          },
+          {
+            "word": "system opening",
+            "meaning": "an opening plan you can play against almost any reply"
+          }
+        ],
+        "readLearn": {
+          "title": "Deep Expertise",
+          "text": "A surprise weapon takes your opponent out of their preparation. The Trompowsky (1.d4 Nf6 2.Bg5), the Scandinavian (1.e4 d5) and the King's Gambit (1.e4 e5 2.f4) are all played by strong players. Learn one deeply, with its move orders and plans, and add it to a complete repertoire."
+        },
+        "materials": "Demo board, sets, rare opening cards, prep file notebooks, tablets if available.",
+        "morningCircle": "Read the passage. Demo: play 1.d4 Nf6 2.Bg5 on the demo board. Ask: “What is White threatening?” (To take on f6 and double Black's pawns.) Then show a move order trick in a familiar opening. Say: “Specialization means knowing one thing very well.”",
+        "boardChallenge": {
+          "intro": "Rare opening exploration at tables.",
+          "tiers": [
+            "Tier 1: choose a surprise weapon and write its first 5 moves and main idea.",
+            "Tier 2: prepare answers to the 2 most common replies.",
+            "Tier 3: update your complete repertoire chart with the new weapon."
+          ]
+        },
+        "competition": "Surprise tournament. Each player plays their surprise weapon in both games against a new partner. A win scores 3, a draw 1, and the opponent earns a bonus point for reaching an equal position by move 15. In the last 10 min, students vote on the most effective surprise.",
+        "check": [
+          "“What makes a surprise weapon work?”",
+          "“Why does move order matter?”"
+        ],
+        "sideways": [
+          "Students pick unsound openings: check with an engine or a book first.",
+          "Students forget the plan after move 5: write the plan in the prep file.",
+          "Early finishers: prepare against your partner's surprise."
+        ],
+        "seniors": "Teams try an unusual opening together. Talking point: “A surprise that worked, in a game, at work or at home.”"
+      },
+      {
+        "objective": "Students can study a grandmaster game move by move and explain the thinking behind the key moves.",
+        "vocabulary": [
+          {
+            "word": "annotation",
+            "meaning": "notes in a game score that explain the moves"
+          },
+          {
+            "word": "guess the move",
+            "meaning": "covering the next move of a master game and predicting it before you look"
+          },
+          {
+            "word": "style",
+            "meaning": "a player's typical way of playing, such as aggressive or positional"
+          }
+        ],
+        "readLearn": {
+          "title": "Learning From the Best",
+          "text": "The best way to learn how grandmasters think is to play through their games. In the Game of the Century in 1956, 13-year-old Bobby Fischer sacrificed his queen to beat Donald Byrne. In 1999, Kasparov beat Topalov with a rook sacrifice that started a king hunt across the board. Guess each move before you look."
+        },
+        "materials": "Demo board, sets, annotated GM game printouts, guess-the-move sheets, folders for covering moves.",
+        "morningCircle": "Read the passage. Demo: play the first moves of Fischer vs. Byrne, 1956, on the demo board, then stop before 17...Be6!! Ask the class to guess. Reveal the move and explain the idea. Say: “Modeling excellence means learning by copying the best.”",
+        "boardChallenge": {
+          "intro": "Guess the move at tables. Partners cover the next move with a folder.",
+          "tiers": [
+            "Tier 1: play through an annotated game and explain 3 key moves.",
+            "Tier 2: guess 15 moves of a master game and score 1 point for each match.",
+            "Tier 3: write your own annotations for 10 moves of a GM game."
+          ]
+        },
+        "competition": "Guess-the-move contest. You play a GM game on the demo board and stop at 12 key moments. Pairs write their guess. The GM move scores 3, a move you judge nearly as good scores 1. Then 10 min of GM style emulation: play a game in the style of the master you studied.",
+        "check": [
+          "“Why guess before you look?”",
+          "“Describe the style of a player you studied.”"
+        ],
+        "sideways": [
+          "Students look ahead: the folder covers the rest of the game.",
+          "Guessing feels too hard: give 3 candidate moves to choose from.",
+          "Early finishers: annotate a second game."
+        ],
+        "seniors": "Teams play through a famous game and guess together. Talking point: “A mentor or role model you learned from.”"
+      },
+      {
+        "objective": "Students can give a simultaneous exhibition and a short teaching demonstration for newer players.",
+        "vocabulary": [
+          {
+            "word": "simultaneous exhibition",
+            "meaning": "one strong player plays several opponents at the same time"
+          },
+          {
+            "word": "legacy",
+            "meaning": "what you leave behind for the people who come after you"
+          }
+        ],
+        "readLearn": {
+          "title": "Thinker Card share",
+          "text": "Each student reads their favorite Thinker Card from the term to a partner."
+        },
+        "materials": "Everything from the term, extra boards for simul tables, teaching cards, certificates.",
+        "morningCircle": "Walk through the 7 Superpowers of the term. Quick vocabulary game: you say a definition, and students shout the word. Explain the exhibition: each advanced student gives a simul against 3 to 4 newer players, families or staff, and then a 5-minute teaching demonstration.",
+        "boardChallenge": {
+          "intro": "Teaching demonstrations. Each student prepares and gives a 5-minute mini lesson on one idea from the term.",
+          "tiers": [
+            "Tier 1: plan a 5-minute lesson on one tactic.",
+            "Tier 2: give the lesson with a demo position and one check question.",
+            "Tier 3: teach a lesson on a strategic idea and answer questions."
+          ]
+        },
+        "competition": "Simul display. Advanced students each play 3 or 4 opponents at once, walking from board to board. Opponents move when the simul giver arrives. Play for 30 minutes, then the simul giver offers draws in unfinished games or explains the position to the opponent. In the last 10 min, simul givers share their favorite moment.",
+        "cleanup": "A certificate for everyone, naming the Superpower they showed most. Awards: Simul Star, Best Teacher, Legacy Award.",
+        "check": [
+          "Each student says one word they learned this term and what it means."
+        ],
+        "sideways": [
+          "Not enough opponents: pair two simul givers against each other's group.",
+          "Simul givers rush and blunder: a blunder check at every board still counts.",
+          "Families arrive late: they join a simul board in progress as a consultation partner."
+        ],
+        "seniors": "Advanced students give a simul to residents, or a resident who plays gives one. Talking point: “What would you like to pass on to the next generation?”",
+        "vocabularyNote": "Review all 21 words from the term. New words:"
+      }
+    ]
+  }
+}

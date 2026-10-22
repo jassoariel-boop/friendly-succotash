@@ -1,0 +1,1085 @@
+{
+  "term": 4,
+  "frame": {
+    "title": "How to use these plans",
+    "intro": "Every class runs the same 90 minutes plus recess. Each lesson below fills in this frame.",
+    "blocks": [
+      {
+        "name": "Morning Circle",
+        "time": "15 min",
+        "what": "3 min welcome and Superpower, 5 min Read & Learn (echo read, 3 words), 5 min demo on the big board, 2 min challenge intro"
+      },
+      {
+        "name": "Board Challenge",
+        "time": "25 min",
+        "what": "Practice in pairs at tables, using the challenge card"
+      },
+      {
+        "name": "Recess",
+        "time": "20 min",
+        "what": "Pieces stay on the boards, nobody touches a game in progress"
+      },
+      {
+        "name": "Competition Round",
+        "time": "40 min",
+        "what": "25 to 30 min of play, then 10 to 15 min of scoring and one game shown on the demo board"
+      },
+      {
+        "name": "Cleanup & Prizes",
+        "time": "10 min",
+        "what": "5 min pack sets and count 32 pieces, 5 min prizes, Superpower shout-out, 2 check questions"
+      }
+    ],
+    "notes": [
+      {
+        "label": "Challenge tiers",
+        "text": "Every challenge card has three tiers. Everyone starts on Tier 1. A player who finishes and passes the partner check moves to Tier 2, then Tier 3. Tiers follow skill, not grade, so a strong 2nd grader can reach Tier 3."
+      },
+      {
+        "label": "Grades 1 and 2",
+        "text": "Read the passage to them and have them echo it. Thinker Cards can be drawn and labeled. Full games are fine, but keep a pieces-only mini-game ready for anyone who gets lost in a full board. Give a 2-minute warning before every switch."
+      },
+      {
+        "label": "Grades 3 to 5",
+        "text": "Students read aloud in popcorn style and write full Thinker Card sentences. Give them the scorekeeping, timing and results-chart jobs."
+      },
+      {
+        "label": "Seniors",
+        "text": "Each lesson ends with a seniors note. Run it as 60 minutes in pairs or teams of 2 or 3 sharing one board, with a real-world talking point. Skip prizes unless the group enjoys them. Memory care (45 min): one piece at a time, a large-piece set if you have one, and no clocks."
+      },
+      {
+        "label": "Read & Learn",
+        "text": "Each week has a short passage (under 80 words) written below, so it fits the 5 minutes. Week 8 of every level uses Thinker Cards instead."
+      },
+      {
+        "label": "Levels",
+        "text": "Beginner, Intermediate and Advanced run the same frame. Each level has its own 8 weeks below."
+      }
+    ],
+    "kit": {
+      "title": "Chess kit tote",
+      "intro": "One tote per instructor, reused every week at every site.",
+      "items": [
+        "Demo board (hanging or magnetic) with its pieces",
+        "Roll-up boards and full sets, 1 per pair plus 2 spares, each set in a zip bag labeled “32 pieces”",
+        "4 chess clocks, or phones with a free clock app",
+        "Puzzle cards for the week, printed, 1 set per table",
+        "Scoresheets and pencils",
+        "Index cards (Thinker Cards) and sticky notes",
+        "Painter's tape and a marker for table numbers and the results chart",
+        "Coins or small counters for marking squares",
+        "4 file folders (privacy screens for memory games)",
+        "Phone or stopwatch for timing",
+        "Small prize box (stickers, pawn erasers, certificates)"
+      ]
+    },
+    "setup": "Every-week setup (10 min before class): 1 board per pair, pieces in their bags until the Board Challenge starts. Puzzle cards on the tables. Vocabulary words on the board. Demo board on the easel with the Morning Circle position already set. Results chart taped up at the front."
+  },
+  "levels": {
+    "Beginner": [
+      {
+        "objective": "Students can show every piece move and rule from the year and play a full game with confidence.",
+        "vocabulary": [
+          {
+            "word": "rule",
+            "meaning": "something every player must follow, like touch-move"
+          },
+          {
+            "word": "legal move",
+            "meaning": "a move the rules allow"
+          },
+          {
+            "word": "illegal move",
+            "meaning": "a move the rules don't allow, which must be taken back"
+          }
+        ],
+        "readLearn": {
+          "title": "You Know a Lot",
+          "text": "Look how far you've come. You know how every piece moves, how to check and checkmate, and how to castle. You know forks, pins and the value of every piece. This term is about using all of it with confidence. Trust what you know, and play your own moves."
+        },
+        "materials": "Demo board, sets, 4 skills station cards, memory game folders, results chart.",
+        "morningCircle": "Say: “Welcome back, chess players! This is our last term of the year, so let's show what we know.” Read the passage. Demo: set a position with one illegal move hidden in it, like a king next to the other king. Ask: “What's wrong here?” Then quiz the class on castling, en passant and promotion with thumbs up for legal and thumbs down for illegal. Say: “Confidence comes from knowing the rules.”",
+        "boardChallenge": {
+          "intro": "Skills assessment stations. Spend 6 minutes at each of 4 stations: piece moves, check and checkmate, special moves, and piece values.",
+          "tiers": [
+            "Tier 1: pass 2 stations with your partner checking.",
+            "Tier 2: pass all 4 stations.",
+            "Tier 3: pass all 4 stations, then help another pair pass one."
+          ]
+        },
+        "competition": "Memory challenge and confident play. First 15 min: you show a position for 15 seconds, then cover it with a folder, and pairs rebuild it. 1 point for each piece on the right square. Then 25 min of full games, rotating partners. A win scores 3, and finishing a game with every move legal earns a bonus point.",
+        "check": [
+          "“Name one rule that surprised you this year.”",
+          "“Show me thumbs up if this move is legal.”"
+        ],
+        "sideways": [
+          "Kids freeze at a station: let them skip and come back.",
+          "Memory game is too hard: start with 3 pieces.",
+          "Early finishers: run a station as the checker."
+        ],
+        "seniors": "Teams run the memory challenge. Talking point: “What's something you learned later in life that you're proud of?” Memory care: name and move one piece at a time."
+      },
+      {
+        "objective": "Students can meet a threat by moving, defending, blocking or counterattacking, and give the king an escape square.",
+        "vocabulary": [
+          {
+            "word": "defend",
+            "meaning": "protect a piece or square from an attack"
+          },
+          {
+            "word": "escape square",
+            "meaning": "a safe square where the king can go when attacked"
+          },
+          {
+            "word": "block",
+            "meaning": "put a piece between an attacker and its target"
+          }
+        ],
+        "readLearn": {
+          "title": "Stay Strong Under Pressure",
+          "text": "When your opponent attacks, don't panic. You have four answers: move the piece, defend it, block the attack, or make a bigger threat of your own. Keep an escape square for your king, so a surprise check isn't checkmate. Good defenders stay calm and keep looking for resources."
+        },
+        "materials": "Demo board, sets, defense puzzle cards, timer.",
+        "morningCircle": "Read the passage. Demo: white bishop on c4 attacked by a black pawn on b5. Ask: “What can White do?” (Move it, for example Bb3.) Then show one card each for defending, blocking and counterattacking. Then show the white king on g1 behind pawns f2, g2 and h2 with a black rook coming to the back rank, and play h3 to make an escape square. Say: “Resilience means bouncing back under pressure.”",
+        "boardChallenge": {
+          "intro": "Defense puzzle collection at tables.",
+          "tiers": [
+            "Tier 1: on 5 cards, find a move that saves the attacked piece.",
+            "Tier 2: on 4 cards, find two different ways to defend and choose the better one.",
+            "Tier 3: on 4 cards, find the counterattack that answers a threat with a bigger threat."
+          ]
+        },
+        "competition": "Defender's challenge. Each card gives one side an attack. The defender tries to survive 12 moves without losing material, then the pair swaps sides. A successful defense scores 3, and winning material on the attack scores 2. Rotate partners. In the last 10 min, show the best defense on the demo board.",
+        "check": [
+          "“Name the four ways to answer a threat.”",
+          "“Why does the king need an escape square?”"
+        ],
+        "sideways": [
+          "Kids give up when attacked: count the defenders, there's often a way out.",
+          "Kids always move the attacked piece: try blocking or defending first sometimes.",
+          "Early finishers: defense cards with only one saving move."
+        ],
+        "seniors": "Teams work through defense cards. Talking point: “A tough time you got through, and what helped.”"
+      },
+      {
+        "objective": "Students can make threats with each move and force the opponent to react.",
+        "vocabulary": [
+          {
+            "word": "threat",
+            "meaning": "a move that attacks something you can win next turn"
+          },
+          {
+            "word": "forcing move",
+            "meaning": "a check, capture or threat the opponent must answer"
+          },
+          {
+            "word": "tempo",
+            "meaning": "a move's worth of time, gained when your opponent has to answer your threat"
+          }
+        ],
+        "readLearn": {
+          "title": "Take Charge",
+          "text": "Players who make threats control the game. Every time your opponent has to answer a threat, you gain a tempo and get to choose what happens next. The best moves develop a piece and make a threat at the same time. Keep asking: “What can I attack?”"
+        },
+        "materials": "Demo board, sets, threat creation cards, timer.",
+        "morningCircle": "Read the passage. Demo: play 1.e4 e5 2.Nf3. Ask: “What does the knight attack?” (The e5 pawn.) Black must answer with 2...Nc6. Then 3.Bb5, attacking the knight that defends e5. Ask: “Who is in charge?” Say: “Assertiveness means taking charge with every move.”",
+        "boardChallenge": {
+          "intro": "Threat creation exercises at tables.",
+          "tiers": [
+            "Tier 1: on 5 cards, find a move that makes a threat.",
+            "Tier 2: on 4 cards, find a move that develops a piece and makes a threat.",
+            "Tier 3: play a game where you make a threat on 5 moves in a row."
+          ]
+        },
+        "competition": "Threat streak games. Play full games for 25 min. Your partner tallies each move where you make a threat, and your longest streak earns that many bonus points, up to 5. A win scores 3. Then 15 min of forcing move sequences: puzzle cards where every move must be a check, capture or threat.",
+        "check": [
+          "“What is a forcing move?”",
+          "“How do you gain a tempo?”"
+        ],
+        "sideways": [
+          "Threats that lose pieces: check that the attacking piece is safe.",
+          "Kids threaten with the queen too early: use knights and bishops first.",
+          "Early finishers: find a move that makes two threats."
+        ],
+        "seniors": "Teams play threat streak games together. Talking point: “A time you took charge of a situation.”"
+      },
+      {
+        "objective": "Students can recognize and deliver the main checkmate patterns in one, two and three moves.",
+        "vocabulary": [
+          {
+            "word": "ladder mate",
+            "meaning": "two rooks or a rook and queen take turns checking to push the king to the edge"
+          },
+          {
+            "word": "kiss mate",
+            "meaning": "the queen checkmates right next to the king, protected by another piece"
+          },
+          {
+            "word": "smothered mate",
+            "meaning": "a knight checkmates a king that is trapped by its own pieces"
+          }
+        ],
+        "readLearn": {
+          "title": "Finishing Strong",
+          "text": "Most checkmates follow a few patterns. The ladder mate uses two rooks. In the kiss mate, the queen touches the king and is protected. The back-rank mate traps the king behind its pawns. The smothered mate is the trickiest: a knight checks a king that can't move because its own pieces are in the way."
+        },
+        "materials": "Demo board, sets, checkmate pattern quiz cards, mate in 1, 2 and 3 cards, timer.",
+        "morningCircle": "Read the passage. Demo: black king h8, black rook g8, black pawns g7 and h7, white knight on g5. Play Nf7#. Ask: “Why can't the king escape?” (His own rook and pawns block every square.) Then show a kiss mate: black king e8, white queen e7 and white king e6. Ask: “Why can't the king take the queen?” (The white king protects her.) Say: “Completion means finishing what you start.”",
+        "boardChallenge": {
+          "intro": "Checkmate pattern quiz at tables.",
+          "tiers": [
+            "Tier 1: name the pattern on 6 checkmate cards.",
+            "Tier 2: solve 4 mate-in-two puzzles.",
+            "Tier 3: solve 3 mate-in-three puzzles."
+          ]
+        },
+        "competition": "Mate ladder. Puzzles are worth 1, 2 or 3 points for mate in 1, 2 or 3. Pairs race for 20 min. Then 20 min of finishing games practice: each game starts from a card where one side has a winning attack, and the attacker must mate within 10 moves. Swap sides. Most points wins.",
+        "check": [
+          "“Name three checkmate patterns.”",
+          "“What traps the king in a smothered mate?”"
+        ],
+        "sideways": [
+          "Kids mix up mate and check: ask, “Can the king move? Block? Capture?”",
+          "Stalemate in the finishing games: give the lone king one move before every check.",
+          "Early finishers: build a smothered mate puzzle."
+        ],
+        "seniors": "Teams solve pattern cards together. Talking point: favorite endings of books and movies. Memory care: one big mate-in-one card."
+      },
+      {
+        "objective": "Students can replay a famous game, tell a short story from chess history, and name an idea they want to copy.",
+        "vocabulary": [
+          {
+            "word": "famous game",
+            "meaning": "a game remembered for a brilliant idea or a great player"
+          },
+          {
+            "word": "master",
+            "meaning": "a very strong chess player"
+          },
+          {
+            "word": "history",
+            "meaning": "the story of what happened long ago"
+          }
+        ],
+        "readLearn": {
+          "title": "The Opera Game",
+          "text": "In 1858, the American player Paul Morphy played a game in a box at the Paris opera house against two noblemen who worked together. Morphy developed fast, sacrificed pieces to keep the attack going, and gave up his queen on move 16. On move 17 he checkmated with his rook. People still study this game today."
+        },
+        "materials": "Demo board, sets, Opera Game move cards (simplified), chess history story cards.",
+        "morningCircle": "Read the passage. Demo: play the Opera Game on the demo board up to 15...Nxd7, then stop. Ask: “What would you play?” Show 16.Qb8+! Nxb8 17.Rd8#. Ask: “Why did Morphy give up his queen?” (To pull the knight away and open d8.) Say: “Inspiration means learning from greatness.”",
+        "boardChallenge": {
+          "intro": "Simplified game replay. Pairs replay the Opera Game from the move cards.",
+          "tiers": [
+            "Tier 1: replay the first 10 moves from the move cards.",
+            "Tier 2: replay the whole game and find the two sacrifices.",
+            "Tier 3: explain one Morphy idea, like fast development, to your partner."
+          ]
+        },
+        "competition": "Morphy challenge. Play full games where developing all 4 knights and bishops by move 8 earns 2 bonus points, and a win scores 3. 25 min of play. Then 15 min of chess history stories: each table reads one story card and shares it with the class.",
+        "check": [
+          "“Why do people still study the Opera Game?”",
+          "“What idea from Morphy will you use?”"
+        ],
+        "sideways": [
+          "Kids lose their place in the replay: one partner reads, the other moves.",
+          "History stories run long: one minute per table.",
+          "Early finishers: find another famous checkmate in the history cards."
+        ],
+        "seniors": "Teams replay the Opera Game together. Talking point: “What famous event do you remember watching or hearing about?”"
+      },
+      {
+        "objective": "Students can solve tactical puzzles by pattern, explain the theme, and make a puzzle of their own.",
+        "vocabulary": [
+          {
+            "word": "puzzle",
+            "meaning": "a position with one best move or sequence to find"
+          },
+          {
+            "word": "theme",
+            "meaning": "the main tactic in a puzzle, like a fork or a pin"
+          },
+          {
+            "word": "pattern recognition",
+            "meaning": "spotting an idea quickly because you've seen it before"
+          }
+        ],
+        "readLearn": {
+          "title": "Training Your Eyes",
+          "text": "The more puzzles you solve, the faster you spot tactics in real games. Every puzzle has a theme, like a fork, a pin or a back-rank mate. When you see a new puzzle, ask, “Which theme does this look like?” Then check every forcing move. And always look for your opponent's best answer."
+        },
+        "materials": "Demo board, sets, puzzle cards sorted by theme, blank diagram sheets, timer.",
+        "morningCircle": "Read the passage. Demo: show 3 puzzles quickly on the demo board. After each, ask the class to name the theme before anyone solves it. Then solve them together. Say: “Problem-solving gets faster when you know the patterns.”",
+        "boardChallenge": {
+          "intro": "Pattern recognition games at tables.",
+          "tiers": [
+            "Tier 1: solve 6 puzzles and write the theme for each.",
+            "Tier 2: solve 10 mixed puzzles in 15 minutes.",
+            "Tier 3: make your own puzzle with one clear theme and a single solution."
+          ]
+        },
+        "competition": "Puzzle solving competition. Pairs race through 15 face-down puzzles for 25 min. A correct solution scores 1, and naming the theme scores 1 more. Then 15 min where students swap their homemade puzzles, and the class votes for the best one.",
+        "check": [
+          "“What is a theme?”",
+          "“What should you check after finding a move?”"
+        ],
+        "sideways": [
+          "Kids guess: say the opponent's best reply before you check the answer.",
+          "Homemade puzzles have two answers: test with your partner first.",
+          "Early finishers: harder themes, like deflection."
+        ],
+        "seniors": "Teams solve puzzles together. Talking point: crosswords, jigsaws and other puzzles they love."
+      },
+      {
+        "objective": "Students can play team chess games, encourage teammates, and help make the club a friendly place.",
+        "vocabulary": [
+          {
+            "word": "teammate",
+            "meaning": "a player on your side who you help and cheer for"
+          },
+          {
+            "word": "consultation game",
+            "meaning": "teammates talk and choose each move together"
+          },
+          {
+            "word": "hand and brain",
+            "meaning": "a team game where the brain names a piece type and the hand chooses which one to move"
+          }
+        ],
+        "readLearn": {
+          "title": "Better Together",
+          "text": "Chess can be a team game too. In a consultation game, two players talk over every move. In hand and brain, the brain says a piece, like “knight,” and the hand chooses which knight and where it goes. Good teammates listen, encourage each other, and celebrate together."
+        },
+        "materials": "Demo board, sets, hand and brain rule cards, friendship challenge cards, timer.",
+        "morningCircle": "Read the passage. Demo: play hand and brain with two volunteers against you. The brain says the piece aloud, and the hand moves it. Ask: “What made this team work?” Say: “Friendship means building each other up.”",
+        "boardChallenge": {
+          "intro": "Friendship games at tables. Pairs play a consultation game against another pair.",
+          "tiers": [
+            "Tier 1: play a consultation game and agree on every move before playing it.",
+            "Tier 2: play hand and brain as both the hand and the brain.",
+            "Tier 3: after the game, write one thing your teammate did well on a Thinker Card and give it to them."
+          ]
+        },
+        "competition": "Hand and brain tournament. Teams of 2 play 3 rounds of 10-minute games, switching hand and brain each round. A win scores 2, a draw 1. A kind word to the other team after the game earns a bonus point. In the last 5 min, each team says one thing they liked about playing together.",
+        "check": [
+          "“What makes a good teammate?”",
+          "“Explain hand and brain in your own words.”"
+        ],
+        "sideways": [
+          "Teammates argue: the brain decides the piece, the hand decides the move, and that's final.",
+          "One teammate does everything: switch roles every 5 moves.",
+          "Odd number: a team of 3 rotates the hand."
+        ],
+        "seniors": "Hand and brain is a hit with seniors. Talking point: “A friendship that started over a game or a hobby.” Memory care: consultation game with a volunteer."
+      },
+      {
+        "objective": "Students can show what they learned this year and set a chess goal for the summer.",
+        "vocabulary": [
+          {
+            "word": "goal",
+            "meaning": "something you want to do and plan to work toward"
+          },
+          {
+            "word": "graduate",
+            "meaning": "finish one level and move up to the next"
+          }
+        ],
+        "readLearn": {
+          "title": "Thinker Card share",
+          "text": "Each student reads their favorite Thinker Card from the whole year to a partner."
+        },
+        "materials": "Everything from the year, showcase table cards, goal-setting cards, graduation certificates.",
+        "morningCircle": "Walk through the 7 Superpowers of the term, then the Superpowers from the whole year. Quick vocabulary game: you say a definition, and kids shout the word. Explain the showcase: each student shows one skill from the year at their table, then sets a summer goal.",
+        "boardChallenge": {
+          "intro": "Year review showcase. Each student sets up their favorite puzzle, checkmate or game moment at their table.",
+          "tiers": [
+            "Tier 1: show your favorite moment and say what it teaches.",
+            "Tier 2: show it and answer one question from a visitor.",
+            "Tier 3: show it, then teach it to a younger or newer player."
+          ]
+        },
+        "competition": "Showcase and graduation. 20 min: gallery walk, where students visit each table and try the puzzles. If families attend, they walk the gallery too. 20 min: goal setting and graduation. Each student writes a summer goal, like “Solve one puzzle a day” or “Teach my sister to play,” and reads it aloud as they receive their certificate.",
+        "cleanup": "A graduation certificate for everyone, naming the Superpower they showed most this year. Awards: Achievement Award, Most Improved of the Year, Best Chess Friend.",
+        "check": [
+          "Each student says one word they learned this year and what it means."
+        ],
+        "sideways": [
+          "Shy students don't want to present: let them show the position and point.",
+          "Families arrive early: give them a puzzle card to solve.",
+          "Running long: skip reading goals aloud and post them on the board."
+        ],
+        "seniors": "A year-end showcase for residents and staff, with families invited. Talking point: “What's a goal you have for this summer?”",
+        "vocabularyNote": "Review all 21 words from the term. New words:"
+      }
+    ],
+    "Intermediate": [
+      {
+        "objective": "Students can annotate a full game, find the turning point, and write a personal improvement plan.",
+        "vocabulary": [
+          {
+            "word": "annotate",
+            "meaning": "add notes and symbols to a game to explain the moves"
+          },
+          {
+            "word": "turning point",
+            "meaning": "the move where the game changed direction"
+          },
+          {
+            "word": "improvement plan",
+            "meaning": "a list of what to work on next, based on your games"
+          }
+        ],
+        "readLearn": {
+          "title": "Know Yourself",
+          "text": "The best way to improve is to study your own games. Annotation symbols help: ! is a good move, !! brilliant, ? a mistake, ?? a blunder, !? interesting and ?! doubtful. Find the turning point of each game. After several games, you'll see your patterns, and you'll know what to work on."
+        },
+        "materials": "Demo board, sets, students' scoresheets from the year, annotation symbol cards, improvement plan sheets.",
+        "morningCircle": "Read the passage. Demo: play through one of your own games on the demo board, adding symbols as you go. Stop at the turning point and ask: “What happened here? What was better?” Say: “Self-analysis means understanding yourself as a player.”",
+        "boardChallenge": {
+          "intro": "Deep game annotation at tables. Each student annotates one of their own games.",
+          "tiers": [
+            "Tier 1: add at least 5 annotation symbols to one of your games.",
+            "Tier 2: find the turning point and write the better move.",
+            "Tier 3: compare 3 of your games and find a mistake you make more than once."
+          ]
+        },
+        "competition": "Annotation exchange. Partners swap annotated games and check each other's notes for 15 minutes, adding their own ideas. Then 25 min of games, and after each game, both players mark the turning point together. A win scores 3, and an agreed turning point earns both players 1 bonus point. Finish by writing your improvement plan.",
+        "check": [
+          "“What does ?! mean?”",
+          "“What's on your improvement plan?”"
+        ],
+        "sideways": [
+          "Students only annotate the opponent's mistakes: find your own too.",
+          "Scoresheets are missing or unreadable: annotate today's games instead.",
+          "Early finishers: annotate a master game and compare it with the published notes."
+        ],
+        "seniors": "Teams annotate one game together. Talking point: “What did you learn from looking back on a hard time?”"
+      },
+      {
+        "objective": "Students can play fast games with good decisions and stay accurate under speed.",
+        "vocabulary": [
+          {
+            "word": "rapid",
+            "meaning": "games with more than 10 and less than 60 minutes per player"
+          },
+          {
+            "word": "opponent's time",
+            "meaning": "the time while your opponent is thinking, which you can use to plan"
+          },
+          {
+            "word": "simplify",
+            "meaning": "trade pieces to make the position easier to play when time is short"
+          }
+        ],
+        "readLearn": {
+          "title": "Fast but Accurate",
+          "text": "In rapid chess, you can't calculate everything. Strong rapid players use their opponent's time to plan, play moves they know quickly, and simplify when the clock gets low. They still do a quick safety check before every move. Fast thinking is good thinking that doesn't waste time."
+        },
+        "materials": "Demo board, sets, chess clocks, speed accuracy cards.",
+        "morningCircle": "Read the passage. Demo: play a 3-minute game against a volunteer, saying your thoughts aloud during the volunteer's time. Ask: “When did I plan? When did I just move?” Say: “Quick thinking means fast but accurate.”",
+        "boardChallenge": {
+          "intro": "Speed accuracy training at tables.",
+          "tiers": [
+            "Tier 1: solve 10 easy puzzle cards in 5 minutes with no mistakes.",
+            "Tier 2: play a 10-minute game and do a safety check every move.",
+            "Tier 3: play a 5-minute game and simplify when you have under 1 minute."
+          ]
+        },
+        "competition": "Rapid tournament. 3 rounds of 10-minute games (5 minutes each with a 3-second increment if your clocks have it). Pair by score after round 1. A win is 1 point, a draw half. After each round, players note one move they played fast and well, and one they rushed.",
+        "check": [
+          "“What can you do on your opponent's time?”",
+          "“When should you simplify?”"
+        ],
+        "sideways": [
+          "Clock slamming: gentle presses with the hand that moved.",
+          "Students blunder from rushing: one safety question before every move.",
+          "No clocks: use phone apps or a partner counting 10 seconds a move."
+        ],
+        "seniors": "Teams play with relaxed clocks, or none. Talking point: “A job where you had to work fast and still get it right.”"
+      },
+      {
+        "objective": "Students can play from a set opening structure and use the typical plans that go with it.",
+        "vocabulary": [
+          {
+            "word": "thematic tournament",
+            "meaning": "a tournament where every game starts from the same opening position"
+          },
+          {
+            "word": "typical plan",
+            "meaning": "the usual strategy that works in a certain structure"
+          },
+          {
+            "word": "structure",
+            "meaning": "the pattern of pawns that shapes the plans for both sides"
+          }
+        ],
+        "readLearn": {
+          "title": "Same Start, Different Games",
+          "text": "In a thematic tournament, every game starts from the same opening. That means you play the same structure again and again, and you learn its plans deeply. In the isolated queen's pawn, the side with the isolated pawn attacks. The other side blockades it and trades pieces. Learn the plans, and the moves follow."
+        },
+        "materials": "Demo board, sets, thematic position cards, structure plan cards, scoresheets.",
+        "morningCircle": "Read the passage. Demo: set up an isolated queen's pawn position on the demo board. Ask: “What does the side with the isolated pawn want? What does the other side want?” (Attack versus blockade and trades.) Say: “Specialization means focused expertise.”",
+        "boardChallenge": {
+          "intro": "Structure-specific games at tables.",
+          "tiers": [
+            "Tier 1: read the plan card and name each side's plan.",
+            "Tier 2: play the position for 15 moves following the plan card.",
+            "Tier 3: play both sides and write which plan worked better."
+          ]
+        },
+        "competition": "Thematic tournament. Every game starts from today's position. Play 3 rounds of 12-minute games, switching colors each round. A win is 1 point, a draw half. Following the plan card earns a bonus half point (your opponent judges). In the last 5 min, show the best example of each side's plan.",
+        "check": [
+          "“What is the typical plan for the side with the isolated pawn?”",
+          "“Why play the same opening again and again?”"
+        ],
+        "sideways": [
+          "Students ignore the plan card: ask what the card says before each critical move.",
+          "One side wins every game: swap colors and see if it's the position or the player.",
+          "Early finishers: try a second thematic position."
+        ],
+        "seniors": "Teams play the thematic position together. Talking point: “Something you got good at by doing it over and over.”"
+      },
+      {
+        "objective": "Students can play Chess960 and bughouse and use their chess skills in a new format.",
+        "vocabulary": [
+          {
+            "word": "Chess960",
+            "meaning": "a variant where the back-row pieces are shuffled into one of 960 starting positions"
+          },
+          {
+            "word": "bughouse",
+            "meaning": "a team variant played on two boards where captured pieces go to your partner"
+          },
+          {
+            "word": "drop",
+            "meaning": "in bughouse, placing a piece your partner gave you onto an empty square instead of moving"
+          }
+        ],
+        "readLearn": {
+          "title": "New Ways to Play",
+          "text": "Chess960 shuffles the pieces on the back row, so memorized openings don't help. You must think from move 1. Bishops still start on opposite colors, and the king starts between the rooks. Bughouse is a team game for four players on two boards. When you capture, you pass the piece to your partner, who can drop it onto the board."
+        },
+        "materials": "Demo board, sets, Chess960 starting position cards, bughouse rule cards, chess clocks if available.",
+        "morningCircle": "Read the passage. Demo: set up a Chess960 position on the demo board. Ask: “Which opening rules still work?” (Control the center, develop, keep the king safe.) Then show a bughouse drop: a knight dropped next to the enemy king. Say: “Versatility means adapting to new formats.”",
+        "boardChallenge": {
+          "intro": "Variant exploration at tables.",
+          "tiers": [
+            "Tier 1: play a Chess960 game and develop all 4 minor pieces by move 10.",
+            "Tier 2: play a Chess960 game and castle.",
+            "Tier 3: play bughouse and make a drop that leads to checkmate."
+          ]
+        },
+        "competition": "Variant tournament. 2 rounds of Chess960 (10 minutes each), then 2 rounds of bughouse with teams of 2. A win scores 1, a draw half. In bughouse, both partners get the team's result. In the last 5 min, students vote on their favorite variant.",
+        "check": [
+          "“How is Chess960 different from regular chess?”",
+          "“What can you do with a piece your partner gives you in bughouse?”"
+        ],
+        "sideways": [
+          "Bughouse gets loud: inside voices, and partners can only say which piece they need.",
+          "Castling in Chess960 confuses kids: the king and rook end up on the same squares as in normal castling.",
+          "Early finishers: try a Chess960 position with the queen in the corner."
+        ],
+        "seniors": "Chess960 works well for seniors, since it's new for everyone. Talking point: “A time you had to learn a new way of doing something.”"
+      },
+      {
+        "objective": "Students can play several opponents at once, manage their attention, and show how much they've grown.",
+        "vocabulary": [
+          {
+            "word": "simul",
+            "meaning": "short for simultaneous exhibition, where one player plays several opponents at once"
+          },
+          {
+            "word": "multi-board thinking",
+            "meaning": "keeping track of several games at the same time"
+          },
+          {
+            "word": "quick evaluation",
+            "meaning": "deciding fast who stands better in a position"
+          }
+        ],
+        "readLearn": {
+          "title": "Many Boards at Once",
+          "text": "In a simul, one player walks from board to board, playing a move on each. There's no time to calculate everything. The simul giver needs quick evaluations, simple safe moves and a good memory for each board's plan. It's the best way to show how much you've grown this year."
+        },
+        "materials": "Demo board, sets, extra boards for simul tables, quick evaluation cards.",
+        "morningCircle": "Read the passage. Demo: give a simul to 3 volunteers at the front of the room for 5 minutes. Think aloud at each board: “Plan here is to attack the king. Here I'm a pawn up, so I trade.” Say: “Multi-tasking means managing complexity.”",
+        "boardChallenge": {
+          "intro": "Multi-board thinking at tables.",
+          "tiers": [
+            "Tier 1: make quick evaluations on 6 cards, 10 seconds each.",
+            "Tier 2: play 2 games at once against 2 partners.",
+            "Tier 3: play 3 games at once and write each game's plan on a sticky note."
+          ]
+        },
+        "competition": "Student simul events. Each intermediate student gives a simul against 2 or 3 newer players, beginners or family members. Play for 30 minutes, then the simul giver shows one board to the class. Simul givers score 1 point per win and half per draw, and their opponents score 2 for a win.",
+        "check": [
+          "“What's the hardest part of a simul?”",
+          "“How do you remember the plan on each board?”"
+        ],
+        "sideways": [
+          "Not enough opponents: pair simul givers against each other's groups.",
+          "Simul givers forget which board is which: sticky notes with the plan.",
+          "Opponents move before the simul giver arrives: they wait their turn."
+        ],
+        "seniors": "A student gives a simul to residents, or a resident who plays gives one. Talking point: “A time you juggled many tasks at once.”"
+      },
+      {
+        "objective": "Students can plan and teach a short lesson to a beginner, explaining the idea clearly.",
+        "vocabulary": [
+          {
+            "word": "explain",
+            "meaning": "make an idea clear so someone else understands it"
+          },
+          {
+            "word": "demonstrate",
+            "meaning": "show how something works on the board"
+          },
+          {
+            "word": "feedback",
+            "meaning": "helpful comments on how someone did"
+          }
+        ],
+        "readLearn": {
+          "title": "Learning by Teaching",
+          "text": "When you teach something, you understand it better. A good chess lesson has one idea, a demo position, a short practice and a question to check understanding. Speak slowly, use the right words, and let your student try before you give the answer."
+        },
+        "materials": "Demo board, sets, lesson planning sheets, mentoring assignment cards.",
+        "morningCircle": "Read the passage. Demo: teach a 3-minute mini lesson on the knight fork to a volunteer, step by step: idea, demo, practice, check question. Ask: “What made the lesson easy to follow?” Say: “Teaching means helping others learn, and you learn too.”",
+        "boardChallenge": {
+          "intro": "Lesson planning at tables. Each student plans a 5-minute lesson.",
+          "tiers": [
+            "Tier 1: plan a lesson on how one piece moves.",
+            "Tier 2: plan a lesson on one tactic with a demo position and a check question.",
+            "Tier 3: plan a lesson on a strategy idea with a practice game."
+          ]
+        },
+        "competition": "Peer teaching sessions. Each student teaches their lesson to a beginner, a younger student or a partner. Then the learner gives feedback: one thing that was clear and one thing to improve. Teach twice, to different learners. In the last 10 min, two volunteers teach their lesson to the whole class.",
+        "check": [
+          "“What are the four parts of a good lesson?”",
+          "“What feedback did you get?”"
+        ],
+        "sideways": [
+          "No beginners on site: teach each other, playing a beginner.",
+          "Teachers give the answer too soon: count to 10 before helping.",
+          "Early finishers: become a mentor for a student in the Beginner level."
+        ],
+        "seniors": "Residents who play teach other residents, with student helpers. Talking point: “A teacher who changed your life.”"
+      },
+      {
+        "objective": "Students can build a pre-tournament routine covering openings, mental preparation and physical readiness.",
+        "vocabulary": [
+          {
+            "word": "routine",
+            "meaning": "steps you follow the same way every time to get ready"
+          },
+          {
+            "word": "pairing",
+            "meaning": "who you play in a round, posted before the round starts"
+          },
+          {
+            "word": "stamina",
+            "meaning": "the energy to keep playing well for a long time"
+          }
+        ],
+        "readLearn": {
+          "title": "Being Fully Prepared",
+          "text": "Tournament players prepare more than openings. They sleep well the night before, eat a good breakfast, and bring water and a snack. They warm up with a few easy puzzles. Between rounds, they rest instead of replaying a loss over and over. A routine makes every tournament feel familiar."
+        },
+        "materials": "Demo board, sets, preparation workshop cards, routine checklist sheets, chess clocks.",
+        "morningCircle": "Read the passage. Demo: show your own tournament checklist: sleep, breakfast, water, snack, pencil, 5 warm-up puzzles, check the pairing, arrive early. Ask: “What would you add?” Say: “Readiness means being fully prepared.”",
+        "boardChallenge": {
+          "intro": "Preparation workshops at tables.",
+          "tiers": [
+            "Tier 1: write a tournament day checklist.",
+            "Tier 2: write your opening plan for White and Black on one card.",
+            "Tier 3: write a between-rounds routine: what to do after a win, a loss and a draw."
+          ]
+        },
+        "competition": "Practice tournament. Run 3 rounds of 10-minute games with real tournament routines: posted pairings, warm-up puzzles before round 1, and a 2-minute between-rounds routine. A win is 1 point, a draw half. In the last 5 min, students rate their routine and change one thing.",
+        "check": [
+          "“Name three things on your tournament checklist.”",
+          "“What do you do between rounds?”"
+        ],
+        "sideways": [
+          "Students skip warm-ups: 5 puzzles before round 1 is part of the routine.",
+          "Students sulk after losses: use the between-rounds routine.",
+          "Early finishers: help the instructor post pairings."
+        ],
+        "seniors": "Teams prepare for the next week's event together. Talking point: “How did you get ready for big days in your life?”"
+      },
+      {
+        "objective": "Students can compete in the year-end championship and set goals for next year.",
+        "vocabulary": [
+          {
+            "word": "champion",
+            "meaning": "the winner of a championship"
+          },
+          {
+            "word": "future goal",
+            "meaning": "something you plan to achieve next year"
+          }
+        ],
+        "readLearn": {
+          "title": "Thinker Card share",
+          "text": "Each student reads their favorite Thinker Card from the whole year to a partner."
+        },
+        "materials": "Everything from the year, chess clocks, scoresheets, results chart, trophies or medals, certificates.",
+        "morningCircle": "Walk through the 7 Superpowers of the term. Quick vocabulary game: you say a definition, and students shout the word. Explain the championship: 4 rounds, 10-minute games, notation, and your tournament routine from last week.",
+        "boardChallenge": {
+          "intro": "Championship round 1, with warm-up puzzles first.",
+          "tiers": [
+            "Tier 1: play round 1 with a complete scoresheet.",
+            "Tier 2: after your game, mark the turning point.",
+            "Tier 3: help a newer player with their scoresheet between rounds."
+          ]
+        },
+        "competition": "Year-end championship, rounds 2 to 4. Pair players with the same score. A win is 1 point, a draw half. Tiebreak: head-to-head result, then most wins. After round 4, hold a future goals discussion: each student shares one goal for next year.",
+        "cleanup": "A certificate for everyone, naming the Superpower they showed most. Awards: Champion, Most Improved of the Year, Excellence in Sportsmanship.",
+        "check": [
+          "Each student says one word they learned this year and what it means."
+        ],
+        "sideways": [
+          "Odd number: a bye scores 1 point, and that player keeps the results chart.",
+          "Disputes: stop the clock, raise a hand, and your ruling stands.",
+          "Running long: drop round 4 and use the tiebreak."
+        ],
+        "seniors": "A year-end championship for residents and staff. Talking point: “What are you most proud of this year?”",
+        "vocabularyNote": "Review all 21 words from the term. New words:"
+      }
+    ],
+    "Advanced": [
+      {
+        "objective": "Students can set a rating goal, build a training plan, and plan a tournament calendar.",
+        "vocabulary": [
+          {
+            "word": "FIDE",
+            "meaning": "the International Chess Federation, which runs world events and awards titles"
+          },
+          {
+            "word": "title",
+            "meaning": "a lifetime honor like Candidate Master, which FIDE awards at a 2200 FIDE rating"
+          },
+          {
+            "word": "training plan",
+            "meaning": "a weekly schedule of what to study and play"
+          }
+        ],
+        "readLearn": {
+          "title": "Serious Dedication",
+          "text": "Players who reach the Candidate Master level don't just play a lot. They train with a plan: tactics every day, endgames every week, and opening work before tournaments. They pick tournaments on purpose and review every game. Most scholastic players start with a national rating, and that's the right first goal."
+        },
+        "materials": "Demo board, sets, training plan sheets, a local tournament calendar, rating goal cards.",
+        "morningCircle": "Read the passage. Demo: show a sample weekly training plan on the board: puzzles daily, one endgame topic, one annotated game, one long game. Ask: “What's missing for you?” Say: “Professionalism means serious dedication.”",
+        "boardChallenge": {
+          "intro": "Rating goal setting at tables.",
+          "tiers": [
+            "Tier 1: write your current rating or skill level and a goal for next year.",
+            "Tier 2: write a weekly training plan with 4 parts.",
+            "Tier 3: choose 3 real tournaments for next year and explain why each one."
+          ]
+        },
+        "competition": "High-level practice games. Play 2 games of 15 minutes with full notation and tournament manners. A win scores 3, a draw 1. After each game, spend 5 minutes on a professional post-mortem with your opponent: find the turning point and the best move you both missed.",
+        "check": [
+          "“What does a good training plan include?”",
+          "“What is a FIDE title?”"
+        ],
+        "sideways": [
+          "Students set impossible goals: break them into goals for each term.",
+          "Students skip endgame study: show how many games end in endgames.",
+          "Early finishers: add a tournament budget and travel plan."
+        ],
+        "seniors": "Teams talk about lifelong goals. Talking point: “A long-term goal you worked toward with a plan.”"
+      },
+      {
+        "objective": "Students can complete their opening repertoire, file it by ECO code, and document their preparation.",
+        "vocabulary": [
+          {
+            "word": "ECO code",
+            "meaning": "a code from the Encyclopaedia of Chess Openings, from A00 to E99, like B90 for the Najdorf Sicilian"
+          },
+          {
+            "word": "repertoire file",
+            "meaning": "an organized record of every opening line you play"
+          },
+          {
+            "word": "transposition",
+            "meaning": "reaching the same position through a different move order"
+          }
+        ],
+        "readLearn": {
+          "title": "A Complete Library",
+          "text": "The Encyclopaedia of Chess Openings sorts every opening into five volumes, A to E. The Ruy Lopez is C60 to C99, and the Najdorf Sicilian is B90. A thorough player keeps a repertoire file sorted by these codes, notes the transpositions, and writes the plan for every line, so nothing is left to chance."
+        },
+        "materials": "Demo board, sets, ECO code reference sheet, repertoire file binders or tablets, scoresheets.",
+        "morningCircle": "Read the passage. Demo: show two move orders that reach the same Queen's Gambit Declined position. Ask: “Why does this matter for your file?” (One page can cover both orders.) Say: “Thoroughness means comprehensive preparation.”",
+        "boardChallenge": {
+          "intro": "Repertoire completion at tables.",
+          "tiers": [
+            "Tier 1: sort your openings by ECO code.",
+            "Tier 2: fill any gaps in your repertoire, like an answer to 1.c4.",
+            "Tier 3: document 2 transpositions in your file and the plan for each line."
+          ]
+        },
+        "competition": "Repertoire test. Partners quiz each other: one plays a random opening move, and the other must answer from their repertoire within 10 seconds. A correct answer scores 1, a gap found scores 0. Then 20 min of games from each player's main lines. A win scores 3.",
+        "check": [
+          "“What does an ECO code tell you?”",
+          "“What is a transposition?”"
+        ],
+        "sideways": [
+          "Students' files are a mess: one page per opening, with the plan at the top.",
+          "Students over-memorize: every line needs a written plan.",
+          "No tablets: use binders and a printed ECO chart."
+        ],
+        "seniors": "Teams explore how a library or archive is organized. Talking point: “How did you keep important records at home or work?”"
+      },
+      {
+        "objective": "Students can use tablebases to check endgames, win king, bishop and knight against king, and apply the 50-move rule.",
+        "vocabulary": [
+          {
+            "word": "tablebase",
+            "meaning": "a database that holds the perfect result of every position with 7 or fewer pieces"
+          },
+          {
+            "word": "50-move rule",
+            "meaning": "a player can claim a draw if 50 moves by each side pass with no capture and no pawn move"
+          },
+          {
+            "word": "theoretical draw",
+            "meaning": "a position that ends in a draw with best play, even if one side is ahead"
+          }
+        ],
+        "readLearn": {
+          "title": "The Truth About Endgames",
+          "text": "Every endgame with 7 or fewer pieces has been solved by computers. These tablebases show the perfect result and the fastest win. Some wins are long. King, bishop and knight against king takes up to 33 moves to mate, so you must know the method before the 50-move rule runs out."
+        },
+        "materials": "Demo board, sets, tablebase printouts or tablets, bishop and knight mate cards, timer.",
+        "morningCircle": "Read the passage. Demo: show a rook and bishop vs. rook position and ask the class to guess the result. Reveal the tablebase verdict (usually a draw). Then show the final phase of the bishop and knight mate, driving the king to the corner of the bishop's color. Say: “Theoretical knowledge means knowing the truth of a position.”",
+        "boardChallenge": {
+          "intro": "Tablebase studies at tables.",
+          "tiers": [
+            "Tier 1: guess the result of 5 endgame cards, then check with the tablebase.",
+            "Tier 2: drive the lone king to the edge with bishop and knight.",
+            "Tier 3: deliver the bishop and knight mate from a card within 33 moves."
+          ]
+        },
+        "competition": "Theoretical endgame challenge. Pairs play endgame cards, swapping sides each time. A win in a winning position scores 3, and a draw in a drawn position scores 3 for the defender. Mistakes that change the tablebase result score 0. 25 min of play, then 15 min reviewing the hardest card on the demo board.",
+        "check": [
+          "“How many moves can the bishop and knight mate take?”",
+          "“When can you claim a draw under the 50-move rule?”"
+        ],
+        "sideways": [
+          "No tablets: use printed tablebase results.",
+          "Students drive the king to the wrong corner: it must be the corner the bishop can reach.",
+          "Early finishers: a 7-piece position from the tablebase printout."
+        ],
+        "seniors": "Teams guess the results of endgame cards. Talking point: “Something you once believed that turned out to be wrong.”"
+      },
+      {
+        "objective": "Students can handle pressure, create practical chances, and use fair psychological strategies.",
+        "vocabulary": [
+          {
+            "word": "practical chances",
+            "meaning": "moves that give the opponent the most ways to go wrong"
+          },
+          {
+            "word": "pressure",
+            "meaning": "a long, uncomfortable defense that tires the opponent"
+          },
+          {
+            "word": "draw offer",
+            "meaning": "proposing a draw, made after your move and before you press the clock"
+          }
+        ],
+        "readLearn": {
+          "title": "The Mental Game",
+          "text": "Chess is played by people, and people get tired, nervous and impatient. Fair psychology means choosing positions your opponent dislikes, keeping pressure on in a slightly better position, and setting problems when you're worse. It never means distracting your opponent. Offer a draw only after making your move, before pressing the clock."
+        },
+        "materials": "Demo board, sets, pressure position cards, chess clocks, discussion cards.",
+        "morningCircle": "Read the passage. Demo: show a slightly worse position and ask for two moves: the objectively best move and the move that sets the most problems. Discuss when to choose each. Then role-play a proper draw offer. Say: “Mental warfare means mental strength, used fairly.”",
+        "boardChallenge": {
+          "intro": "Pressure situation practice at tables.",
+          "tiers": [
+            "Tier 1: on 4 cards, find the move that sets the opponent the most problems.",
+            "Tier 2: defend a worse position for 20 moves without losing.",
+            "Tier 3: keep pressure on in a slightly better position for 20 moves and win."
+          ]
+        },
+        "competition": "Pressure games. Each card gives one side a small edge. Play for 12 minutes, then swap sides. Winning with the edge scores 3, and drawing as the defender scores 3. In the last 15 min, hold a discussion: what's fair psychology, and what's bad sportsmanship?",
+        "check": [
+          "“What are practical chances?”",
+          "“When do you offer a draw?”"
+        ],
+        "sideways": [
+          "Students try to distract opponents: that's against the rules and gets a warning.",
+          "Defenders give up: count how many times the attacker could still go wrong.",
+          "Early finishers: write a pressure card from one of your own games."
+        ],
+        "seniors": "Teams discuss staying calm under pressure. Talking point: “A tense moment at work or home, and how you handled it.”"
+      },
+      {
+        "objective": "Students can play part of a game blindfold and visualize the board from memory.",
+        "vocabulary": [
+          {
+            "word": "blindfold chess",
+            "meaning": "playing without seeing the board, saying moves aloud"
+          },
+          {
+            "word": "mental board",
+            "meaning": "the picture of the board you keep in your head"
+          },
+          {
+            "word": "square color",
+            "meaning": "light or dark; a square is dark if its file number plus its rank number is even, counting a as 1"
+          }
+        ],
+        "readLearn": {
+          "title": "Seeing Without Looking",
+          "text": "Strong players can play without seeing the board. It's not magic. They know every square's color and name, and they follow the game in their head. Start small: know that a1 is dark and h1 is light. Then follow a few moves blind. Visualization makes your calculation much stronger."
+        },
+        "materials": "Demo board, sets, folders or blindfolds, square color cards, visualization drill cards.",
+        "morningCircle": "Read the passage. Demo: call out squares and have the class answer “light” or “dark” (e4 is light, d4 is dark). Then play 5 moves of a game aloud while the demo board is covered, and ask a volunteer where the white knight is. Say: “Visualization means seeing without looking.”",
+        "boardChallenge": {
+          "intro": "Visualization training at tables.",
+          "tiers": [
+            "Tier 1: answer 20 square color questions correctly.",
+            "Tier 2: follow 10 moves read aloud and say where every piece is.",
+            "Tier 3: play 15 moves of a game blindfold against a sighted partner."
+          ]
+        },
+        "competition": "Blindfold practice. Blindfold players say their moves aloud, and a partner moves the pieces on a board they can't see. Play for 25 minutes. Reaching move 20 without an illegal move scores 3, and a win scores 3 more. Sighted opponents play normally. In the last 15 min, play a blindfold puzzle relay.",
+        "check": [
+          "“Is g7 light or dark?”",
+          "“How does visualization help in normal games?”"
+        ],
+        "sideways": [
+          "Students get lost: say the full position aloud every 5 moves.",
+          "Blindfolds make some students uncomfortable: a folder blocking the view works too.",
+          "Early finishers: play blindfold against another blindfold player."
+        ],
+        "seniors": "Teams follow a game read aloud, without looking. Talking point: “A place you know so well you could walk it with your eyes closed.”"
+      },
+      {
+        "objective": "Students can read a classic chess book, explain its ideas, and start a personal chess library.",
+        "vocabulary": [
+          {
+            "word": "classic",
+            "meaning": "a book that players have learned from for many years"
+          },
+          {
+            "word": "annotated collection",
+            "meaning": "a book of games with explanations of every important move"
+          },
+          {
+            "word": "study plan",
+            "meaning": "a schedule for reading and working through a book"
+          }
+        ],
+        "readLearn": {
+          "title": "Lifelong Learning",
+          "text": "Chess books hold the ideas of the greatest players. Capablanca wrote Chess Fundamentals. Nimzowitsch wrote My System. Irving Chernev's Logical Chess: Move by Move explains every single move. Reading with a board, playing through each game, is how many champions learned. A good library grows with you."
+        },
+        "materials": "Demo board, sets, classic chess books or excerpts, reading plan sheets.",
+        "morningCircle": "Read the passage. Demo: read a short passage from Logical Chess: Move by Move aloud while playing the moves on the demo board. Ask: “What did the author teach in this paragraph?” Say: “Scholarship means learning for life.”",
+        "boardChallenge": {
+          "intro": "Classic chess book study at tables, with a board for each reader.",
+          "tiers": [
+            "Tier 1: read one annotated game from a classic book with the board.",
+            "Tier 2: explain one idea from your reading to your partner.",
+            "Tier 3: write a 4-week study plan for a book and a list of 5 books for your library."
+          ]
+        },
+        "competition": "Book club tournament. Each player chooses one idea from their reading and tries to use it in 2 games of 15 minutes. A win scores 3, and using the book idea earns a bonus point (your opponent judges). In the last 10 min, each student recommends a book to the group in one minute.",
+        "check": [
+          "“Name a classic chess book and one idea from it.”",
+          "“Why read with a board?”"
+        ],
+        "sideways": [
+          "No books on site: use printed excerpts.",
+          "Students skim: one game, read slowly, every move on the board.",
+          "Early finishers: compare two authors' advice on the same topic."
+        ],
+        "seniors": "Teams share favorite books, chess or not. Talking point: “A book that changed how you think.”"
+      },
+      {
+        "objective": "Students can coach a newer player, give a structured lesson, and act as a mentor.",
+        "vocabulary": [
+          {
+            "word": "coach",
+            "meaning": "someone who helps a player improve through lessons and feedback"
+          },
+          {
+            "word": "mentor",
+            "meaning": "an experienced person who guides and encourages someone newer"
+          },
+          {
+            "word": "lesson plan",
+            "meaning": "a written plan for what you'll teach and how"
+          }
+        ],
+        "readLearn": {
+          "title": "Giving Back",
+          "text": "Every strong player was once a beginner who had help. Coaching is how you give back. A coach finds what the student needs, gives one clear lesson, and checks it was understood. A mentor is there over time, encouraging and guiding. Teaching others will also make you a better player."
+        },
+        "materials": "Demo board, sets, lesson plan templates, mentorship assignment cards.",
+        "morningCircle": "Read the passage. Demo: run a short coaching session with a volunteer: watch them solve 3 puzzles, find what they miss, and give one tip. Ask the class: “What did I notice? What did I teach?” Say: “Giving back means helping others succeed.”",
+        "boardChallenge": {
+          "intro": "Lesson giving practice at tables. Each student writes a 10-minute lesson plan.",
+          "tiers": [
+            "Tier 1: write a lesson plan on one tactic for a beginner.",
+            "Tier 2: write a lesson plan with a diagnosis step: watch first, then teach.",
+            "Tier 3: write a 4-week mentorship plan for one newer player."
+          ]
+        },
+        "competition": "Student coaching assignments. Each advanced student coaches one newer player for 25 minutes using their lesson plan. Then the student gives feedback on the coaching. In the last 15 min, coaches share what worked and what they'd change.",
+        "check": [
+          "“What's the difference between a coach and a mentor?”",
+          "“What's the first step in coaching?”"
+        ],
+        "sideways": [
+          "No newer players on site: coach a partner who plays the role of a beginner.",
+          "Coaches lecture: the student should be moving pieces most of the time.",
+          "Early finishers: mentor a student in the Intermediate level."
+        ],
+        "seniors": "Advanced students coach residents who want to learn. Talking point: “Someone who mentored you, and what they taught you.”"
+      },
+      {
+        "objective": "Students can compete in the year's final championship and plan their next step into club or tournament play.",
+        "vocabulary": [
+          {
+            "word": "chess club",
+            "meaning": "a group that meets regularly to play and study chess"
+          },
+          {
+            "word": "rated tournament",
+            "meaning": "an official event where games count toward your rating"
+          }
+        ],
+        "readLearn": {
+          "title": "Thinker Card share",
+          "text": "Each student reads their favorite Thinker Card from the whole year to a partner."
+        },
+        "materials": "Everything from the year, chess clocks, scoresheets, results chart, trophies, local club and tournament list, graduation certificates.",
+        "morningCircle": "Walk through the 7 Superpowers of the term. Quick vocabulary game: you say a definition, and students shout the word. Explain the grand finale: 5 rounds of 5-minute games with a 3-second increment, notation, and a graduation ceremony at the end.",
+        "boardChallenge": {
+          "intro": "Championship rounds 1 and 2.",
+          "tiers": [
+            "Tier 1: play rounds 1 and 2 with complete scoresheets.",
+            "Tier 2: write the turning point of each game.",
+            "Tier 3: commentate one game for the room between rounds."
+          ]
+        },
+        "competition": "Grand finale, rounds 3 to 5. Pair players with the same score, and use the tiebreak (head-to-head, then most wins). After round 5, hold the graduation: each student names their next step, like joining a club, playing a rated tournament, or coaching.",
+        "cleanup": "A graduation certificate for everyone, naming the Superpower they showed most this year. Awards: Grand Champion, Mastery Award, Mentor of the Year.",
+        "check": [
+          "Each student says one word they learned this year and what it means."
+        ],
+        "sideways": [
+          "Odd number: a bye scores 1 point, and that player commentates.",
+          "Running long: drop round 5 and use the tiebreak.",
+          "Families arrive: seat them near the commentary board."
+        ],
+        "seniors": "A grand finale for residents, staff and families. Talking point: “What's next for you, and what are you looking forward to?”",
+        "vocabularyNote": "Review all 21 words from the term. New words:"
+      }
+    ]
+  }
+}
