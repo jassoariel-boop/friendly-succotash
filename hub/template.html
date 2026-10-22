@@ -117,6 +117,42 @@ header p { margin: 0; max-width: 62ch; }
 .taught-toggle input { width: 18px; height: 18px; accent-color: var(--done); }
 .badge { font: 600 0.7rem var(--mono); padding: 3px 8px; border-radius: 99px; background: var(--green-soft); color: var(--green); white-space: nowrap; }
 
+/* Lesson plan (terms with a teaching frame) */
+.week-body.plan { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.plan-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px 32px; }
+.plan-meta p, .plan-step p, .plan-notes p { margin: 0; max-width: 70ch; }
+.objective { grid-column: 1 / -1; font-size: 1.05rem; }
+.vocab { list-style: none; padding: 0 !important; }
+.vocab b { color: var(--green); }
+.passage { margin: 0; padding: 10px 14px; border-left: 3px solid var(--brass); background: var(--brass-soft); border-radius: 0 6px 6px 0; max-width: 70ch; }
+.passage cite { display: block; font-style: normal; font-weight: 600; margin-bottom: 4px; }
+.timeline { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.plan-step { display: grid; grid-template-columns: 9.5rem 1fr; gap: 6px 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.plan-step .when { display: grid; gap: 2px; align-content: start; }
+.plan-step .when b { font-weight: 600; }
+.plan-step .when span { font: 0.75rem var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.plan-step.quiet { color: var(--muted); }
+.plan-step > div:last-child { display: grid; gap: 8px; min-width: 0; }
+.tiers { list-style: none; padding: 0 !important; }
+.tiers li { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: baseline; }
+.tiers .tier { font: 600 0.7rem var(--mono); padding: 2px 7px; border-radius: 99px; background: var(--green-soft); color: var(--green); white-space: nowrap; }
+.plan-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px 32px; }
+.frame { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.frame > summary { cursor: pointer; padding: 14px 16px; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.frame > summary::-webkit-details-marker { display: none; }
+.frame[open] .chev { transform: rotate(90deg); }
+.frame-body { display: grid; gap: 20px; padding: 0 16px 16px; }
+.frame-body p { margin: 0; max-width: 70ch; }
+.frame-body h4 { margin: 0 0 6px; font: 600 0.75rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+.frame-body ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.schedule { overflow-x: auto; }
+.schedule table { border-collapse: collapse; width: 100%; min-width: 480px; }
+.schedule th, .schedule td { text-align: left; vertical-align: top; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--line); }
+.schedule th { font: 600 0.75rem var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.schedule td:nth-child(2) { font-family: var(--mono); font-size: 0.85rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px 32px; }
+.notes-grid b { display: block; }
+
 /* Search results */
 .results { display: grid; gap: 8px; }
 .result {
@@ -135,6 +171,7 @@ mark { background: var(--brass-soft); color: inherit; border-radius: 2px; }
   .map .rowhead .piece { font-size: 1.4rem; }
 }
 @media (max-width: 640px) {
+  .plan-step { grid-template-columns: 1fr; }
   .week-body { padding-left: 16px; }
   .wk { width: auto; }
 }
@@ -270,12 +307,66 @@ mark { background: var(--brass-soft); color: inherit; border-radius: 2px; }
           el("span", {}, w.title),
           el("span", { class: "sp" }, "Superpower: ", el("b", {}, w.superpower.name), ` · ${w.superpower.meaning}`)),
         el("span", { style: "display:flex;gap:10px;align-items:center" }, badgeSlot, el("span", { class: "chev", "aria-hidden": "true" }, "›"))),
-      el("div", { class: "week-body" },
-        el("div", {}, el("h4", {}, "Learning goals"), el("ul", {}, w.goals.map((g) => el("li", {}, g)))),
-        el("div", {}, el("h4", {}, "Activities"), el("ul", {}, w.activities.map((a) => el("li", {}, a)))),
-        el("label", { class: "taught-toggle", for: `cb-${id}` }, box, "I've taught this week")),
+      w.plan
+        ? el("div", { class: "week-body plan" }, ...planBody(term, w), el("label", { class: "taught-toggle", for: `cb-${id}` }, box, "I've taught this week"))
+        : el("div", { class: "week-body" },
+          el("div", {}, el("h4", {}, "Learning goals"), el("ul", {}, w.goals.map((g) => el("li", {}, g)))),
+          el("div", {}, el("h4", {}, "Activities"), el("ul", {}, w.activities.map((a) => el("li", {}, a)))),
+          el("label", { class: "taught-toggle", for: `cb-${id}` }, box, "I've taught this week")),
     );
     return details;
+  }
+
+  const frameOf = (term) => TERMS.find((t) => t.term === term).frame;
+  const frameBlock = (frame, name) => frame.blocks.find((b) => b.name === name) || { time: "", what: "" };
+
+  function planBody(term, w) {
+    const p = w.plan;
+    const frame = frameOf(term);
+    const step = (name, ...body) => el("div", { class: "plan-step" + (name === "Recess" ? " quiet" : "") },
+      el("div", { class: "when" }, el("b", {}, name), el("span", {}, frameBlock(frame, name).time)),
+      el("div", {}, ...body));
+    return [
+      el("div", { class: "plan-meta" },
+        el("p", { class: "objective" }, el("b", {}, "Objective. "), p.objective),
+        el("div", {}, el("h4", {}, "Vocabulary"),
+          ...(p.vocabularyNote ? [el("p", { class: "muted", style: "margin:0 0 6px" }, p.vocabularyNote)] : []),
+          el("ul", { class: "vocab" }, p.vocabulary.map((v) => el("li", {}, el("b", {}, v.word), ` (${v.meaning})`)))),
+        el("div", {}, el("h4", {}, "Read & Learn"),
+          el("blockquote", { class: "passage" }, el("cite", {}, p.readLearn.title), p.readLearn.text)),
+        el("div", {}, el("h4", {}, "Materials"), el("p", {}, p.materials))),
+      el("div", { class: "timeline" },
+        step("Morning Circle", el("p", {}, p.morningCircle)),
+        step("Board Challenge", el("p", {}, p.boardChallenge.intro),
+          el("ul", { class: "tiers" }, p.boardChallenge.tiers.map((t) => {
+            const [tag, ...rest] = t.split(": ");
+            const text = rest.join(": ");
+            return el("li", {}, el("span", { class: "tier" }, tag), text.charAt(0).toUpperCase() + text.slice(1));
+          }))),
+        step("Recess", el("p", {}, frameBlock(frame, "Recess").what)),
+        step("Competition Round", el("p", {}, p.competition)),
+        step("Cleanup & Prizes", el("p", {}, p.cleanup || frameBlock(frame, "Cleanup & Prizes").what))),
+      el("div", { class: "plan-notes" },
+        el("div", {}, el("h4", {}, "Check for understanding"), el("ul", {}, p.check.map((c) => el("li", {}, c)))),
+        el("div", {}, el("h4", {}, "When things go sideways"), el("ul", {}, p.sideways.map((c) => el("li", {}, c)))),
+        el("div", {}, el("h4", {}, "Seniors note"), el("p", {}, p.seniors))),
+    ];
+  }
+
+  function frameCard(frame) {
+    return el("details", { class: "frame" },
+      el("summary", {},
+        el("span", {}, frame.title, el("span", { class: "muted", style: "font-weight:400" }, " · schedule, tiers, kit and setup")),
+        el("span", { class: "chev", "aria-hidden": "true" }, "›")),
+      el("div", { class: "frame-body" },
+        el("p", {}, frame.intro),
+        el("div", { class: "schedule" }, el("table", {},
+          el("thead", {}, el("tr", {}, el("th", {}, "Block"), el("th", {}, "Time"), el("th", {}, "What happens"))),
+          el("tbody", {}, frame.blocks.map((b) => el("tr", {}, el("td", {}, b.name), el("td", {}, b.time), el("td", {}, b.what)))))),
+        el("div", { class: "notes-grid" }, frame.notes.map((n) => el("p", {}, el("b", {}, n.label), n.text))),
+        el("div", {}, el("h4", {}, frame.kit.title), el("p", { style: "margin-bottom:6px" }, frame.kit.intro),
+          el("ul", {}, frame.kit.items.map((i) => el("li", {}, i)))),
+        el("p", {}, frame.setup)));
   }
 
   function renderCourseProgress() {
@@ -304,6 +395,7 @@ mark { background: var(--brass-soft); color: inherit; border-radius: 2px; }
           el("button", { class: "btn", type: "button", onclick: allOpen }, "Expand all"),
           el("button", { class: "btn", type: "button", onclick: allClose }, "Collapse all"),
           el("a", { class: "btn", href: `courses/Term${c.term}.pdf`, target: "_blank", rel: "noopener" }, `Term ${c.term} PDF ↗`))),
+      ...(frameOf(c.term) ? [frameCard(frameOf(c.term))] : []),
       el("div", { class: "weeks" }, c.data.weeks.map((w) => weekCard(c.term, c.lvl, w))),
     );
     renderCourseProgress();
@@ -317,9 +409,15 @@ mark { background: var(--brass-soft); color: inherit; border-radius: 2px; }
   }
 
   // Search
+  function planText(p) {
+    if (!p) return [];
+    return [p.objective, ...p.vocabulary.map((v) => `${v.word} (${v.meaning})`), p.readLearn.title, p.readLearn.text,
+      p.morningCircle, p.boardChallenge.intro, ...p.boardChallenge.tiers, p.competition, p.cleanup || "",
+      ...p.check, ...p.sideways, p.seniors];
+  }
   const INDEX = TERMS.flatMap((t) => t.levels.flatMap((l) => l.weeks.map((w) => ({
     term: t.term, lvl: levelOf(l.name), w,
-    text: [...w.goals, ...w.activities, w.superpower.name, w.superpower.meaning].join(" • "),
+    text: [...w.goals, ...w.activities, w.superpower.name, w.superpower.meaning, ...planText(w.plan)].join(" • "),
   }))));
   const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const highlight = (text, q) => {
