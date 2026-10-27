@@ -89,6 +89,43 @@ header { display: grid; gap: 14px; }
 .course ol li::marker { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
 .map.filtered .course.dim, .map.filtered .rowhead.dim { opacity: .28; }
 
+/* class tracker */
+.tracker { display: grid; gap: 14px; }
+.trhead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; }
+.trhead > div:first-child { display: grid; gap: 6px; min-width: 0; }
+@media (max-width: 480px) { .trtable .loc { min-width: 150px; } }
+.trwrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+.trtable { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 0.92rem; }
+.trtable th, .trtable td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: center; vertical-align: middle; }
+.trtable tr:last-child td { border-bottom: 0; }
+.trtable thead th { font-weight: 400; vertical-align: bottom; }
+.trtable th.wk { width: 54px; }
+.trtable th.wk b { display: block; font-family: var(--display); font-size: 1rem; }
+.trtable th.wk span { display: block; font-size: 0.68rem; color: var(--muted); line-height: 1.2; max-width: 70px; margin: 0 auto; }
+.trtable .loc { text-align: left; position: sticky; left: 0; background: var(--panel); z-index: 1; min-width: 190px; }
+.trtable .loc-in { display: flex; gap: 6px; align-items: center; }
+.trtable input[type="text"] { width: 100%; min-width: 0; border: 1px solid transparent; border-radius: 6px; padding: 5px 7px; background: transparent; font-weight: 700; }
+.trtable input[type="text"]:hover, .trtable input[type="text"]:focus { border-color: var(--line); background: var(--bg); outline: none; }
+.trtable select { border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; background: var(--bg); color: var(--fg); font: inherit; font-size: 0.85rem; }
+.stud { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--line); background: var(--sunk); cursor: pointer; display: inline-grid; place-items: center; padding: 0; color: transparent; transition: transform .1s ease; }
+.stud:hover { transform: scale(1.08); border-color: var(--fg); }
+.stud[aria-pressed="true"] { border-color: transparent; box-shadow: inset 0 -3px 0 rgba(0,0,0,.2), inset 0 3px 0 rgba(255,255,255,.3); }
+.stud[aria-pressed="true"].beg { background: var(--beg); color: var(--beg-ink); }
+.stud[aria-pressed="true"].int { background: var(--int); color: var(--int-ink); }
+.stud[aria-pressed="true"].adv { background: var(--adv); color: var(--adv-ink); }
+.stud[aria-pressed="true"].all { background: var(--accent); color: var(--accent-ink); }
+.stud svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 3; }
+.stud:disabled { cursor: default; transform: none; }
+.stud small { display: none; }
+.trtable .count { font-family: var(--mono); font-size: 0.82rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.trtable .next { text-align: left; min-width: 170px; }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; text-align: left; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.iconbtn { background: none; border: 1px solid transparent; border-radius: 6px; color: var(--muted); cursor: pointer; padding: 2px 6px; font-size: 0.8rem; white-space: nowrap; }
+.iconbtn:hover { border-color: var(--line); color: var(--fg); }
+.iconbtn.armed { border-color: var(--adv); color: var(--adv); font-weight: 700; }
+.trfoot { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.trempty { padding: 22px; color: var(--muted); text-align: left; }
+
 /* course detail */
 .detail { display: grid; gap: 18px; scroll-margin-top: 16px; }
 .dhead { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: end; justify-content: space-between; border-bottom: 3px solid var(--fg); padding-bottom: 14px; }
@@ -220,6 +257,21 @@ footer { color: var(--muted); font-size: 0.85rem; }
       <span class="label">Pick a course · each stud is one week</span>
     </div>
     <div class="map" id="map"></div>
+  </section>
+
+  <section class="tracker" id="tracker" aria-labelledby="trTitle">
+    <div class="trhead">
+      <div>
+        <h2 id="trTitle">Class tracker</h2>
+        <p class="hint">Tap a stud when you've taught that lesson at a location. Progress saves with the hub, so it's the same on every device.</p>
+      </div>
+      <div class="chips" role="group" aria-label="Term to track" id="trTerms"></div>
+    </div>
+    <div class="trwrap"><table class="trtable" id="trTable"></table></div>
+    <div class="trfoot">
+      <button class="btn" id="addLoc" type="button" hidden>Add location</button>
+      <span class="hint" id="trStatus" role="status"></span>
+    </div>
   </section>
 
   <section class="detail" id="detail" aria-live="polite"></section>
@@ -787,10 +839,134 @@ document.addEventListener("change", (e) => {
 });
 $("#q").addEventListener("input", (e) => { state.q = e.target.value; renderResults(); });
 
+// Class tracker: one db doc per location at locations/<id> = {name, level, order, done: {"<courseId>-w<n>": "YYYY-MM-DD"}}.
+const tr = { db: null, ready: false, unavailable: false, locs: [], term: store.get("tr-term", 1), readOnly: false, armed: null, deferred: false };
+const trWrites = {};
+const CHECK = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>`;
+const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
+const fmtDay = (s) => { const [y, m, d] = String(s).split("-").map(Number); return y ? new Date(y, m - 1, d).toLocaleDateString(undefined, { month: "short", day: "numeric" }) : ""; };
+const trCourse = (loc) => tr.term === 1 ? COURSES[0] : COURSES.find((c) => c.term.n === tr.term && c.level.id === (loc.level || "beg"));
+
+function trStatus(msg) { $("#trStatus").textContent = msg || ""; }
+
+function trSave(loc) {
+  if (!tr.db || tr.readOnly) return;
+  const body = { name: loc.name, level: loc.level || "beg", order: loc.order, done: { ...loc.done } };
+  const ref = tr.db.collection("locations").doc(loc.id);
+  trWrites[loc.id] = (trWrites[loc.id] || Promise.resolve()).then(() => ref.set(body)).then(() => trStatus(""), (e) => {
+    if (e && (e.code === "invalid_argument" || e.code === "not_granted")) { tr.readOnly = true; trStatus("You can see progress here but not change it."); }
+    else if (e && e.code === "quota_exceeded") trStatus("The tracker is full. Remove a location you no longer teach, then try again.");
+    else trStatus("That change didn't save. Check your connection and tap it again.");
+    renderTracker();
+  });
+}
+
+function renderTrTerms() {
+  $("#trTerms").innerHTML = TERMS.map((t) => `<button class="chip" type="button" data-trterm="${t.n}" aria-pressed="${tr.term === t.n}">${t.title}</button>`).join("");
+}
+
+function renderTracker() {
+  const focused = document.activeElement;
+  if (focused && focused.matches && focused.matches("#trTable input")) { tr.deferred = true; return; }
+  tr.deferred = false;
+  const table = $("#trTable");
+  $("#addLoc").hidden = !tr.db || tr.readOnly;
+  const showLevel = tr.term !== 1;
+  const ref = tr.term === 1 ? COURSES[0] : COURSES.find((c) => c.term.n === tr.term);
+  const head = `<thead><tr><th class="loc"><span class="label">Location</span></th>${showLevel ? `<th><span class="label">Level</span></th>` : ""}
+    ${ref.weeks.map((w) => `<th class="wk"><b>${w.n}</b>${tr.term === 1 ? `<span>${esc(w.theme)}</span>` : ""}</th>`).join("")}
+    <th><span class="label">Done</span></th><th class="next"><span class="label">Next up</span></th></tr></thead>`;
+  const cols = ref.weeks.length + (showLevel ? 5 : 4);
+  let body;
+  if (tr.unavailable) body = `<tr><td class="trempty" colspan="${cols}">The tracker saves to your claude.ai account. Open the hub in claude.ai while signed in to check off lessons.</td></tr>`;
+  else if (!tr.ready) body = `<tr><td class="trempty" colspan="${cols}">Loading your locations…</td></tr>`;
+  else if (!tr.locs.length) body = `<tr><td class="trempty" colspan="${cols}">No locations yet. Add one for each class you teach each week, then tap a stud after each lesson.</td></tr>`;
+  else body = tr.locs.map((loc) => {
+    const c = trCourse(loc);
+    const done = loc.done || {};
+    const count = c.weeks.filter((w) => done[`${c.id}-w${w.n}`]).length;
+    const next = c.weeks.find((w) => !done[`${c.id}-w${w.n}`]);
+    const armed = tr.armed === loc.id;
+    return `<tr>
+      <th class="loc" scope="row"><div class="loc-in">
+        <input type="text" id="loc-name-${loc.id}" data-locname="${loc.id}" value="${esc(loc.name || "")}" aria-label="Location name" maxlength="60" ${tr.readOnly ? "readonly" : ""}>
+        ${tr.readOnly ? "" : `<button type="button" class="iconbtn${armed ? " armed" : ""}" data-locdel="${loc.id}" aria-label="${armed ? "Confirm remove" : "Remove"} ${esc(loc.name || "location")}">${armed ? "Remove?" : "✕"}</button>`}
+      </div></th>
+      ${showLevel ? `<td><select id="loc-level-${loc.id}" data-loclevel="${loc.id}" aria-label="Level at ${esc(loc.name || "this location")}" ${tr.readOnly ? "disabled" : ""}>
+        ${LEVELS.map((l) => `<option value="${l.id}" ${(loc.level || "beg") === l.id ? "selected" : ""}>${l.name}</option>`).join("")}</select></td>` : ""}
+      ${c.weeks.map((w) => {
+        const key = `${c.id}-w${w.n}`, on = Boolean(done[key]);
+        const label = `Week ${w.n}, ${w.theme}${on ? `, taught ${fmtDay(done[key])}` : ", not taught yet"}`;
+        return `<td><button type="button" class="stud ${c.level.id}" data-stud="${loc.id}" data-key="${key}" aria-pressed="${on}" title="${esc(label)}" aria-label="${esc(label)}" ${tr.readOnly ? "disabled" : ""}>${CHECK}</button></td>`;
+      }).join("")}
+      <td class="count">${count}/${c.weeks.length}</td>
+      <td class="next">${next ? `<button type="button" class="linkbtn" data-course="${c.id}" data-week="${next.n}">Wk ${next.n} · ${esc(next.theme)}</button>` : `<span class="hint">All ${c.weeks.length} done</span>`}</td>
+    </tr>`;
+  }).join("");
+  table.innerHTML = head + `<tbody>${body}</tbody>`;
+}
+
+document.querySelector("#tracker").addEventListener("click", (e) => {
+  const term = e.target.closest("[data-trterm]");
+  if (term) { tr.term = Number(term.dataset.trterm); store.set("tr-term", tr.term); renderTrTerms(); renderTracker(); return; }
+  const stud = e.target.closest("[data-stud]");
+  if (stud && !tr.readOnly) {
+    const loc = tr.locs.find((l) => l.id === stud.dataset.stud);
+    if (!loc) return;
+    const done = { ...(loc.done || {}) };
+    if (done[stud.dataset.key]) delete done[stud.dataset.key]; else done[stud.dataset.key] = today();
+    loc.done = done;
+    renderTracker(); trSave(loc);
+    return;
+  }
+  const del = e.target.closest("[data-locdel]");
+  if (del && tr.db && !tr.readOnly) {
+    const id = del.dataset.locdel;
+    if (tr.armed !== id) { tr.armed = id; renderTracker(); return; }
+    tr.armed = null;
+    tr.locs = tr.locs.filter((l) => l.id !== id); renderTracker();
+    (trWrites[id] || Promise.resolve()).then(() => tr.db.collection("locations").doc(id).delete()).catch(() => trStatus("That location wasn't removed. Check your connection and try again."));
+    return;
+  }
+  if (e.target.closest("#addLoc") && tr.db && !tr.readOnly) {
+    const order = tr.locs.reduce((m, l) => Math.max(m, l.order || 0), 0) + 1;
+    const ref = tr.db.collection("locations").doc();
+    const loc = { id: ref.id, name: `Location ${tr.locs.length + 1}`, level: "beg", order, done: {} };
+    tr.locs = [...tr.locs, loc]; renderTracker(); trSave(loc);
+    setTimeout(() => { const el = document.getElementById(`loc-name-${loc.id}`); if (el) { el.focus(); el.select(); } }, 0);
+  }
+  if (!e.target.closest("[data-locdel]") && tr.armed) { tr.armed = null; renderTracker(); }
+});
+document.querySelector("#tracker").addEventListener("change", (e) => {
+  const nameId = e.target.dataset.locname, levelId = e.target.dataset.loclevel;
+  const loc = tr.locs.find((l) => l.id === (nameId || levelId));
+  if (!loc || tr.readOnly) return;
+  if (nameId) { const v = e.target.value.trim(); if (!v || v === loc.name) { e.target.value = loc.name; return; } loc.name = v; }
+  else loc.level = e.target.value;
+  trSave(loc);
+  if (levelId) renderTracker();
+});
+document.querySelector("#tracker").addEventListener("focusout", () => { setTimeout(() => { if (tr.deferred) renderTracker(); }, 0); });
+document.querySelector("#tracker").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.matches("[data-locname]")) e.target.blur(); });
+
+(async () => {
+  try { tr.db = window.claude && window.claude.use ? await window.claude.use("db") : null; } catch { tr.db = null; }
+  if (!tr.db) { tr.unavailable = true; renderTracker(); return; }
+  tr.db.collection("locations").onSnapshot((snap) => {
+    tr.locs = snap.docs.map((d) => { const b = d.data() || {}; return { id: d.id, name: b.name, level: b.level, order: b.order, done: { ...(b.done || {}) } }; })
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+    tr.ready = true; renderTracker();
+  }, (err) => {
+    if (err && err.code === "revoked") { tr.unavailable = true; renderTracker(); }
+    else trStatus("The tracker stopped updating. Reload the page to reconnect.");
+  });
+})();
+
 state.level = store.get("level", "all");
 if (!["all", ...LEVELS.map((l) => l.id)].includes(state.level)) state.level = "all";
 // Older links pointed at #t1-beginner etc.; Term 1 is now one course.
 const fromHash = location.hash.slice(1).replace(/^t1-.*/, "t1");
 state.course = COURSES.some((c) => c.id === fromHash) ? fromHash : "t1";
-renderFacts(); renderChips(); renderMap(); renderToolkit(); renderDetail();
+if (![1, 2, 3, 4].includes(tr.term)) tr.term = 1;
+renderFacts(); renderChips(); renderMap(); renderTrTerms(); renderTracker(); renderToolkit(); renderDetail();
 </script>

@@ -15,6 +15,7 @@ The curriculum PDFs, copied into `hub/pdfs/`:
 - **Search**: matches across every week (themes, Superpowers, vocab, activities) and jumps to the week.
 - **Level filter**: dims the other levels in the grid and limits search results.
 - **Teaching toolkit**: the class frame from the Fall Term lesson plans, notes by group (tiers, grades 1-2, grades 3-5, seniors, memory care), every-week setup and test kit tote checklists (check-offs saved in the browser), and the Builder Card template.
+- **Class tracker**: one row per teaching location, one stud per lesson for the chosen term. Tapping a stud records the date it was taught; each row shows a done count and links to the next lesson. Locations can be renamed, added and removed, and each keeps a level for Terms 2 to 4. Stored in the artifact's `db` capability at `locations/<id>` = `{name, level, order, done: {"<courseId>-w<n>": "YYYY-MM-DD"}}`, so it syncs across devices and Claude can read it. Seeded with Location 1 to 5.
 - **Original files**: links to each PDF.
 - Deep links: `#t1`, `#t3-advanced`, etc. open a course directly. Old `#t1-beginner` style links fall back to `#t1`.
 
