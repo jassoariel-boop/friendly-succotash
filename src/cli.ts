@@ -1,14 +1,22 @@
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { basename, join } from "node:path";
-import { fetchText, parseTranscriptLinks, transcriptFromPost, TRANSCRIPT_INDEX_URL } from "./FerrissFetcher.ts";
+import {
+  fetchText,
+  indexPageUrl,
+  isGuestInterview,
+  lastIndexPage,
+  parseTranscriptLinks,
+  transcriptFromPost,
+  TRANSCRIPT_INDEX_URL,
+} from "./FerrissFetcher.ts";
 import { buildReport, DEFAULT_OPTIONS, renderMarkdown } from "./ReportBuilder.ts";
 import { scoreEpisode, SHOW_NAMES, type Episode, type Show } from "./ThemeScorer.ts";
 import { vttToText } from "./TranscriptCleaner.ts";
 
 const DATA_DIR = "data/transcripts";
 const REPORT_DIR = "reports";
-const REQUEST_DELAY_MS = 1500;
+const REQUEST_DELAY_MS = 1000;
 
 const isShow = (value: string): value is Show => value in SHOW_NAMES;
 
@@ -22,10 +30,18 @@ const fetchFerriss = async (args: readonly string[]): Promise<void> => {
   const outDir = join(DATA_DIR, "ferriss");
   await mkdir(outDir, { recursive: true });
 
-  const index = await fetchText(TRANSCRIPT_INDEX_URL);
-  if (!index.ok) throw new Error(`Could not load ${TRANSCRIPT_INDEX_URL}: ${index.error}`);
-  const links = parseTranscriptLinks(index.text).slice(0, limit);
-  console.log(`Found ${links.length} transcript links.`);
+  const first = await fetchText(indexPageUrl(1));
+  if (!first.ok) throw new Error(`Could not load ${TRANSCRIPT_INDEX_URL}: ${first.error}`);
+  const pages = [first.text];
+  for (let page = 2; page <= lastIndexPage(first.text); page++) {
+    const next = await fetchText(indexPageUrl(page));
+    if (next.ok) pages.push(next.text);
+    else console.warn(`skipped index page ${page}: ${next.error}`);
+    await Bun.sleep(REQUEST_DELAY_MS);
+  }
+  const all = pages.flatMap(parseTranscriptLinks);
+  const links = all.filter((link) => isGuestInterview(link.title)).slice(0, limit);
+  console.log(`Found ${all.length} transcripts, ${links.length} guest interviews selected.`);
 
   for (const link of links) {
     const path = join(outDir, `${link.slug}.txt`);

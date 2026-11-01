@@ -69,6 +69,12 @@ export const buildReport = (
   };
 };
 
+const SHOW_SOURCES: Readonly<Record<Show, string>> = {
+  ferriss: "transcripts from [The Tim Ferriss Show](https://tim.blog/podcast), quoted for non-commercial use",
+  huberman: "YouTube auto-captions from [Huberman Lab](https://www.hubermanlab.com)",
+  doac: "YouTube auto-captions from [The Diary of a CEO](https://www.youtube.com/@TheDiaryOfACEO)",
+};
+
 const pct = (value: number): string => `${Math.round(value * 100)}%`;
 
 export const renderMarkdown = (report: Report, options: ReportOptions = DEFAULT_OPTIONS): string => {
@@ -117,5 +123,9 @@ export const renderMarkdown = (report: Report, options: ReportOptions = DEFAULT_
     "Short excerpts from the episodes where each theme was densest, so you can check the matches are real.",
     "",
     ...evidence,
+    "## Sources",
+    "",
+    ...shows.map((s) => `- ${SHOW_NAMES[s]}: ${SHOW_SOURCES[s]}`),
+    "",
   ].join("\n");
 };

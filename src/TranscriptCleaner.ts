@@ -22,7 +22,7 @@ export const decodeEntities = (text: string): string =>
 
 // Pulls the post body out of a WordPress page and keeps paragraph breaks.
 export const htmlToText = (html: string): string => {
-  const body = html.match(/<div class="entry-content[^"]*">([\s\S]*?)<\/article>/i)?.[1] ?? html;
+  const body = html.match(/<div class="entry-content[^"]*"[^>]*>([\s\S]*?)<\/article>/i)?.[1] ?? html;
   return decodeEntities(
     body
       .replace(/<(script|style|noscript)[\s\S]*?<\/\1>/gi, " ")

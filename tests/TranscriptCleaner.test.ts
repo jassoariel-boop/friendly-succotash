@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { htmlToText, removeHostLines, vttToText, wordCount } from "../src/TranscriptCleaner.ts";
-import { parseTranscriptLinks, transcriptFromPost } from "../src/FerrissFetcher.ts";
+import { conversationOnly, isGuestInterview, lastIndexPage, parseTranscriptLinks, transcriptFromPost } from "../src/FerrissFetcher.ts";
 
 describe("htmlToText", () => {
   test("keeps paragraphs, strips tags and decodes entities", () => {
@@ -41,21 +41,41 @@ describe("vttToText", () => {
 });
 
 describe("parseTranscriptLinks", () => {
-  test("finds unique transcript posts and skips the index itself", () => {
+  test("reads episode number, title and url, once per episode", () => {
     const html = `
-      <a href="https://tim.blog/podcast-transcripts/">index</a>
-      <a href="https://tim.blog/2020/10/15/naval-transcript/">Naval</a>
-      <a href="https://tim.blog/2020/10/15/naval-transcript/">Naval again</a>
-      <a href="https://tim.blog/about/">About</a>`;
+      <a href="https://tim.blog/2018/09/20/all-transcripts-from-the-tim-ferriss-show/">index</a>
+      <a href="https://tim.blog/?p=117133" target="_blank">#884: How to Spot 10-Year Trends &#8212; Kevin Ryan</a>
+      <a href="https://tim.blog/?p=117133">#884: duplicate</a>
+      <a href="https://tim.blog/about/">About</a>
+      <a href="?transcript-page=16">16</a>`;
     expect(parseTranscriptLinks(html)).toEqual([
-      { slug: "naval-transcript", url: "https://tim.blog/2020/10/15/naval-transcript/" },
+      {
+        episode: 884,
+        title: "How to Spot 10-Year Trends - Kevin Ryan",
+        url: "https://tim.blog/?p=117133",
+        slug: "884-how-to-spot-10-year-trends-kevin-ryan",
+      },
     ]);
+    expect(lastIndexPage(html)).toBe(16);
+  });
+
+  test("filters out solo and compilation episodes", () => {
+    expect(isGuestInterview("Q&A with Tim — On Happiness")).toBe(false);
+    expect(isGuestInterview("The Random Show — Fasting")).toBe(false);
+    expect(isGuestInterview("How to Simplify Your Life — Tips from Oliver Burkeman")).toBe(false);
+    expect(isGuestInterview("Naval Ravikant — The Angel Philosopher")).toBe(true);
+    expect(isGuestInterview("TOMS Founder Blake Mycoskie — Fear{less} with Tim Ferriss")).toBe(true);
   });
 });
 
 test("transcriptFromPost removes the host", () => {
-  const html = `<div class="entry-content"><p>Tim Ferriss: Question?</p><p>Jane Doe: Answer.</p></div></article>`;
+  const html = `<div class="entry-content wp-block" id="x"><p class="wp-block-paragraph"><strong>Tim Ferriss:</strong> Question?</p><p>Jane Doe: Answer.</p></div></article>`;
   expect(transcriptFromPost(html)).toBe("Jane Doe: Answer.");
+});
+
+test("conversationOnly drops the intro and the share/comment footer", () => {
+  const text = ["Please enjoy this transcript.", "Tim Ferriss: Hi.", "Jane Doe: Hello.", "Share on Facebook", "Comment Rules: be cool."];
+  expect(conversationOnly(text.join("\n"))).toBe("Tim Ferriss: Hi.\nJane Doe: Hello.");
 });
 
 test("wordCount", () => {
