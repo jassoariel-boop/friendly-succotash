@@ -35,16 +35,21 @@ export const htmlToText = (html: string): string => {
     .join("\n");
 };
 
+// A speaker label such as "Tim Ferriss:" or "Dr. Dominic D’Agostino:" at the
+// start of a line. Names may include accents, curly apostrophes and particles.
+export const SPEAKER_LABEL =
+  /^(\p{Lu}[\p{L}\p{M}.'’-]*(?: (?:\p{Lu}[\p{L}\p{M}.'’-]*|de|van|von|da|del|la|le)){0,4}):\s/u;
+
 // Drops lines spoken by the host. Ferriss transcripts prefix turns with
 // "Tim Ferriss:"; lines without a speaker label stay with the previous speaker.
-export const removeHostLines = (text: string, hostName: string): string => {
-  const speaker = /^([A-Z][\w.'-]*(?: [A-Z][\w.'-]*){0,3}):\s/;
+export const removeHostLines = (text: string, hostNames: readonly string[]): string => {
+  const hosts = hostNames.map((name) => name.toLowerCase());
   let hostSpeaking = false;
   return text
     .split("\n")
     .filter((line) => {
-      const label = line.match(speaker)?.[1];
-      if (label !== undefined) hostSpeaking = label.toLowerCase() === hostName.toLowerCase();
+      const label = line.match(SPEAKER_LABEL)?.[1];
+      if (label !== undefined) hostSpeaking = hosts.includes(label.toLowerCase());
       return !hostSpeaking;
     })
     .join("\n");

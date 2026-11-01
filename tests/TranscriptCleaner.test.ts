@@ -16,7 +16,7 @@ describe("htmlToText", () => {
 describe("removeHostLines", () => {
   test("drops host turns including unlabelled continuation lines", () => {
     const text = ["Tim Ferriss: Welcome.", "Second host line.", "Naval Ravikant: Thanks.", "More from Naval."].join("\n");
-    expect(removeHostLines(text, "Tim Ferriss")).toBe("Naval Ravikant: Thanks.\nMore from Naval.");
+    expect(removeHostLines(text, ["Tim Ferriss"])).toBe("Naval Ravikant: Thanks.\nMore from Naval.");
   });
 });
 
@@ -71,6 +71,25 @@ describe("parseTranscriptLinks", () => {
 test("transcriptFromPost removes the host", () => {
   const html = `<div class="entry-content wp-block" id="x"><p class="wp-block-paragraph"><strong>Tim Ferriss:</strong> Question?</p><p>Jane Doe: Answer.</p></div></article>`;
   expect(transcriptFromPost(html)).toBe("Jane Doe: Answer.");
+});
+
+test("guest names with accents and curly apostrophes count as speaker labels", () => {
+  const text = ["Tim Ferriss: Hi.", "Dr. Dominic D’Agostino: Hello.", "Tobi Lütke: Hey.", "Guy de Lavalle: Bonjour."].join("\n");
+  expect(removeHostLines(text, ["Tim Ferriss"])).toBe("Dr. Dominic D’Agostino: Hello.\nTobi Lütke: Hey.\nGuy de Lavalle: Bonjour.");
+});
+
+test("conversationOnly drops a legal notice placed before the conversation", () => {
+  const text = [
+    "#177: Seth Godin",
+    "DUE TO SOME HEADACHES IN THE PAST, PLEASE NOTE LEGAL CONDITIONS:",
+    "WHAT YOU’RE WELCOME TO DO:",
+    "WHAT IS NOT ALLOWED:",
+    "No one is authorized to copy any portion.",
+    "Seth Godin: Thanks, Tim.",
+    "More from Seth.",
+    "Share on Facebook",
+  ];
+  expect(conversationOnly(text.join("\n"))).toBe("Seth Godin: Thanks, Tim.\nMore from Seth.");
 });
 
 test("conversationOnly drops the intro and the share/comment footer", () => {

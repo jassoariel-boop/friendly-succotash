@@ -15,6 +15,7 @@ import { scoreEpisode, SHOW_NAMES, type Episode, type Show } from "./ThemeScorer
 import { vttToText } from "./TranscriptCleaner.ts";
 
 const DATA_DIR = "data/transcripts";
+const RAW_DIR = "data/raw";
 const REPORT_DIR = "reports";
 const REQUEST_DELAY_MS = 1000;
 
@@ -43,17 +44,23 @@ const fetchFerriss = async (args: readonly string[]): Promise<void> => {
   const links = all.filter((link) => isGuestInterview(link.title)).slice(0, limit);
   console.log(`Found ${all.length} transcripts, ${links.length} guest interviews selected.`);
 
+  // Raw pages are kept (gzipped) so transcripts can be re-cleaned without downloading again.
+  const rawDir = join(RAW_DIR, "ferriss");
+  await mkdir(rawDir, { recursive: true });
   for (const link of links) {
-    const path = join(outDir, `${link.slug}.txt`);
-    if (existsSync(path)) continue;
-    const post = await fetchText(link.url);
-    if (post.ok) {
-      await writeFile(path, transcriptFromPost(post.text));
-      console.log(`saved ${link.slug}`);
-    } else {
-      console.warn(`skipped ${link.slug}: ${post.error}`);
+    const rawPath = join(rawDir, `${link.slug}.html.gz`);
+    if (!existsSync(rawPath)) {
+      const post = await fetchText(link.url);
+      if (!post.ok) {
+        console.warn(`skipped ${link.slug}: ${post.error}`);
+        continue;
+      }
+      await writeFile(rawPath, Bun.gzipSync(new TextEncoder().encode(post.text)));
+      console.log(`downloaded ${link.slug}`);
+      await Bun.sleep(REQUEST_DELAY_MS);
     }
-    await Bun.sleep(REQUEST_DELAY_MS);
+    const html = new TextDecoder().decode(Bun.gunzipSync(await readFile(rawPath)));
+    await writeFile(join(outDir, `${link.slug}.txt`), transcriptFromPost(html));
   }
 };
 

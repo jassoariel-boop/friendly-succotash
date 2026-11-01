@@ -1,4 +1,4 @@
-import { decodeEntities, htmlToText, removeHostLines } from "./TranscriptCleaner.ts";
+import { decodeEntities, htmlToText, removeHostLines, SPEAKER_LABEL } from "./TranscriptCleaner.ts";
 
 export const TRANSCRIPT_INDEX_URL = "https://tim.blog/2018/09/20/all-transcripts-from-the-tim-ferriss-show/";
 
@@ -50,16 +50,28 @@ export const fetchText = async (url: string): Promise<FetchResult> => {
   }
 };
 
-// The conversation starts at Tim's first labelled turn and ends where the
-// share buttons and comment form begin.
-const FOOTER = /^(DUE TO SOME HEADACHES|Share this:?|Share on |Like this:|Subscribe$|Related$|Comment Rules:)/;
+// Every post carries a legal notice, sometimes before the conversation and
+// sometimes after it. It runs from this heading to the "not allowed" paragraph.
+const LEGAL_START = /^DUE TO SOME HEADACHES/;
+const LEGAL_END = /No one is authorized/;
 
+// The share buttons and comment form follow the conversation.
+const FOOTER = /^(Share this:?|Share on |Like this:|Subscribe$|Related$|Comment Rules:)/;
+
+export const withoutLegalNotice = (lines: readonly string[]): readonly string[] => {
+  const start = lines.findIndex((line) => LEGAL_START.test(line));
+  if (start === -1) return lines;
+  const length = lines.slice(start).findIndex((line) => LEGAL_END.test(line));
+  return length === -1 ? lines.slice(0, start) : [...lines.slice(0, start), ...lines.slice(start + length + 1)];
+};
+
+// The conversation starts at the first labelled turn and ends at the footer.
 export const conversationOnly = (text: string): string => {
-  const lines = text.split("\n");
-  const start = Math.max(0, lines.findIndex((line) => line.startsWith("Tim Ferriss:")));
+  const lines = withoutLegalNotice(text.split("\n"));
+  const start = Math.max(0, lines.findIndex((line) => SPEAKER_LABEL.test(line)));
   const length = lines.slice(start).findIndex((line) => FOOTER.test(line));
   return lines.slice(start, length === -1 ? undefined : start + length).join("\n");
 };
 
 export const transcriptFromPost = (html: string): string =>
-  removeHostLines(conversationOnly(htmlToText(html)), "Tim Ferriss");
+  removeHostLines(conversationOnly(htmlToText(html)), ["Tim Ferriss", "Tim"]);
