@@ -52,7 +52,7 @@ export const CODEBOOK: readonly Theme[] = [
     patterns: [
       p("say(?:ing)? no"),
       p("hell yeah or no|hell yes or no"),
-      p("the one thing|one thing at a time"),
+      p("one thing at a time|the one thing that matters"),
       p("prioriti[sz]e|prioriti[sz]ation"),
       p("deep work"),
       p("distractions?"),
@@ -65,7 +65,8 @@ export const CODEBOOK: readonly Theme[] = [
     group: "business",
     predicted: true,
     patterns: [
-      p("leverage"),
+      // Bare "leverage" mostly means debt (leveraged buyouts) in investor interviews.
+      p("(?:have|has|get|gain|create|build|use|using|apply|forms? of|kinds? of) leverage|leverage (?:yourself|your time|your skills)"),
       p("specific knowledge"),
       p("skill ?sets?|skill stack"),
       p("equity|ownership"),
@@ -88,7 +89,7 @@ export const CODEBOOK: readonly Theme[] = [
   },
   {
     id: "relationships",
-    label: "The people around you",
+    label: "Relationships and family",
     group: "life",
     predicted: true,
     patterns: [
@@ -134,11 +135,10 @@ export const CODEBOOK: readonly Theme[] = [
     group: "life",
     predicted: true,
     patterns: [
-      p("meaning(?:ful)?|purpose"),
+      p("meaning (?:of|in) (?:life|my life)|meaningful (?:life|work)|sense of purpose|(?:my|life|your) purpose"),
       p("happiness|fulfil(?:l|led|ling|ment)"),
       p("money (?:doesn't|didn't|won't|can't) (?:make|buy)"),
       p("regrets?"),
-      p("(?:had|have|is) enough"),
     ],
   },
   // Themes below were not part of the original hypothesis. They are here so
@@ -167,7 +167,7 @@ export const CODEBOOK: readonly Theme[] = [
     label: "Reading and constant learning",
     group: "mindset",
     predicted: false,
-    patterns: [p("(?:favou?rite|recommend(?:ed)?) books?|books? (?:that )?changed"), p("read(?:ing)? (?:a lot|every)"), p("curio(?:us|sity)"), p("first principles")],
+    patterns: [p("(?:favou?rite|recommend(?:ed)?) books?|books? (?:that )?changed"), p("read(?:ing)? (?:a lot|every)"), p("curiosity|stay curious|intellectually curious"), p("first principles")],
   },
   {
     id: "mentors",

@@ -74,8 +74,9 @@ test("transcriptFromPost removes the host", () => {
 });
 
 test("guest names with accents and curly apostrophes count as speaker labels", () => {
-  const text = ["Tim Ferriss: Hi.", "Dr. Dominic D’Agostino: Hello.", "Tobi Lütke: Hey.", "Guy de Lavalle: Bonjour."].join("\n");
-  expect(removeHostLines(text, ["Tim Ferriss"])).toBe("Dr. Dominic D’Agostino: Hello.\nTobi Lütke: Hey.\nGuy de Lavalle: Bonjour.");
+  const guests = ["Dr. Dominic D’Agostino: Hello.", "Tobi Lütke: Hey.", "Guy de Lavalle: Bonjour.", "Neil deGrasse Tyson: Hi.", "Morgan Housel : Thanks."];
+  const text = guests.flatMap((line) => ["Tim Ferriss: Question?", line]).join("\n");
+  expect(removeHostLines(text, ["Tim Ferriss"])).toBe(guests.join("\n"));
 });
 
 test("conversationOnly drops a legal notice placed before the conversation", () => {
@@ -85,6 +86,7 @@ test("conversationOnly drops a legal notice placed before the conversation", () 
     "WHAT YOU’RE WELCOME TO DO:",
     "WHAT IS NOT ALLOWED:",
     "No one is authorized to copy any portion.",
+    "For the sake of clarity, media outlets may license photos from Getty Images, etc.",
     "Seth Godin: Thanks, Tim.",
     "More from Seth.",
     "Share on Facebook",

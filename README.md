@@ -43,6 +43,13 @@ bun run import:vtt captions/doac --show doac
 bun run import:vtt captions/huberman --show huberman
 ```
 
+`fetch:ferriss` keeps the raw pages gzipped in `data/raw/`, so running it
+again only re-cleans the text; it doesn't download anything twice. Episode
+titles are saved to `data/transcripts/ferriss/titles.json`.
+
+Note: YouTube blocks caption downloads from cloud servers ("Sign in to
+confirm you're not a bot"), so run `yt-dlp` on your own computer.
+
 Huberman's solo episodes are him teaching, not guests giving advice. Delete
 those `.txt` files before analysing if you only want guest advice.
 
@@ -51,7 +58,13 @@ those `.txt` files before analysing if you only want guest advice.
 ```sh
 bun run analyze                 # writes reports/SuccessPatterns.md and reports/results.json
 bun run analyze --min-hits 3    # stricter: a theme needs 3 matches to count for an episode
+bun run analyze --business-only --out reports/ferriss-business-guests
+                                # only founders, CEOs and investors (by episode title)
 ```
+
+Episodes with fewer than 1,000 guest words (solo host episodes) are skipped;
+change that with `--min-words`. The current write-up is
+[`reports/Findings.md`](reports/Findings.md).
 
 Try it on the synthetic sample first:
 

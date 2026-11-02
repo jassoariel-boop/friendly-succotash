@@ -53,7 +53,11 @@ export const fetchText = async (url: string): Promise<FetchResult> => {
 // Every post carries a legal notice, sometimes before the conversation and
 // sometimes after it. It runs from this heading to the "not allowed" paragraph.
 const LEGAL_START = /^DUE TO SOME HEADACHES/;
-const LEGAL_END = /No one is authorized/;
+// Its last paragraph, about photos, is sometimes split onto its own line.
+const LEGAL_END = /No one is authorized|Getty Images/;
+const LEGAL_MAX_LINES = 10;
+// Some posts drop the heading but keep the notice's paragraphs.
+const LEGAL_LINE = /^(WHAT IS NOT ALLOWED|WHAT YOU.RE WELCOME TO DO|Tim Ferriss owns the copyright)/;
 
 // The share buttons and comment form follow the conversation.
 const FOOTER = /^(Share this:?|Share on |Like this:|Subscribe$|Related$|Comment Rules:)/;
@@ -61,13 +65,14 @@ const FOOTER = /^(Share this:?|Share on |Like this:|Subscribe$|Related$|Comment 
 export const withoutLegalNotice = (lines: readonly string[]): readonly string[] => {
   const start = lines.findIndex((line) => LEGAL_START.test(line));
   if (start === -1) return lines;
-  const length = lines.slice(start).findIndex((line) => LEGAL_END.test(line));
+  const block = lines.slice(start, start + LEGAL_MAX_LINES);
+  const length = block.findLastIndex((line) => LEGAL_END.test(line));
   return length === -1 ? lines.slice(0, start) : [...lines.slice(0, start), ...lines.slice(start + length + 1)];
 };
 
 // The conversation starts at the first labelled turn and ends at the footer.
 export const conversationOnly = (text: string): string => {
-  const lines = withoutLegalNotice(text.split("\n"));
+  const lines = withoutLegalNotice(text.split("\n")).filter((line) => !LEGAL_LINE.test(line));
   const start = Math.max(0, lines.findIndex((line) => SPEAKER_LABEL.test(line)));
   const length = lines.slice(start).findIndex((line) => FOOTER.test(line));
   return lines.slice(start, length === -1 ? undefined : start + length).join("\n");

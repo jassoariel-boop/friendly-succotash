@@ -79,15 +79,26 @@ const pct = (value: number): string => `${Math.round(value * 100)}%`;
 
 export const renderMarkdown = (report: Report, options: ReportOptions = DEFAULT_OPTIONS): string => {
   const shows = Object.keys(report.episodesByShow) as Show[];
-  const header = `| Theme | All | ${shows.map((s) => SHOW_NAMES[s]).join(" | ")} | Mentions / 10k words | In every show? |`;
-  const divider = `| --- | --- | ${shows.map(() => "---").join(" | ")} | --- | --- |`;
+  // Per-show columns and the cross-show check only mean something with several shows.
+  const multiShow = shows.length > 1;
+  const showColumns = multiShow ? shows : [];
+  const header = `| Theme | Episodes | ${showColumns.map((s) => `${SHOW_NAMES[s]} | `).join("")}Mentions / 10k words |${multiShow ? " In every show? |" : ""}`;
+  const divider = `| --- | --- | ${showColumns.map(() => "--- | ").join("")}--- |${multiShow ? " --- |" : ""}`;
   const rows = report.themes.map(
     (t) =>
-      `| ${t.theme.label}${t.theme.predicted ? "" : " *"} | ${pct(t.share)} | ${shows
-        .map((s) => pct(t.shareByShow[s] ?? 0))
-        .join(" | ")} | ${t.meanPer10k.toFixed(1)} | ${t.consensus ? "yes" : ""} |`,
+      `| ${t.theme.label}${t.theme.predicted ? "" : " *"} | ${pct(t.share)} | ${showColumns
+        .map((s) => `${pct(t.shareByShow[s] ?? 0)} | `)
+        .join("")}${t.meanPer10k.toFixed(1)} |${multiShow ? ` ${t.consensus ? "yes" : ""} |` : ""}`,
   );
   const consensus = report.themes.filter((t) => t.consensus).map((t) => `- ${t.theme.label} (${pct(t.share)})`);
+  const consensusSection = multiShow
+    ? [
+        `## Themes that come up on every show (at least ${pct(options.consensusShare)} of episodes on each)`,
+        "",
+        ...(consensus.length === 0 ? ["_None at this threshold._"] : consensus),
+        "",
+      ]
+    : [];
   const evidence = report.themes.flatMap((t) => [
     `### ${t.theme.label}`,
     "",
@@ -114,10 +125,7 @@ export const renderMarkdown = (report: Report, options: ReportOptions = DEFAULT_
     divider,
     ...rows,
     "",
-    `## Themes that come up on every show (at least ${pct(options.consensusShare)} of episodes on each)`,
-    "",
-    ...(consensus.length === 0 ? ["_None at this threshold._"] : consensus),
-    "",
+    ...consensusSection,
     "## Evidence",
     "",
     "Short excerpts from the episodes where each theme was densest, so you can check the matches are real.",

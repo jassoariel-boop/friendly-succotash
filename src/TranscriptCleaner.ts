@@ -36,9 +36,10 @@ export const htmlToText = (html: string): string => {
 };
 
 // A speaker label such as "Tim Ferriss:" or "Dr. Dominic D’Agostino:" at the
-// start of a line. Names may include accents, curly apostrophes and particles.
+// start of a line. Names may include accents, curly apostrophes, particles and
+// inner capitals ("deGrasse"); some posts put a space before the colon.
 export const SPEAKER_LABEL =
-  /^(\p{Lu}[\p{L}\p{M}.'’-]*(?: (?:\p{Lu}[\p{L}\p{M}.'’-]*|de|van|von|da|del|la|le)){0,4}):\s/u;
+  /^(\p{Lu}[\p{L}\p{M}.'’-]*(?: (?:\p{Lu}[\p{L}\p{M}.'’-]*|\p{Ll}+\p{Lu}[\p{L}\p{M}.'’-]*|de|van|von|da|del|la|le)){0,4}) ?:\s/u;
 
 // Drops lines spoken by the host. Ferriss transcripts prefix turns with
 // "Tim Ferriss:"; lines without a speaker label stay with the previous speaker.

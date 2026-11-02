@@ -41,6 +41,14 @@ describe("buildReport", () => {
     expect(report.themes[0]!.theme.id).toBe("consistency");
     const md = renderMarkdown(report, { minHits: 2, consensusShare: 0.5 });
     expect(md).toContain("Episodes analysed: **4**");
-    expect(md).toContain("| Consistency and showing up daily | 75% |");
+    expect(md).toContain("| Consistency and showing up daily | 75% | 100% | ");
+    expect(md).toContain("In every show?");
+  });
+
+  test("leaves out per-show columns when only one show is loaded", () => {
+    const single = buildReport(EPISODES.filter((e) => e.show === "ferriss").map((e) => scoreEpisode(e)));
+    const md = renderMarkdown(single);
+    expect(md).toContain("| Theme | Episodes | Mentions / 10k words |");
+    expect(md).not.toContain("In every show?");
   });
 });
