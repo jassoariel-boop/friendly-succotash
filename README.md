@@ -23,18 +23,23 @@ bun run fetch:ferriss --limit 100
 ```
 
 **Huberman Lab and Diary of a CEO** don't publish free transcripts, so use
-YouTube auto-captions. On any machine with [yt-dlp](https://github.com/yt-dlp/yt-dlp):
+YouTube captions. On your own computer (YouTube blocks cloud servers), install
+[yt-dlp](https://github.com/yt-dlp/yt-dlp) and [Deno](https://deno.com), which
+yt-dlp now needs for YouTube, then run:
 
 ```sh
-# Last 100 episodes of a channel, English auto-captions only, no video
-yt-dlp --skip-download --write-auto-subs --sub-langs en --sub-format vtt \
-  --playlist-end 100 -o "captions/doac/%(title)s.%(ext)s" \
-  "https://www.youtube.com/@TheDiaryOfACEO/videos"
+yt-dlp --skip-download --write-subs --write-auto-subs --sub-langs en --sub-format vtt --match-filter "duration > 2400" --playlist-end 150 --sleep-requests 1 --sleep-subtitles 3 -o "captions/doac/%(upload_date)s-%(id)s-%(title).60s.%(ext)s" "https://www.youtube.com/@TheDiaryOfACEO/videos"
 
-yt-dlp --skip-download --write-auto-subs --sub-langs en --sub-format vtt \
-  --playlist-end 100 -o "captions/huberman/%(title)s.%(ext)s" \
-  "https://www.youtube.com/@hubermanlab/videos"
+yt-dlp --skip-download --write-subs --write-auto-subs --sub-langs en --sub-format vtt --match-filter "duration > 2400" --playlist-end 150 --sleep-requests 1 --sleep-subtitles 3 -o "captions/huberman/%(upload_date)s-%(id)s-%(title).60s.%(ext)s" "https://www.youtube.com/@hubermanlab/videos"
 ```
+
+- `--match-filter "duration > 2400"` keeps videos over 40 minutes, so short
+  clips are skipped and only full episodes remain.
+- `--playlist-end 150` looks at the newest 150 uploads.
+- The sleep options slow requests down so YouTube is less likely to block you.
+- If you still get "Sign in to confirm you're not a bot", add
+  `--cookies-from-browser chrome` (or `firefox`, `safari`, `edge`). The
+  cookies stay on your computer.
 
 Then convert the captions:
 
