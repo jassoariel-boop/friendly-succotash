@@ -1,0 +1,616 @@
+{
+  "episodeCount": 650,
+  "episodesByShow": {
+    "ferriss": 650
+  },
+  "themes": [
+    {
+      "theme": {
+        "id": "relationships",
+        "label": "Relationships and family",
+        "group": "life",
+        "predicted": true,
+        "patterns": [
+          "\\b(?:surround (?:yourself|myself))\\b",
+          "\\b(?:the people (?:around|you spend))\\b",
+          "\\b(?:relationships?)\\b",
+          "\\b(?:co-?founders?)\\b",
+          "\\b(?:my (?:wife|husband|partner|kids|children|family))\\b"
+        ]
+      },
+      "share": 0.6369230769230769,
+      "shareByShow": {
+        "ferriss": 0.6369230769230769
+      },
+      "meanPer10k": 4.6470376385696275,
+      "consensus": true,
+      "evidence": [
+        {
+          "episode": "880-relationship-tools-that-work-esther-perel-brene-brown-dr-sue",
+          "show": "ferriss",
+          "snippet": "...ge longevity. Any exercises, routines, or habits would be great, especially around fostering deeper emotional relationships.” That is the first basic – appreciation. Simply saying a lot of nice things, not taking things for granted,..."
+        },
+        {
+          "episode": "434-jim-dethmer-how-to-shift-from-victim-consciousness-reduce-dr",
+          "show": "ferriss",
+          "snippet": "...at, based on my family of origin and some of the craziness that went on there, I've always been interested in relationships. Again, largely trying to resolve the loneliness that I felt. So those two things, kind of an existential ang..."
+        },
+        {
+          "episode": "719-walk-talk-with-greg-mckeown-how-to-find-your-purpose-and-mas",
+          "show": "ferriss",
+          "snippet": "...e for it more than I wasn't. We traveled together, we did things together, we've made all these memories, our relationship connected and safely attached. But I also learned in that moment, my goodness, this life is so pathetic and s..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "failure-learning",
+        "label": "Failure as learning",
+        "group": "mindset",
+        "predicted": false,
+        "patterns": [
+          "\\b(?:fail(?:ed|ure|ures|ing)?)\\b",
+          "\\b(?:mistakes?)\\b",
+          "\\b(?:lessons? (?:learned|learnt))\\b",
+          "\\b(?:rejection|rejected)\\b"
+        ]
+      },
+      "share": 0.5692307692307692,
+      "shareByShow": {
+        "ferriss": 0.5692307692307692
+      },
+      "meanPer10k": 3.0559936436523225,
+      "consensus": true,
+      "evidence": [
+        {
+          "episode": "255-how-to-turn-failure-into-success",
+          "show": "ferriss",
+          "snippet": "...me, at that age, was quite a traumatic fashion. And I quit running. And I would regard that as the first real failure of my life, something I really wanted to do well at, I didn’t. And I feel like it was hugely important both b..."
+        },
+        {
+          "episode": "534-michael-dell-founder-of-dell-early-failures-battling-carl-ic",
+          "show": "ferriss",
+          "snippet": "...ple microprocessors and all kinds of new inventions, and turned out to be way too aggressive and bold, and it failed. Now, I think the lesson from that was to be a lot more pragmatic and focused in our innovation, and actually..."
+        },
+        {
+          "episode": "214-debbie-millman",
+          "show": "ferriss",
+          "snippet": "...that it would have been that easy just to follow that drawing, I would have saved decades of experiments and failure and rejection. Debbie Millman: Oh, I love those! Debbie Millman: I actually never set out to be a designer. I..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "health-foundation",
+        "label": "Sleep, exercise and health",
+        "group": "health",
+        "predicted": true,
+        "patterns": [
+          "\\b(?:sleep(?:ing)?)\\b",
+          "\\b(?:exercis(?:e|ing)|work ?outs?|resistance training)\\b",
+          "\\b(?:morning (?:sunlight|light|routine))\\b",
+          "\\b(?:nutrition|diet)\\b",
+          "\\b(?:cold (?:plunge|exposure|shower))\\b",
+          "\\b(?:burn(?:ed|t)? ?out)\\b"
+        ]
+      },
+      "share": 0.5676923076923077,
+      "shareByShow": {
+        "ferriss": 0.5676923076923077
+      },
+      "meanPer10k": 5.639654020527153,
+      "consensus": true,
+      "evidence": [
+        {
+          "episode": "650-dr-matthew-walker-all-things-sleep-how-to-improve-sleep-how",
+          "show": "ferriss",
+          "snippet": "...uch for having me. Dr. Matt Walker: I think this is perhaps one of the most exciting areas to have emerged in sleep science over the past maybe five or six years or so. And just taking a step back, of course, everyone knows t..."
+        },
+        {
+          "episode": "654-dr-matthew-walker-all-things-sleep-continued-the-hidden-dang",
+          "show": "ferriss",
+          "snippet": "Dr. Matthew Walker: Maybe we could start with how sleep impacts sex, and begin with actually the literal idea of separating those bedfellows, and to the question of,..."
+        },
+        {
+          "episode": "172-dom-dagostino-the-power-of-the-ketogenic-diet",
+          "show": "ferriss",
+          "snippet": "...e or less an abuse of it for many years. It’s approved for military use before admission. So in a state where sleep deprivation is unavoidable and you need to maintain cognitive resilience, the use of modafinil can be a good..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "self-awareness",
+        "label": "Self-awareness, therapy and the past",
+        "group": "mindset",
+        "predicted": true,
+        "patterns": [
+          "\\b(?:therap(?:y|ist))\\b",
+          "\\b(?:childhood)\\b",
+          "\\b(?:trauma)\\b",
+          "\\b(?:self[- ]awareness|self[- ]aware)\\b",
+          "\\b(?:journal(?:ing)?)\\b",
+          "\\b(?:meditat(?:e|ion|ing))\\b",
+          "\\b(?:insecur(?:e|ity|ities))\\b"
+        ]
+      },
+      "share": 0.47846153846153844,
+      "shareByShow": {
+        "ferriss": 0.47846153846153844
+      },
+      "meanPer10k": 4.3853787140096445,
+      "consensus": true,
+      "evidence": [
+        {
+          "episode": "705-dr-willoughby-britton-the-hidden-risks-of-meditation-overlap",
+          "show": "ferriss",
+          "snippet": "...So basically, half of the mental health world just becomes inaccessible to these people because they go to a therapist and the therapist is like, \"Oh, you need to do mindfulness.\" And they're like, \"No, not mindfulness, please...."
+        },
+        {
+          "episode": "201-meditation-mindset-and-mastery",
+          "show": "ferriss",
+          "snippet": "...gy from it. And these have been proven in scientific studies, by the way, in all kinds of things from healing trauma, to giving you more energy, to giving you more focus in your work. Meditation is a pretty incredible tool. Ra..."
+        },
+        {
+          "episode": "304-debbie-millman-how-to-prioritize-your-life-and-make-time-for",
+          "show": "ferriss",
+          "snippet": "...analytic psychotherapy. Put another way, psychoanalysis with an emphasis on self-psychology. So, for me, talk therapy is the only thing that I’ve ever really felt drawn to. Things like EMDR and behavior modification might be re..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "luck-timing",
+        "label": "Luck and timing",
+        "group": "business",
+        "predicted": false,
+        "patterns": [
+          "\\b(?:luck(?:y|ily)?)\\b",
+          "\\b(?:right place at the right time)\\b",
+          "\\b(?:timing)\\b",
+          "\\b(?:serendipit(?:y|ous))\\b"
+        ]
+      },
+      "share": 0.36,
+      "shareByShow": {
+        "ferriss": 0.36
+      },
+      "meanPer10k": 1.4470666148346987,
+      "consensus": true,
+      "evidence": [
+        {
+          "episode": "856-jim-collins-what-to-make-of-a-life-and-how-to-maximize-your",
+          "show": "ferriss",
+          "snippet": "...lly eye-opening and very uplifting in the end by looking at the study across these lives. Because there's the luck piece of how the roulette wheel of your life spins as to which encodings you discover, and then there's what..."
+        },
+        {
+          "episode": "304-debbie-millman-how-to-prioritize-your-life-and-make-time-for",
+          "show": "ferriss",
+          "snippet": "...ing it to the Olympics. You must be in the finest career shape possible in order to win. There is very little luck involved. I’ve done hundreds of Design Matters interviews where I’m sitting across from people, really succes..."
+        },
+        {
+          "episode": "697-rich-paul-the-power-broker-and-superstar-agent-behind-lebron",
+          "show": "ferriss",
+          "snippet": "...ams pop up out of nowhere. But once that hits, now you're taking meetings with different teams. And if you're lucky enough to have a guy that has multiple teams, then he's trying to decide what fits best for him and his famil..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "consistency",
+        "label": "Consistency and showing up daily",
+        "group": "mindset",
+        "predicted": true,
+        "patterns": [
+          "\\b(?:consisten(?:cy|t|tly))\\b",
+          "\\b(?:every single day)\\b",
+          "\\b(?:day in,? day out)\\b",
+          "\\b(?:showing up|show up every)\\b",
+          "\\b(?:small (?:wins|steps|habits))\\b",
+          "\\b(?:discipline)\\b"
+        ]
+      },
+      "share": 0.31384615384615383,
+      "shareByShow": {
+        "ferriss": 0.31384615384615383
+      },
+      "meanPer10k": 1.1249613909576572,
+      "consensus": true,
+      "evidence": [
+        {
+          "episode": "349-lebron-james-and-mike-mancias",
+          "show": "ferriss",
+          "snippet": "...as interning with the Cavs at the time. And every day, I was trying to figure out the way how I could be more consistent with my training and be more consistent with – just trying to make the jump from my rookie year to my second..."
+        },
+        {
+          "episode": "187-jocko-willink-on-discipline-leadership-and-overcoming-doubt",
+          "show": "ferriss",
+          "snippet": "...his doesn’t mean that you lack confidence. As a matter of fact, when you prepare correctly, when you have the discipline to prepare correctly, then you will have confidence. That is definitely a good feeling to have because all th..."
+        },
+        {
+          "episode": "321-brandon-stanton",
+          "show": "ferriss",
+          "snippet": "...used on becoming a disciplined person and having a routine in my life of working out every day, playing piano every single day, doing my homework. And it’s funny because when I stopped trying to think about this big thing that I was goi..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "meaning-redefined",
+        "label": "Redefining success beyond money",
+        "group": "life",
+        "predicted": true,
+        "patterns": [
+          "\\b(?:meaning (?:of|in) (?:life|my life)|meaningful (?:life|work)|sense of purpose|(?:my|life|your) purpose)\\b",
+          "\\b(?:happiness|fulfil(?:l|led|ling|ment))\\b",
+          "\\b(?:money (?:doesn't|didn't|won't|can't) (?:make|buy))\\b",
+          "\\b(?:regrets?)\\b"
+        ]
+      },
+      "share": 0.23846153846153847,
+      "shareByShow": {
+        "ferriss": 0.23846153846153847
+      },
+      "meanPer10k": 1.0124755965906969,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "692-arthur-c-brooks-how-to-be-happy-reverse-bucket-lists-the-fou",
+          "show": "ferriss",
+          "snippet": "...ms, and it's all kind of based on meaning in the following way. Essence precedes existence. Meaning, you have meaning in life that precedes your actual life, and your job is to find it and live up to it. But it's already out there, you..."
+        },
+        {
+          "episode": "344-aj-jacobs",
+          "show": "ferriss",
+          "snippet": "...he most important things I’ve learned in my life because as psychologist will tell you, gratitude is a key to happiness, if not the key to happiness. I have a quote from a Benedictine monk who says, “Happiness doesn’t lead to gra..."
+        },
+        {
+          "episode": "363-tea-time-with-tim",
+          "show": "ferriss",
+          "snippet": "...excited to talk to you at home. I had two different questions. I didn't know if you wanted more of a kind of meaning of life question or if you prefer like a job kind of question. Steve: Okay, great. Well, so recently I've read Man's..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "long-term-compounding",
+        "label": "Long-term thinking and compounding",
+        "group": "business",
+        "predicted": true,
+        "patterns": [
+          "\\b(?:long[- ]term)\\b",
+          "\\b(?:compound(?:ing|s|ed)?(?: interest)?)\\b",
+          "\\b(?:delayed gratification)\\b",
+          "\\b(?:patience)\\b",
+          "\\b(?:(?:ten|10|twenty|20|thirty|30)[- ]years? (?:from now|time|horizon))\\b"
+        ]
+      },
+      "share": 0.2353846153846154,
+      "shareByShow": {
+        "ferriss": 0.2353846153846154
+      },
+      "meanPer10k": 1.0134500756834797,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "237-transcript-dr-rhonda-patrick-on-exploring-smart-drugs-fastin",
+          "show": "ferriss",
+          "snippet": "...time fasting duration was linked to a 20% lower odds of elevated glycated hemoglobin (HbA1C), which is a more long-term marker of blood glucose levels. For each 10% increase in the proportion of calories consumed after 5pm there..."
+        },
+        {
+          "episode": "604-master-investor-ed-thorp-on-how-to-think-for-yourself-mental",
+          "show": "ferriss",
+          "snippet": "...way to use it is to calculate doubling things. For instance, let's say that I invest in the stock market and long-term, it goes up 10 percent a year, long-term, but there might be very bad periods and super good periods mixed to..."
+        },
+        {
+          "episode": "876-dr-andrew-huberman-peptides-performance-and-protocols",
+          "show": "ferriss",
+          "snippet": "...some psychedelics at a very young age, \"Recreationally.\" LSD, psilocybin, not giving any thought to what the long-term consequences might be. Fortunately, I didn't feel any long-term consequences, but I had enough bad trips, mea..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "fear-courage",
+        "label": "Facing fear and discomfort",
+        "group": "mindset",
+        "predicted": true,
+        "patterns": [
+          "\\b(?:fear[- ]setting)\\b",
+          "\\b(?:(?:face|facing|faced) (?:my |your |the )?fears?)\\b",
+          "\\b(?:comfort zone)\\b",
+          "\\b(?:uncomfortable|discomfort)\\b",
+          "\\b(?:courage|courageous)\\b",
+          "\\b(?:scared me|terrified me)\\b"
+        ]
+      },
+      "share": 0.21384615384615385,
+      "shareByShow": {
+        "ferriss": 0.21384615384615385
+      },
+      "meanPer10k": 0.8619996356033961,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "207-brene-brown-distilled",
+          "show": "ferriss",
+          "snippet": "...ersation about these tougher topics, about vulnerability, about shame, about being brave. Just lean into some discomfort because I think these seemingly impossible problems that we have around race and homophobia and environment a..."
+        },
+        {
+          "episode": "368-amanda-palmer-on-creativity-pain-and-art",
+          "show": "ferriss",
+          "snippet": "...g out of that lake that any shame they may be feeling is unwarranted, unnecessary, really. If they're feeling discomfort, and you're not made uncomfortable by their discomfort, you can offer them a gift. Being able to do that with..."
+        },
+        {
+          "episode": "302-aubrey-marcus",
+          "show": "ferriss",
+          "snippet": "...dy. Then when I first did the ecstatic dance practice, I had no idea. I was like, “Oh my gosh, this is really uncomfortable,” because the idea is you listen to music, and then you just move. You have a blindfold a lot of times or a r..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "stories-identity",
+        "label": "Identity and self-belief",
+        "group": "mindset",
+        "predicted": false,
+        "patterns": [
+          "\\b(?:self[- ]belief|believe in (?:yourself|myself))\\b",
+          "\\b(?:identity)\\b",
+          "\\b(?:confidence)\\b",
+          "\\b(?:imposter syndrome)\\b"
+        ]
+      },
+      "share": 0.20153846153846153,
+      "shareByShow": {
+        "ferriss": 0.20153846153846153
+      },
+      "meanPer10k": 0.8340337524477894,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "304-debbie-millman-how-to-prioritize-your-life-and-make-time-for",
+          "show": "ferriss",
+          "snippet": "...n: After a Design Matters interview with the great writer, Dani Shapiro, we started to talk about the role of confidence in success. Apparently, I think at that time about four new books on confidence had some out. She went on to..."
+        },
+        {
+          "episode": "322-adam-robinson-outflanking-and-outsmarting-the-competition",
+          "show": "ferriss",
+          "snippet": "...out making the shot because the attention there would be focused not on making the shot, but on him. So, self-confidence, in this sense, is almost as bad as self-doubt. Your attention is focused on the wrong thing. It's focused on..."
+        },
+        {
+          "episode": "230-debbie-millman-on-the-secrets-tactics-and-creative-processes",
+          "show": "ferriss",
+          "snippet": "...esign Matters from my guest Danny Shapiro, and I think I mentioned this in part one of my interview with Tim; confidence is overrated. Danny Shapiro has said that what is more important than confidence is courage. I believe that c..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "focus",
+        "label": "Focus and saying no",
+        "group": "business",
+        "predicted": true,
+        "patterns": [
+          "\\b(?:say(?:ing)? no)\\b",
+          "\\b(?:hell yeah or no|hell yes or no)\\b",
+          "\\b(?:one thing at a time|the one thing that matters)\\b",
+          "\\b(?:prioriti[sz]e|prioriti[sz]ation)\\b",
+          "\\b(?:deep work)\\b",
+          "\\b(?:distractions?)\\b",
+          "\\b(?:80\\/20|pareto)\\b"
+        ]
+      },
+      "share": 0.18615384615384614,
+      "shareByShow": {
+        "ferriss": 0.18615384615384614
+      },
+      "meanPer10k": 0.7091886430732933,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "855-tim-ferriss-how-to-quiet-the-ruminative-mind-avoid-traps-of",
+          "show": "ferriss",
+          "snippet": "...you at with that now? Dan Harris: Hard to argue with any of that. Coming up, Tim talks about why you need to say no more often and the tools you need in order to get better at saying no, doing a digital detox, defanging your..."
+        },
+        {
+          "episode": "466-richard-koch-on-mastering-the-8020-principle-achieving-unrea",
+          "show": "ferriss",
+          "snippet": "...had read about called The Course of Economic Theory , but it was in French written by our old friend Vilfredo Pareto and it was published in Lucerne in, I think, 1896 and '97. And I have no idea at all, Tim, why I wanted to re..."
+        },
+        {
+          "episode": "680-richard-koch-revisiting-the-8020-principle-the-power-of-opti",
+          "show": "ferriss",
+          "snippet": "...ch: [inaudible]. Richard Koch: Well, you've supplied the answer which I wanted to give you. The answer is the 80/20 principle, is the link between the investment performance. And venture capital is an extreme form of this. It..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "reading-learning",
+        "label": "Reading and constant learning",
+        "group": "mindset",
+        "predicted": false,
+        "patterns": [
+          "\\b(?:(?:favou?rite|recommend(?:ed)?) books?|books? (?:that )?changed)\\b",
+          "\\b(?:read(?:ing)? (?:a lot|every))\\b",
+          "\\b(?:curiosity|stay curious|intellectually curious)\\b",
+          "\\b(?:first principles)\\b"
+        ]
+      },
+      "share": 0.18615384615384614,
+      "shareByShow": {
+        "ferriss": 0.18615384615384614
+      },
+      "meanPer10k": 0.6732932630455561,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "273-walter-isaacson",
+          "show": "ferriss",
+          "snippet": "...eater and pageants and performances tied into his art and his science, then you say okay, what a wide-ranging curiosity. And even a quirky and playful curiosity he had. Walter Isaacson: Well, he was never really was able to conqu..."
+        },
+        {
+          "episode": "503-walter-isaacson-on-crispr-jennifer-doudna-gene-editing-and-t",
+          "show": "ferriss",
+          "snippet": "...know, you write a lot about performance and creativity. And I have found that the simplest component of it is curiosity. Jennifer Doudna was persistently, obsessively, and joyfully curious. Even growing up in Hawaii, she'd touch..."
+        },
+        {
+          "episode": "286-the-man-who-taught-me-how-to-invest-mike-maples",
+          "show": "ferriss",
+          "snippet": "...e’s thinking is right or wrong. And so, if I see a company where it’s not working, but I still believe in the first principles of the idea, I say this is great. We still believe in the first principles, and we know more than we knew a y..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "mentors",
+        "label": "Mentors and asking for help",
+        "group": "life",
+        "predicted": false,
+        "patterns": [
+          "\\b(?:mentors?|mentorship)\\b",
+          "\\b(?:role models?)\\b",
+          "\\b(?:ask(?:ed|ing)? for help)\\b",
+          "\\b(?:advisors?)\\b"
+        ]
+      },
+      "share": 0.18615384615384614,
+      "shareByShow": {
+        "ferriss": 0.18615384615384614
+      },
+      "meanPer10k": 0.6551687937420716,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "363-tea-time-with-tim",
+          "show": "ferriss",
+          "snippet": "...this is real. Edwin: You have definitely made my day here. Edwin: I appreciate that. So my question is about mentors. So what guidance do you have for finding a mentor to kind of help maybe gain a better understanding about an..."
+        },
+        {
+          "episode": "356-peter-mallouk",
+          "show": "ferriss",
+          "snippet": "...Peter Mallouk: Well, I think this might be too much in the box, given that what you laid out, but he was the mentor to some of the people you mentioned. Benjamin Graham’s The Intelligent Investor is a phenomenal book as well...."
+        },
+        {
+          "episode": "543-legendary-investor-john-doerr-on-picking-winners-from-google",
+          "show": "ferriss",
+          "snippet": "...counts. This was quite a heady experience, a thrill for, as you can imagine, a summer intern. But he became a mentor, a valued advisor, and gave me my fair share of tough love. John Doerr: It was always balanced, but direct. S..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "hard-work",
+        "label": "Outworking everyone",
+        "group": "business",
+        "predicted": false,
+        "patterns": [
+          "\\b(?:hard work|work(?:ed)? (?:so |really )?hard)\\b",
+          "\\b(?:hustle)\\b",
+          "\\b(?:\\d{2,3}[- ]hour (?:weeks?|days?))\\b",
+          "\\b(?:outwork)\\b",
+          "\\b(?:sacrifice[sd]?)\\b"
+        ]
+      },
+      "share": 0.1723076923076923,
+      "shareByShow": {
+        "ferriss": 0.1723076923076923
+      },
+      "meanPer10k": 0.6002320540695026,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "304-debbie-millman-how-to-prioritize-your-life-and-make-time-for",
+          "show": "ferriss",
+          "snippet": "...ork, and then being the person most qualified when that opportunity shows up. Winning your great job is about hard work. It’s about stamina. It’s about grit, ingenuity, and timing. What might look like luck to you is simply hard..."
+        },
+        {
+          "episode": "246-jason-khalipa",
+          "show": "ferriss",
+          "snippet": "...at the top don’t really track all the macros. Some of them do, but not a lot of the guys. A lot of them just work hard, train hard, and just eat appropriately. Jason Khalipa: I think my workout is going to be roughly the way it..."
+        },
+        {
+          "episode": "435-kevin-hart-the-unstoppable-combination-of-positivity-and-rel",
+          "show": "ferriss",
+          "snippet": "...is happen, I'll do this. I'll get this, easy. I'll get it done. I got it, I'll do it. I'm at it, I'm going to work hard. I'm going to do it. I, I, I, I, I. Everything is I, I, I, and you get lost in that. You really do get lost i..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "customer-obsession",
+        "label": "Customers and solving real problems",
+        "group": "business",
+        "predicted": false,
+        "patterns": [
+          "\\b(?:customers?)\\b",
+          "\\b(?:solve (?:a |the )?(?:real )?problems?)\\b",
+          "\\b(?:product[- ]market fit)\\b"
+        ]
+      },
+      "share": 0.1676923076923077,
+      "shareByShow": {
+        "ferriss": 0.1676923076923077
+      },
+      "meanPer10k": 0.9773412990111645,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "397-mike-maples-and-andy-rachleff-two-questions-every-entreprene",
+          "show": "ferriss",
+          "snippet": "Andy Rachleff: If the customer doesn't scream, you don't have product market fit. Mike Maples, Jr.: That's the voice of Andy Rachleff, the p..."
+        },
+        {
+          "episode": "882-why-kids-can-learn-10x-faster-than-we-think-niels-hoven-of-m",
+          "show": "ferriss",
+          "snippet": "...n: My son, yep. Niels Hoven: Zooming way out. We've built a product that we are really proud of that when our customers use it, they rave about it and they tell their friends about it. I think we have not figured out. We are real..."
+        },
+        {
+          "episode": "351-allen-walton-and-spyguy-the-path-to-seven-figures",
+          "show": "ferriss",
+          "snippet": "...s around 2:00 p.m., I’d have to hustle outside the building to grab lunch real quick and come back because if customers were to come in and there’s nobody there to help them, they could just take everything in the store. So it wa..."
+        }
+      ]
+    },
+    {
+      "theme": {
+        "id": "leverage-skills",
+        "label": "Specific skills and leverage",
+        "group": "business",
+        "predicted": true,
+        "patterns": [
+          "\\b(?:(?:have|has|get|gain|create|build|use|using|apply|forms? of|kinds? of) leverage|leverage (?:yourself|your time|your skills))\\b",
+          "\\b(?:specific knowledge)\\b",
+          "\\b(?:skill ?sets?|skill stack)\\b",
+          "\\b(?:equity|ownership)\\b",
+          "\\b(?:trading (?:your )?time for money)\\b",
+          "\\b(?:scalable|at scale)\\b"
+        ]
+      },
+      "share": 0.11538461538461539,
+      "shareByShow": {
+        "ferriss": 0.11538461538461539
+      },
+      "meanPer10k": 0.42797268586429116,
+      "consensus": false,
+      "evidence": [
+        {
+          "episode": "495-david-rubenstein-co-founder-of-the-carlyle-group-on-lessons",
+          "show": "ferriss",
+          "snippet": "...er, you have to learn how to read and write reasonably well and talk reasonably well, and those were probably skill sets that I thought I had. I didn't think I was a great scientist in terms of going to medical school. And I reall..."
+        },
+        {
+          "episode": "187-jocko-willink-on-discipline-leadership-and-overcoming-doubt",
+          "show": "ferriss",
+          "snippet": "...It’s about things we could’ve done better and lessons that we learned. I think that’s why that book, Extreme Ownership , has done well. It’s something you can learn from and people learn the most, myself included, when you fail...."
+        },
+        {
+          "episode": "356-peter-mallouk",
+          "show": "ferriss",
+          "snippet": "...ng to borrow money against my portfolio to buy more stocks.” But that’s basically what we’re doing when we’re using leverage in real estate. We’re really counting on the value of real estate to hold. And then, third, I would say the t..."
+        }
+      ]
+    }
+  ]
+}
