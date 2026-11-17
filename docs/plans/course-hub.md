@@ -41,6 +41,24 @@ Rewritten in the Fall Term lesson-plan format (`LESSON_PLANS["2-beg"]` in `hub/i
 | 9 | Animal Habitats | A shelter protects from weather and predators | Storm shelter: wind, then shake, then books on the roof (tablet research week) |
 | 10 | Gallery Exhibition | Presenting and curating | Rematch of any past test, then a gallery walk with compliment notes |
 
+## Term 2 Intermediate lesson plans
+Same format (`LESSON_PLANS["2-int"]`). Passages run 105 to 130 words for popcorn reading; Week 5 is a tablet research week.
+
+| Week | Theme | Engineering idea | Competition test |
+| --- | --- | --- | --- |
+| 1 | Gear Systems | Gear size changes speed; each gear flips direction | Spin count: last-gear turns per crank turn |
+| 2 | Bridge Engineering | Efficiency: load per brick | Efficiency score: pennies held ÷ bricks used |
+| 3 | Technic Building | Crossed plate layers make a stiff chassis | Haul test: pennies on a truck bed down the ramp |
+| 4 | Rube Goldberg Machines | Each step triggers the next | Class chain reaction, with a bonus for hand-offs |
+| 5 | Architecture Styles | A cantilever needs an anchor | Fallingwater balcony: longest that holds 10 pennies |
+| 6 | Lighting & Effects | Light travels straight; opaque bricks cast shadows | Shadow show: class guesses each silhouette |
+| 7 | Constraint Building | Plan within limits | Mystery challenge: tallest tower from 25 pre-picked pieces |
+| 8 | Gear-Up Racers | Gear up for speed, gear down for strength; iteration | 3-crank distance, 3 tries with one change each |
+| 9 | Towers Against the Wind | A wide base and braces resist wind load | Wind tunnel: tallest tower after 5 folder waves |
+| 10 | Design Competition | Judging with criteria | Timed themed build, peer judging with feedback notes |
+
+Weeks 1 and 8 need a gear bag that is not in the 10696 box (Technic gears in 2 sizes, axles, Technic bricks with holes). Each has a no-gears fallback in its troubleshooting. Week 3 is written for plain bricks and plates; Technic beams are optional. Week 6 uses the phone flashlight from the tote instead of light bricks.
+
 Every course runs 10 weeks (the two added weeks sit before each final week). Week keys stay `w1`-`w7`, then `w9`, `w10`, and `w8` for the final week, so tracker check-offs made before the change keep their dates.
 
 Week 3 needs one "battering ram" car built ahead of time from the 10696 box. Week 4 uses any turning piece (a wheel on its pin) as a joint, so it does not depend on hinge pieces.
