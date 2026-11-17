@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: a baseplate grid of courses (levels x terms; Term 1 is one tiered course spanning all levels); each course opens into an 8-week build log. Toolkit sits below. */
+/* Layout: a baseplate grid of courses (levels x terms; Term 1 is one tiered course spanning all levels); each course opens into a 10-week build log. Toolkit sits below. */
 :root {
   --bg: #eef2ee;
   --panel: #ffffff;
@@ -313,7 +313,7 @@ footer { color: var(--muted); font-size: 0.85rem; }
       </div>
       <div class="card">
         <h3>Builder Card</h3>
-        <p class="hint">Every competition entry gets an index card. Cards stay with the build for judging and the Week 8 gallery walk. Grades 1 and 2 can draw and label.</p>
+        <p class="hint">Every competition entry gets an index card. Cards stay with the build for judging and the Week 10 gallery walk. Grades 1 and 2 can draw and label.</p>
         <div class="index-card">
           <div class="top">Builder Card</div>
           <div>1. Name of my build: ________</div>
@@ -321,7 +321,7 @@ footer { color: var(--muted); font-size: 0.85rem; }
           <div style="color:var(--muted);font-size:0.85rem;line-height:1.3">(Use one vocabulary word.)</div>
           <div>3. My Superpower today was ____.</div>
         </div>
-        <p class="note"><b>Read &amp; Learn.</b> Use the existing Fall passages from the Term 1 literacy guide. They are under 150 words, so they fit the 5 minutes. Weeks 4 and 7 use the tablet-research and fable options.</p>
+        <p class="note"><b>Read &amp; Learn.</b> Use the existing Fall passages from the Term 1 literacy guide. They are under 150 words, so they fit the 5 minutes. Weeks 4 and 9 use the tablet-research and fable options. Weeks 6 and 8 have new passages in the Fall lesson plans.</p>
       </div>
     </div>
     <p class="note"><b>Open question from the Term 1 literacy guide:</b> do the schools want reading passages matched to a specific grade level or reading standard? If so, passage length and vocabulary can be adjusted per site.</p>
@@ -346,7 +346,7 @@ const ALL_LEVELS = { id: "all", key: "all", name: "All levels" };
 // Term 1: Fall Term lesson plans. One tiered course for every level.
 const T1 = {
   title: "Fall Term lesson plans",
-  focus: "Eight teach-tomorrow lessons, built only on the LEGO Classic 10696 box and a cheap test kit.",
+  focus: "Ten teach-tomorrow lessons, built only on the LEGO Classic 10696 box and a cheap test kit.",
   weeks: [
     {
       theme: "Tower Power", power: "Organization",
@@ -420,7 +420,21 @@ const T1 = {
       seniors: "Teams race. Talking point: first cars people drove, and how roads and cars have changed. Very social and competitive in a friendly way."
     },
     {
-      theme: "Architects and Earthquakes", power: "Planning",
+      theme: "Lever Launchers", power: "Curiosity", key: "w9",
+      objective: "Students can show how moving the fulcrum changes how far a lever launches.",
+      vocab: [["lever", "a bar that tips on a point to move things"], ["fulcrum", "the point a lever tips on"], ["force", "a push or a pull"]],
+      read: "Passage: \"Levers Are Everywhere\" (new, in the Fall lesson plans). A lever is a strong bar that tips on a point called the fulcrum. A seesaw is a lever. Long ago, people built giant levers called catapults. Question: What is the fulcrum on a seesaw?",
+      kit: "Painter's tape launch line, tape measure, 1x1 or 1x2 bricks as launch bricks, 3 paper cups as targets.",
+      circle: "Read the passage. Demo: lay a long plate across a stack of 2 bricks to make a seesaw. Put a 1x1 brick on one end and tap the other end. Then slide the fulcrum toward the tapped end and tap again. Ask: \"Why did it fly farther?\" Say: \"Moving the fulcrum changes what the lever does.\" Set the rule: launch only toward the wall, and only from the tape line.",
+      build: "",
+      tiers: ["A lever that launches a 1x1 brick off the table.", "A launcher that sends the brick over a 1-brick wall 30 cm away.", "A launcher with a basket for the brick that lands it in a paper cup."],
+      comp: "Catapult distance. Each builder gets 3 launches from the tape line, and you measure where the brick first lands. Best launch counts. Accuracy round: cups at 50 cm, 1 m, and 1.5 m, worth 1, 2, and 3 points.",
+      checks: ["\"What happened when we moved the fulcrum?\"", "\"Point to the fulcrum on your launcher.\""],
+      sideways: [["Bricks flying at people", "one warning, then that builder sits out a round."], ["Launcher falls apart", "overlap the fulcrum stack like in Week 2."], ["Grades 1 and 2 struggle to tap hard enough", "let them push with a whole hand instead of slamming."]],
+      seniors: "Run it as a target game, like cornhole, with teams and points. Talking point: playground seesaws and who remembers the old metal ones."
+    },
+    {
+      theme: "Architects and Earthquakes", power: "Planning", key: "w6",
       objective: "Students can sketch a plan before building and explain one way to make a building earthquake-safe.",
       vocab: [["architect", "a person who designs buildings"], ["blueprint", "a drawing that shows the plan"], ["earthquake", "when the ground shakes"]],
       read: "Passage: \"What Does an Architect Do?\"",
@@ -434,7 +448,21 @@ const T1 = {
       seniors: "Teams design a dream home or the house they grew up in. Talking point: homes people have lived in. Run the shake test only if the group wants it."
     },
     {
-      theme: "Story Builders", power: "Communication",
+      theme: "Crash Test Capsules", power: "Teamwork", key: "w10",
+      objective: "Students can explain that a cushion or crumple zone protects a rider by softening the hit.",
+      vocab: [["impact", "when something hits hard"], ["protect", "keep safe from harm"], ["crumple zone", "a part built to break so the rider doesn't"]],
+      read: "Passage: \"How Cars Keep People Safe\" (new, in the Fall lesson plans). The front of a car has a crumple zone that bends in a crash, so the hit is softer for the people inside. Seat belts and airbags help too. Question: Why is the front of a car built to crumple?",
+      kit: "Tape measure, painter's tape square on the floor (the landing zone), a chair to drop from, a towel to catch loose bricks.",
+      circle: "Read the passage. Demo: make a \"rider\" from 3 bricks pressed together lightly, so the studs are just touching. Drop it from 30 cm and watch it pop apart. Then put a rider in a box with loose bricks around it and drop again. Ask: \"What protected the rider?\" Say: \"Engineers plan for the impact so they can protect the rider.\"",
+      build: "Work in pairs. You make every rider yourself so all teams get the same pressure.",
+      tiers: ["A capsule that keeps the rider in one piece after a 30 cm drop.", "Survives 60 cm, using 30 bricks or fewer.", "Survives 90 cm with a crumple zone that breaks off while the rider stays whole."],
+      comp: "Drop ladder. You drop every capsule from the same heights into the tape square: 30, 60, 90, 120, then 150 cm (stand on the chair for the top two). After each drop, the team opens the capsule. A capsule moves up a height if its rider is whole. The last capsule standing wins, and fewest bricks breaks a tie.",
+      checks: ["\"Why did the crumple zones help?\"", "\"What does a seat belt do?\""],
+      sideways: [["Teams press their rider hard to cheat", "you make every rider."], ["Bricks scatter everywhere", "drop over the towel."], ["One partner takes over", "one partner builds the cushion and the other builds the shell, then they switch."]],
+      seniors: "Teams build capsules and you run the drop ladder. Talking point: cars without seat belts, and how safety has changed. This usually gets great stories."
+    },
+    {
+      theme: "Story Builders", power: "Communication", key: "w7",
       objective: "Students can give clear building directions using position words (on top, next to, under).",
       vocab: [["character", "who the story is about"], ["setting", "where and when it happens"], ["instructions", "steps that tell someone exactly what to do"]],
       read: "Read a short fable aloud together, such as \"The Tortoise and the Hare.\"",
@@ -448,14 +476,14 @@ const T1 = {
       seniors: "Blind build is a great fit for seniors: it's social, funny, and good for memory and language. Talking point: a favorite story from childhood. Memory care: use 3 large bricks and describe colors only."
     },
     {
-      theme: "Engineering Showcase", power: "Pride",
+      theme: "Engineering Showcase", power: "Pride", key: "w8",
       objective: "Students can present one build and explain the engineering idea behind it using a vocabulary word from the term.",
       vocab: [["engineer", "a person who designs, builds, tests, and improves"]],
-      vocabNote: "Review all 21 words from the term. New word:",
+      vocabNote: "Review all 27 words from the term. New word:",
       read: "Each student reads their favorite past Builder Card to a partner.",
       kit: "Everything from the term, set up as stations.",
-      circle: "Walk through the 7 Superpowers. Quick vocabulary game: you say a definition, and kids shout the word. Explain the Showcase: \"Today you pick your favorite test from the term and try to beat your own record.\"",
-      build: "Rematch. Each student picks one past challenge (tower, penny bridge, balancing bird, ramp car, or shake house) and tries to beat their own score. Tier 3 builders can help a younger or newer builder after they finish.",
+      circle: "Walk through the 9 Superpowers. Quick vocabulary game: you say a definition, and kids shout the word. Explain the Showcase: \"Today you pick your favorite test from the term and try to beat your own record.\"",
+      build: "Rematch. Each student picks one past challenge (tower, penny bridge, balancing bird, ramp car, lever launcher, shake house, or crash capsule) and tries to beat their own score. Tier 3 builders can help a younger or newer builder after they finish.",
       tiers: [],
       comp: "Showcase and gallery. 20 min: build a personal masterpiece with a theme. 20 min: gallery walk. Each builder stands by their build and reads their Builder Card, which says \"My build is ___ because ___\" with one vocabulary word. If families attend, they walk the gallery too.",
       cleanup: "A certificate for everyone, naming the Superpower they showed most. Awards: Most Improved Record, Best Engineer Explanation, Persistence Award.",
@@ -477,6 +505,8 @@ const LATER = {
       ["Nature & Gardens", ["Build trees and flowers", "Create park scenes", "Use natural colors effectively"], ["Botanical garden creation", "Tree building techniques", "Landscape design"], "Organic Building", "Curved and natural forms"],
       ["Sports Stadium", ["Build sports venues", "Create playing fields", "Add spectator areas"], ["Stadium construction", "Field design (soccer, baseball)", "Scoreboard building"], "Scale Building", "Large structures"],
       ["Color Mastery", ["Understand color combinations", "Build monochromatic creations", "Use color for emphasis"], ["Rainbow building challenge", "Single-color masterpieces", "Color accent exercises"], "Artistic Eye", "Using color effectively"],
+      ["Bridges Over Water", ["Build bridges that span a gap", "Test which shapes hold the most", "Decorate with theme colors"], ["Penny bridge rematch", "Arch vs. flat bridge test", "River scene collaboration"], "Persistence", "Trying again after a fall"],
+      ["Animal Habitats", ["Build an animal and its home", "Match colors to the habitat", "Explain how the home protects the animal"], ["Habitat fact hunt", "Shelter build", "Habitat walk-through"], "Curiosity", "Asking how nature works"],
       ["Gallery Exhibition", ["Curate personal collection", "Present creations", "Appreciate others' work"], ["Gallery setup", "Presentation practice", "Exhibition celebration"], "Presentation", "Showcasing work"]
     ]},
     int: { focus: "Technical advancement: Gear trains, advanced structures, and design challenges.", weeks: [
@@ -487,6 +517,8 @@ const LATER = {
       ["Architecture Styles", ["Study architectural periods", "Build in different styles", "Understand design elements"], ["Gothic architecture", "Modern minimalist design", "Frank Lloyd Wright inspired"], "Architectural Knowledge", "Understanding styles"],
       ["Lighting & Effects", ["Incorporate light elements", "Create visual effects", "Design for display"], ["Light brick integration", "Transparent piece usage", "Display-worthy builds"], "Showmanship", "Making it spectacular"],
       ["Constraint Building", ["Build with limited pieces", "Maximize efficiency", "Problem-solve creatively"], ["Mystery bag challenges", "Color-restricted builds", "Size-limited challenges"], "Constraint Creativity", "Limits inspire innovation"],
+      ["Gear-Up Racers", ["Build cars with gear-driven wheels", "Compare gear sizes for speed", "Test and improve on a ramp"], ["Gear-up vs. gear-down test", "Ramp racer build", "Distance race"], "Iteration", "Test, change, test again"],
+      ["Towers Against the Wind", ["Build tall towers that resist wind", "Use triangles and wide bases", "Measure height and survival"], ["Paper-fan wind test", "Triangle bracing practice", "Tallest-standing tower contest"], "Resilience", "Standing strong"],
       ["Design Competition", ["Compete in building challenges", "Present under pressure", "Judge others' work"], ["Timed competition rounds", "Judging workshop", "Awards and celebration"], "Competition Readiness", "Performing under pressure"]
     ]},
     adv: { focus: "Sophisticated design: Advanced mechanics, artistic building, and professional techniques.", weeks: [
@@ -497,6 +529,8 @@ const LATER = {
       ["Advanced Kinetics", ["Build complex moving sculptures", "Create continuous motion", "Synchronize multiple movements"], ["Multi-axis movement", "Synchronized mechanisms", "Kinetic art projects"], "Motion Choreography", "Orchestrating movement"],
       ["Historical Landmarks", ["Recreate famous buildings", "Research architectural history", "Build to accurate scale"], ["Eiffel Tower or Statue of Liberty", "Taj Mahal or Colosseum", "Local landmark recreation"], "Historical Recreation", "Building history"],
       ["Stop Motion Animation", ["Build poseable figures", "Plan animation sequences", "Create short films"], ["Articulated figure building", "Scene construction", "Animation production"], "Animation", "Bringing builds to life"],
+      ["Load-Bearing Challenge", ["Design structures for a target load", "Use trusses and cantilevers", "Record test results in a table"], ["Cantilever reach test", "Penny load trials", "Results chart"], "Data Thinking", "Letting results guide design"],
+      ["Mechanism Remix", ["Combine two mechanisms in one build", "Use upgrade-bin gears or Technic", "Explain how motion transfers"], ["Crank-and-gear builds", "Partner mechanism swap", "Mechanism demo"], "Integration", "Making parts work together"],
       ["Master Builder Showcase", ["Complete signature build", "Document building process", "Inspire others"], ["Signature MOC completion", "Process documentation", "Master builder exhibition"], "Signature Style", "Developing unique voice"]
     ]}
   },
@@ -509,6 +543,8 @@ const LATER = {
       ["City Services", ["Build essential city buildings", "Create service vehicles", "Understand community helpers"], ["Post office and library", "Garbage truck and street sweeper", "Community building"], "Community Understanding", "Building society"],
       ["Winter Wonderland", ["Build snowy scenes", "Create winter activities", "Use white and blue effectively"], ["Ski slope construction", "Igloo and snow fort", "Ice skating rink"], "Seasonal Building", "Capturing seasons"],
       ["Music & Performance", ["Build musical instruments", "Create performance stages", "Design concert venues"], ["Guitar and drum builds", "Stage with lights", "Concert hall creation"], "Performance Space", "Building for entertainment"],
+      ["Playground Design", ["Design a safe playground", "Build slides, swings, and seesaws", "Test that each piece stands up"], ["Seesaw lever build", "Slide ramp test", "Team playground build"], "Safety Thinking", "Building for others"],
+      ["Rescue Bridges", ["Build bridges for emergency vehicles", "Test bridge strength with a load", "Fix weak spots"], ["Bridge design sketch", "Penny load test", "Rescue scene"], "Helpfulness", "Building to help"],
       ["Dream Project Day", ["Build anything imagined", "Complete ambitious projects", "Share creative visions"], ["Open-ended dream builds", "Support and collaboration", "Dream showcase celebration"], "Unlimited Creativity", "Building dreams"]
     ]},
     int: { focus: "Engineering focus: Structural challenges, advanced mechanisms, and problem-based learning.", weeks: [
@@ -519,6 +555,8 @@ const LATER = {
       ["Skyscraper Engineering", ["Build tall stable structures", "Understand center of gravity", "Design vertical transportation"], ["Tall building competition", "Elevator system design", "Earthquake resistance testing"], "Vertical Building", "Reaching heights"],
       ["Transportation Systems", ["Design complete transport networks", "Build stations and terminals", "Create vehicle fleets"], ["Airport or train station", "Bus and subway system", "Integrated transport planning"], "Systems Thinking", "Connecting elements"],
       ["Art Installation", ["Create abstract art pieces", "Build for visual impact", "Express artistic concepts"], ["Abstract sculpture", "Installation art pieces", "Gallery-quality builds"], "Abstract Expression", "Art through bricks"],
+      ["Ball Run Engineering", ["Build ramps and turns for a small ball", "Control speed with slope", "Connect sections into one run"], ["Ramp angle tests", "Team run sections", "Longest-run-time contest"], "Collaboration", "Connecting our work"],
+      ["Drop Test Capsules", ["Protect a rider from a fall", "Use crumple zones and cushions", "Test from rising heights"], ["Capsule design", "Drop ladder test", "Redesign round"], "Resilience", "Bouncing back"],
       ["Innovation Challenge", ["Solve real-world problems", "Pitch creative solutions", "Build prototypes"], ["Problem identification", "Solution brainstorming", "Prototype building and presentation"], "Problem-Solving", "Creating solutions"]
     ]},
     adv: { focus: "Expert level: Complex systems, artistic mastery, and professional portfolio development.", weeks: [
@@ -529,6 +567,8 @@ const LATER = {
       ["Competition Preparation", ["Prepare for competitions", "Build under strict rules", "Perfect presentation skills"], ["Competition rule study", "Timed building practice", "Presentation rehearsal"], "Competition Excellence", "Winning performances"],
       ["Professional Photography", ["Photograph builds effectively", "Use lighting and angles", "Create portfolio quality images"], ["Photography techniques", "Lighting setup", "Portfolio building"], "Visual Documentation", "Capturing work"],
       ["Teaching & Instruction", ["Create building instructions", "Teach building techniques", "Mentor younger builders"], ["Instruction manual creation", "Workshop leading", "Mentorship sessions"], "Instruction", "Teaching others"],
+      ["Earthquake Engineering Lab", ["Design for shaking forces", "Test bracing and base isolation", "Compare results across designs"], ["Shake table trials", "Bracing experiments", "Engineering report card"], "Analysis", "Understanding forces"],
+      ["Design for a Client", ["Build to a written client brief", "Meet size and piece limits", "Present the solution"], ["Client brief reading", "Prototype and test", "Client pitch"], "Empathy", "Designing for others' needs"],
       ["Portfolio Presentation", ["Compile year's work", "Present to audience", "Demonstrate growth"], ["Portfolio curation", "Professional presentation", "Portfolio showcase event"], "Professional Presentation", "Showing expertise"]
     ]}
   },
@@ -541,6 +581,8 @@ const LATER = {
       ["Secret Agent Base", ["Build spy headquarters", "Create gadgets and vehicles", "Design hidden features"], ["Secret base construction", "Spy gadget building", "Hidden compartment designs"], "Secret Building", "Hidden features"],
       ["Celebration Party", ["Build party scenes", "Create decorations", "Design festive buildings"], ["Party venue building", "Birthday cake creation", "Festive decoration design"], "Celebration", "Building joy"],
       ["Friendship Collaboration", ["Work with friends", "Build together", "Create group masterpiece"], ["Partner building challenges", "Group mosaic creation", "Collaborative mega-build"], "Friendship", "Building together"],
+      ["Toy Inventor", ["Invent a new toy", "Add a moving part", "Test that a friend can play with it"], ["Toy sketch", "Moving-part build", "Toy test with a partner"], "Creativity", "Making something new"],
+      ["Build-Off Rematch", ["Pick a favorite challenge from the year", "Beat your own record", "Explain what you changed"], ["Challenge stations", "Record attempts", "Improvement share"], "Growth", "Getting better every time"],
       ["Year-End Showcase", ["Display year's best work", "Celebrate growth", "Graduate to next level"], ["Best-of-year gallery", "Growth reflection", "Graduation ceremony"], "Pride", "Celebrating achievements"]
     ]},
     int: { focus: "Year completion: Advanced integration, competition, and pathways forward.", weeks: [
@@ -551,6 +593,8 @@ const LATER = {
       ["Engineering Olympics", ["Compete in engineering challenges", "Test designs", "Optimize performance"], ["Speed race vehicles", "Distance catapults", "Strength competitions"], "Engineering Competition", "Testing designs"],
       ["Mentor Day", ["Teach younger students", "Share knowledge", "Build leadership"], ["Leading beginner sessions", "Creating teaching demos", "Mentorship practice"], "Mentorship", "Giving knowledge"],
       ["Dream Build Finale", ["Complete ambitious project", "Execute full vision", "Create masterpiece"], ["Large-scale project completion", "Detail perfection", "Final touches"], "Vision Completion", "Finishing dreams"],
+      ["Community Problem Solvers", ["Find a real problem at school or home", "Build a model solution", "Explain who it helps"], ["Problem brainstorm", "Solution prototype", "Gallery pitch"], "Empathy", "Helping our community"],
+      ["Engineering Relay", ["Build in team relays", "Hand off builds with clear instructions", "Finish under a time limit"], ["Relay build rounds", "Instruction hand-offs", "Team relay final"], "Teamwork", "Winning together"],
       ["Grand Exhibition", ["Showcase all work", "Present professionally", "Celebrate year"], ["Exhibition setup", "Professional presentations", "Grand celebration"], "Mastery Display", "Showing excellence"]
     ]},
     adv: { focus: "Mastery achievement: Portfolio completion, exhibition, and builder identity.", weeks: [
@@ -561,6 +605,8 @@ const LATER = {
       ["Online Portfolio", ["Create digital presence", "Share work online", "Build following"], ["Website/social creation", "Photography portfolio", "Online community engagement"], "Digital Presence", "Online identity"],
       ["Workshop Leadership", ["Lead building workshops", "Teach advanced techniques", "Inspire others"], ["Workshop planning", "Technique teaching", "Leadership practice"], "Leadership", "Guiding others"],
       ["Legacy Project", ["Create lasting contribution", "Build permanent installation", "Leave mark"], ["Major build completion", "Installation planning", "Legacy documentation"], "Legacy Building", "Lasting impact"],
+      ["Teach-Back Lesson", ["Plan a 10-minute mini-lesson", "Teach a technique to newer builders", "Check that learners got it"], ["Lesson planning", "Teach-back session", "Feedback circle"], "Leadership", "Helping others learn"],
+      ["Final Prototype Sprint", ["Finish a capstone build", "Test and improve one last time", "Prepare a technical explanation"], ["Prototype testing", "Final fixes", "Presentation practice"], "Focus", "Finishing strong"],
       ["Master Builder Celebration", ["Celebrate mastery", "Recognize achievements", "Launch builder career"], ["Master builder certification", "Grand exhibition opening", "Future pathway discussion"], "Mastery", "Achieving excellence"]
     ]}
   }
@@ -573,22 +619,23 @@ const TERMS = [
   { n: 4, title: "Term 4", pdf: "pdfs/term-4.pdf" }
 ];
 const FILES = [
-  { title: "Term 1 · Fall Term Lesson Plans", sub: "Tiered lessons, test kit, seniors notes · 7 pages", pdf: "pdfs/term-1-lesson-plans.pdf" },
+  { title: "Term 1 · Fall Term Lesson Plans", sub: "Earlier 8-week version · weeks 6 and 8 are new in the hub", pdf: "pdfs/term-1-lesson-plans.pdf" },
   { title: "Term 1 · Literacy Guide", sub: "Reading passages and the earlier level tracks · 7 pages", pdf: "pdfs/term-1.pdf" },
-  { title: "Term 2", sub: "8-Week Curriculum Guide · 9 pages", pdf: "pdfs/term-2.pdf" },
-  { title: "Term 3", sub: "8-Week Curriculum Guide · 9 pages", pdf: "pdfs/term-3.pdf" },
-  { title: "Term 4", sub: "8-Week Curriculum Guide · 9 pages", pdf: "pdfs/term-4.pdf" }
+  { title: "Term 2", sub: "Original 8-week guide · weeks 8 and 9 are new in the hub", pdf: "pdfs/term-2.pdf" },
+  { title: "Term 3", sub: "Original 8-week guide · weeks 8 and 9 are new in the hub", pdf: "pdfs/term-3.pdf" },
+  { title: "Term 4", sub: "Original 8-week guide · weeks 8 and 9 are new in the hub", pdf: "pdfs/term-4.pdf" }
 ];
 
 // Normalize everything into one list of courses with uniform week records.
 const COURSES = [{
   id: "t1", term: TERMS[0], level: ALL_LEVELS, title: T1.title, focus: T1.focus, lesson: true,
-  weeks: T1.weeks.map((w, i) => ({ n: i + 1, tagline: "", goals: [], acts: [], ...w }))
+  weeks: T1.weeks.map((w, i) => ({ n: i + 1, key: `w${i + 1}`, tagline: "", goals: [], acts: [], ...w }))
 }];
 for (const t of TERMS.slice(1)) {
   for (const lv of LEVELS) {
     const c = LATER[t.n][lv.id];
-    const weeks = c.weeks.map(([theme, goals, acts, power, tagline], i) => ({ n: i + 1, theme, goals, acts, power, tagline }));
+    const last = c.weeks.length - 1;
+    const weeks = c.weeks.map(([theme, goals, acts, power, tagline], i) => ({ n: i + 1, key: i === last ? "w8" : i >= 7 ? `w${i + 2}` : `w${i + 1}`, theme, goals, acts, power, tagline }));
     COURSES.push({ id: `t${t.n}-${lv.key}`, term: t, level: lv, title: c.focus.split(":")[0], focus: c.focus, lesson: false, weeks });
   }
 }
@@ -802,7 +849,8 @@ const TOTE = [
   "1 cookie sheet or tray (shake table)",
   "Phone or stopwatch for timing",
   "Index cards (Builder Cards), sticky notes, pencils",
-  "4 file folders (privacy screens for Week 7)",
+  "4 file folders (privacy screens for Week 9)",
+  "An old towel (catches bricks in the Week 8 drop test)",
   "Small prize box (stickers, brick-shaped erasers, certificates)"
 ];
 
@@ -839,7 +887,8 @@ document.addEventListener("change", (e) => {
 });
 $("#q").addEventListener("input", (e) => { state.q = e.target.value; renderResults(); });
 
-// Class tracker: one db doc per location at locations/<id> = {name, level, order, done: {"<courseId>-w<n>": "YYYY-MM-DD"}}.
+// Class tracker: one db doc per location at locations/<id> = {name, level, order, done: {"<courseId>-<week key>": "YYYY-MM-DD"}}.
+// Week keys stay fixed when weeks are added, so lessons already checked off keep their dates.
 const tr = { db: null, ready: false, unavailable: false, locs: [], term: store.get("tr-term", 1), readOnly: false, armed: null, deferred: false };
 const trWrites = {};
 const CHECK = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>`;
@@ -884,8 +933,8 @@ function renderTracker() {
   else body = tr.locs.map((loc) => {
     const c = trCourse(loc);
     const done = loc.done || {};
-    const count = c.weeks.filter((w) => done[`${c.id}-w${w.n}`]).length;
-    const next = c.weeks.find((w) => !done[`${c.id}-w${w.n}`]);
+    const count = c.weeks.filter((w) => done[`${c.id}-${w.key}`]).length;
+    const next = c.weeks.find((w) => !done[`${c.id}-${w.key}`]);
     const armed = tr.armed === loc.id;
     return `<tr>
       <th class="loc" scope="row"><div class="loc-in">
@@ -895,7 +944,7 @@ function renderTracker() {
       ${showLevel ? `<td><select id="loc-level-${loc.id}" data-loclevel="${loc.id}" aria-label="Level at ${esc(loc.name || "this location")}" ${tr.readOnly ? "disabled" : ""}>
         ${LEVELS.map((l) => `<option value="${l.id}" ${(loc.level || "beg") === l.id ? "selected" : ""}>${l.name}</option>`).join("")}</select></td>` : ""}
       ${c.weeks.map((w) => {
-        const key = `${c.id}-w${w.n}`, on = Boolean(done[key]);
+        const key = `${c.id}-${w.key}`, on = Boolean(done[key]);
         const label = `Week ${w.n}, ${w.theme}${on ? `, taught ${fmtDay(done[key])}` : ", not taught yet"}`;
         return `<td><button type="button" class="stud ${c.level.id}" data-stud="${loc.id}" data-key="${key}" aria-pressed="${on}" title="${esc(label)}" aria-label="${esc(label)}" ${tr.readOnly ? "disabled" : ""}>${CHECK}</button></td>`;
       }).join("")}
@@ -970,3 +1019,4 @@ state.course = COURSES.some((c) => c.id === fromHash) ? fromHash : "t1";
 if (![1, 2, 3, 4].includes(tr.term)) tr.term = 1;
 renderFacts(); renderChips(); renderMap(); renderTrTerms(); renderTracker(); renderToolkit(); renderDetail();
 </script>
+
