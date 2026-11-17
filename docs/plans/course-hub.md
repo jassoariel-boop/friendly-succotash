@@ -25,6 +25,26 @@ The curriculum PDFs, copied into `hub/pdfs/`:
 
 The file is written for publishing as a claude.ai Artifact, which wraps it in a document skeleton. Opening it straight from disk also works.
 
+## Term 2 Beginner lesson plans
+Rewritten in the Fall Term lesson-plan format (`LESSON_PLANS["2-beg"]` in `hub/index.html`). The themes, Superpowers and activities stay the same as in `term-2.pdf`. Each week adds an engineering idea, three vocab words, a short echo-reading passage (80 to 95 words, vocab in bold; Week 9 is a tablet research week instead), a tote-only test, Tiers 1 to 3, check questions, troubleshooting and a seniors note.
+
+| Week | Theme | Engineering idea | Competition test (tote only) |
+| --- | --- | --- | --- |
+| 1 | Underwater World | A thick hull resists pressure | Pressure test: books stacked on a submarine |
+| 2 | Space Exploration | Wide legs land safely | Moon landing: drop from 20 to 60 cm onto the cookie sheet |
+| 3 | Medieval Castles | Thick, overlapped walls defend | Battering ram: ram car down a ramp that gets steeper |
+| 4 | Robots & Automatons | Joints let robots move and hold a pose | Robot strongman: pennies in a cup on an outstretched arm |
+| 5 | Nature & Gardens | Roots and a strong trunk hold up branches | Windy day: file-folder wind, widest branch spread wins |
+| 6 | Sports Stadium | Columns hold up a crowd | Crowd test: pennies in a cup on the top row of the stands |
+| 7 | Color Mastery | High contrast is seen from farther away | Long-distance sign: farthest distance a volunteer can read it |
+| 8 | Bridges Over Water | An arch pushes weight out to the sides | Penny bridge rematch at a 20 cm span |
+| 9 | Animal Habitats | A shelter protects from weather and predators | Storm shelter: wind, then shake, then books on the roof (tablet research week) |
+| 10 | Gallery Exhibition | Presenting and curating | Rematch of any past test, then a gallery walk with compliment notes |
+
+Every course runs 10 weeks (the two added weeks sit before each final week). Week keys stay `w1`-`w7`, then `w9`, `w10`, and `w8` for the final week, so tracker check-offs made before the change keep their dates.
+
+Week 3 needs one "battering ram" car built ahead of time from the 10696 box. Week 4 uses any turning piece (a wheel on its pin) as a joint, so it does not depend on hinge pieces.
+
 ## Open items
 - The toolkit's class frame now follows the Fall Term lesson plans (Competition Build 40 min, Cleanup 10 min). Confirm Terms 2 to 4 use the same frame.
 - Terms 2 to 4 don't have tiered lesson plans yet. If those get written, they can use the `T1` lesson format.

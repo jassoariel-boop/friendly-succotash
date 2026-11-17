@@ -167,6 +167,9 @@ header { display: grid; gap: 14px; }
 .vdefs dt { font-family: var(--mono); font-size: 0.8rem; font-weight: 500; }
 .vdefs dd { margin: 0; color: var(--muted); }
 .blk .tiers, .tiers { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.passage { margin-top: 4px; }
+.passage summary { cursor: pointer; color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+.passage p { margin-top: 6px; padding: 10px 12px; background: var(--sunk); border-radius: 8px; font-size: 0.95rem; line-height: 1.6; max-width: 65ch; }
 .tiers li { display: grid; grid-template-columns: 62px minmax(0,1fr); gap: 8px; align-items: baseline; }
 .tier { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; padding: 1px 6px; border-radius: 4px; text-align: center; }
 .tier.t1 { background: var(--beg); color: var(--beg-ink); } .tier.t2 { background: var(--int); color: var(--int-ink); } .tier.t3 { background: var(--adv); color: var(--adv-ink); }
@@ -332,7 +335,7 @@ footer { color: var(--muted); font-size: 0.85rem; }
     <div class="pdfs" id="pdfs"></div>
   </section>
 
-  <footer>Coach Ari (Ariel Jasso). Term 1 runs as one tiered course for every level; Terms 2 to 4 have separate Beginner, Intermediate and Advanced tracks.</footer>
+  <footer>Coach Ari (Ariel Jasso). Term 1 runs as one tiered course for every level; Terms 2 to 4 have separate Beginner, Intermediate and Advanced tracks. Courses marked "Lesson plans" follow the Fall Term lesson-plan format.</footer>
 </div>
 
 <script>
@@ -494,6 +497,165 @@ const T1 = {
   ]
 };
 
+// Full tiered lesson plans for level tracks, keyed "<term>-<level id>". Same shape as T1.weeks, plus an optional passage.
+const LESSON_PLANS = {
+  "2-beg": [
+    {
+      theme: "Underwater World", power: "Theme Development", tagline: "Building cohesive worlds",
+      objective: "Students can explain that a strong, thick hull keeps a submarine from being crushed by water pressure.",
+      vocab: [["submarine", "a boat that travels under the water"], ["pressure", "a push spread over an area"], ["camouflage", "colors that help something hide"]],
+      read: "Passage: \"Life Under the Sea.\"",
+      passage: "The ocean is deep and dark. Fish and sharks live there. Many sea animals use camouflage. Their colors match the water and the coral, so they are hard to see. People explore the ocean in a submarine. A submarine is a boat that goes under the water. Deep water pushes on everything around it. This push is called pressure. The deeper you go, the more pressure there is. So a submarine needs a very strong body, called a hull. Engineers make hulls thick and strong so the water cannot crush them.",
+      kit: "6 hardcover books, ruler.",
+      circle: "Read the passage. Demo: build two small boxes, one with thin single-brick walls and one with overlapped walls and plates across the top. Set a book on each and press down gently. Ask: \"Which one got crushed? Why?\" Say: \"Deep water presses like this book. A submarine needs a strong hull.\"",
+      build: "Build a sea creature in ocean colors. Keep the blue, green and white bricks in a shared bin in the middle of the table.",
+      tiers: ["A fish or shark in sea colors, with eyes.", "Add a fin or tail, and use only blue, green and white plus one accent color.", "A coral reef scene with 2 creatures whose colors help them hide in the reef."],
+      comp: "Pressure test. Build a submarine with a hollow cabin at least 4 studs wide inside. Lay one book flat on top. If the cabin holds, add another book. The submarine holding the most books without cracking wins. Tie-breaker: fewest bricks.",
+      checks: ["\"Why did the strongest submarine hold the most books?\"", "\"Show me camouflage. Where would your fish hide?\""],
+      sideways: [["The hull cracks at 1 book", "point back to Strong Foundations: overlap the bricks and add plates across the roof."], ["Everyone wants the blue bricks", "each table gets one blue bin and takes turns."], ["Kids only want to build sharks", "fine, as long as the shark uses sea colors."]],
+      seniors: "Teams build a submarine and run the book press. Talking point: trips to the ocean, aquariums, or boats people have been on. Memory care: build a simple fish together and talk about favorite sea animals."
+    },
+    {
+      theme: "Space Exploration", power: "Futuristic Thinking", tagline: "Imagining tomorrow",
+      objective: "Students can explain that a lander with wide, spread-out legs lands without tipping or breaking.",
+      vocab: [["rocket", "a vehicle that blasts into space"], ["gravity", "the pull that brings things down to the ground"], ["lander", "a spacecraft that sets down gently on a moon or planet"]],
+      read: "Passage: \"Blast Off!\"",
+      passage: "A rocket is a vehicle that blasts into space. It pushes fire and hot gas down, and that pushes the rocket up. Gravity is the pull that brings things back down to the ground. A rocket has to push harder than gravity to reach space. Coming back down is hard too. A lander is a spacecraft that sets down on the moon or a planet. Landers have wide legs spread far apart. Wide legs keep the lander from tipping over when it touches the ground.",
+      kit: "Cookie sheet (landing pad), tape measure, painter's tape.",
+      circle: "Read the passage. Demo: drop a tall thin build and a short wide build from 20 cm onto the cookie sheet. Ask: \"Which one landed? Which one broke?\" Say: \"Gravity pulls hard. Wide legs make a safe landing.\"",
+      build: "Build a rocket and an alien who flies it.",
+      tiers: ["A rocket with 3 fins that stands up on its own.", "A rocket with a door or window, and an alien pilot that fits inside.", "A space station of 2 modules that click together and come apart."],
+      comp: "Moon landing. Build a lander. Tape a height scale on the wall next to the cookie sheet at 20, 30, 40, 50 and 60 cm. You drop each lander flat from 20 cm. If no pieces come off and it lands upright, it goes up 10 cm. The highest clean landing wins. Stop at 60 cm. Grades 3 to 5 call out the heights.",
+      checks: ["\"What does gravity do to your lander?\"", "\"Point to the part of your lander that kept it from tipping.\""],
+      sideways: [["Kids want to throw their landers", "only you do the drops, with open hands and no push."], ["Pieces scatter everywhere", "drop over the cookie sheet so it catches them."], ["Early finishers", "add a pilot cabin and see if it still survives 60 cm."]],
+      seniors: "Teams build landers and run the drop test. Talking point: where people were for the 1969 moon landing, or watching rocket launches on TV. Memory care: build a simple rocket together and count down from 10."
+    },
+    {
+      theme: "Medieval Castles", power: "Historical Imagination", tagline: "Building the past",
+      objective: "Students can explain that thick, overlapped walls help a castle stand up to an attack.",
+      vocab: [["castle", "a strong building made to protect people"], ["tower", "a tall, narrow part of a building"], ["defend", "to keep something safe from an attack"]],
+      read: "Passage: \"Why Castles Had Thick Walls.\"",
+      passage: "Long ago, kings and queens lived in castles. A castle is a strong building made to protect the people inside. Castles had thick stone walls. Thick walls could stand up to rocks thrown at them. Each castle had at least one tower. A tower is tall and narrow. Guards stood at the top to look far away. If enemies came, soldiers would defend the castle. To defend means to keep something safe. The gate was the weakest spot, so builders made it extra strong.",
+      kit: "Cardboard ramp, 4 books, painter's tape, ruler. Before class, build one \"battering ram\" car: 4 wheels and a heavy body about 6 bricks long. Keep it in the tote.",
+      circle: "Read the passage. Demo: build a wall 1 brick thick and a wall 2 bricks thick, both overlapped. Roll the ram car down the ramp into each. Ask: \"Which wall would you hide behind?\" Say: \"Thick walls defend the castle.\"",
+      build: "Build a castle wall with a tower. A door piece makes a working gate.",
+      tiers: ["A castle wall with a tower 15 cm tall.", "A wall 2 bricks thick, with a gate opening.", "A tower 20 cm tall with battlements (the up-and-down bumps on top) and a gate that opens and closes."],
+      comp: "Battering ram. Tape a line 5 cm past the end of the ramp; the wall goes right behind it. Start the ramp on 1 book. You release the ram car from the top of the ramp. If the wall stays standing, add a book under the ramp and go again. The wall still standing at the most books wins.",
+      checks: ["\"Why did the thick walls survive the ram?\"", "\"What does defend mean? Show me with your arms.\""],
+      sideways: [["Kids want knights and dragons", "after the test, their dragon can guard the castle."], ["A wall falls on the first run", "check: is it 2 bricks thick? Are the bricks overlapped?"], ["Everyone wants to roll the ram", "only you release it, so every wall gets the same hit."]],
+      seniors: "Teams build walls and run the ram test. Talking point: castles or old buildings people have visited, and the oldest building in town. Memory care: build a tower together, one brick at a time."
+    },
+    {
+      theme: "Robots & Automatons", power: "Mechanical Thinking", tagline: "Making things move",
+      objective: "Students can point to a joint on their robot and explain what it lets the robot do.",
+      vocab: [["robot", "a machine that can do a job"], ["joint", "a spot where two parts connect and can move"], ["pose", "the position a body is in"]],
+      read: "Passage: \"Robots That Help People.\"",
+      passage: "A robot is a machine that can do a job. Some robots build cars. Some robots clean floors. Some even explore Mars! Robots move because of their joints. A joint is a spot where two parts connect and can move, like your elbow or your knee. Bend your arm. That is a joint! The more joints a robot has, the more ways it can move. When a robot stops in one position, that position is called a pose. Engineers make joints strong so the robot can hold its pose and carry things.",
+      kit: "1 paper cup with string handle, 100 pennies, ruler.",
+      circle: "Read the passage. Have everyone bend an elbow and a knee: \"Those are joints!\" Demo: show a robot arm built as one stiff stack, then one with a piece that turns where the shoulder would be. Wave it. Say: \"A joint lets a robot move and hold a pose.\"",
+      build: "Build a robot character. Any piece in the box that turns, like a wheel on its pin, can be a joint.",
+      tiers: ["A robot that stands on its own, with a head, body and two arms.", "One arm moves at a joint, and the robot still stands.", "Three moving joints, and a Builder Card line that says the robot's job."],
+      comp: "Robot strongman. Pose the robot with one arm straight out. Hang the cup on the end of the arm and add pennies 2 at a time. The robot holding the most pennies before the arm drops or the robot tips over wins. Grades 1 and 2 count by 2s out loud.",
+      checks: ["\"Point to a joint. What does it let your robot do?\"", "\"Strike a robot pose!\""],
+      sideways: [["The arm drops right away", "that's the test working. Ask how to make the joint stiffer, like a wider connection."], ["Robots tip over when loaded", "add weight to the back, like the balancing bird in Term 1."], ["Robot stories run long", "the story goes on the Builder Card instead."]],
+      seniors: "Teams build robots and run the strongman test. Talking point: machines that changed life at home, like the first washing machine, TV, or microwave. Memory care: build a robot face together using the eye pieces."
+    },
+    {
+      theme: "Nature & Gardens", power: "Organic Building", tagline: "Curved and natural forms",
+      objective: "Students can explain how roots and a strong trunk help a tree hold up long branches.",
+      vocab: [["roots", "the part of a plant that holds it in the ground"], ["trunk", "the thick main stem of a tree"], ["branch", "an arm that grows out from the trunk"]],
+      read: "Passage: \"How Trees Stand Tall.\"",
+      passage: "Trees are some of the tallest living things on Earth. A tree stands tall because of its roots. Roots spread out under the ground and hold the tree in place. The trunk is the thick main stem of the tree. It carries water up from the roots. A branch is an arm that grows out from the trunk. Branches hold the leaves up to the sun. Long branches are heavy, so they are thickest where they join the trunk. That keeps them from snapping in the wind.",
+      kit: "File folder (the wind), ruler, tape measure.",
+      circle: "Read the passage. Demo: build a trunk with one long branch sticking straight out, and press on the end until it snaps off. Rebuild it thicker where it joins the trunk, and press again. Ask: \"What changed?\" Say: \"Branches need a strong connection to the trunk.\"",
+      build: "Build a botanical garden with natural colors.",
+      tiers: ["A flower and a tree in natural colors (greens, browns, plus flower colors).", "A garden bed with 3 different plants, each a different shape.", "A curved path or pond, made by stepping the bricks so the edge looks round."],
+      comp: "Windy day. Build a tree at least 15 cm tall. You make the wind: wave a file folder 5 times, 20 cm from the tree. If it survives, measure the branch spread from tip to tip. The widest tree still standing wins.",
+      checks: ["\"What do the roots do for your tree?\"", "\"Show me a trunk and a branch with your body.\""],
+      sideways: [["Branches keep snapping off", "make them thicker where they meet the trunk, or shorter."], ["Not enough green bricks", "any color works. It's a fall tree."], ["Early finishers", "add a bird's nest on a branch and run the wind test again."]],
+      seniors: "Teams build trees and run the wind test. Talking point: gardens people have grown and their favorite flowers. Memory care: build flowers together and name the colors."
+    },
+    {
+      theme: "Sports Stadium", power: "Scale Building", tagline: "Large structures",
+      objective: "Students can explain that columns under the stands help a big structure hold a heavy crowd.",
+      vocab: [["stadium", "a big place where people watch sports"], ["column", "a strong post that holds something up"], ["scale", "how big a model is compared to the real thing"]],
+      read: "Passage: \"Building a Stadium.\"",
+      passage: "A stadium is a big place where people watch sports. Some stadiums hold more than fifty thousand fans! All those people are heavy. Engineers put columns under the seats. A column is a strong post that holds something up. The seats go up in rows, like stairs, so everyone can see the field. Before they build, engineers make a small model. The model is built to scale. That means it has the same shape as the real stadium, just much smaller.",
+      kit: "1 paper cup with string handle, 100 pennies, 2 books, ruler.",
+      circle: "Read the passage. Demo: lay a long row of plates across two stacks of bricks and set the cup of pennies in the middle. It sags. Add a column of bricks underneath. Ask: \"What changed?\" Say: \"Columns hold up the crowd.\"",
+      build: "Build part of a stadium. Each table picks a sport.",
+      tiers: ["A playing field with goals or bases, marked out with plates.", "Stands with 3 rows of seats that step up like stairs.", "A scoreboard that shows a score with colored bricks, and stands with a roof."],
+      comp: "Crowd test. Each team's stands must be at least 3 rows high. Set the cup on the top row and add pennies 5 at a time. The stands holding the most pennies before a row breaks or the cup tips win. Then push all the fields together into one class stadium.",
+      checks: ["\"What did the columns do for your stands?\"", "\"Is your stadium bigger or smaller than the real thing? That's scale.\""],
+      sideways: [["Not enough flat pieces for a field", "build just the outline of the field."], ["Stands crack at the first pennies", "add columns underneath the top row."], ["A kid only wants one sport", "any sport works, even a made-up one."]],
+      seniors: "Teams build stands and run the crowd test. Talking point: favorite teams, big games people went to, and sports they played. This one gets lively. Memory care: build a simple goal together and roll a brick ball into it."
+    },
+    {
+      theme: "Color Mastery", power: "Artistic Eye", tagline: "Using color effectively",
+      objective: "Students can explain that high-contrast colors are easier to see from far away.",
+      vocab: [["contrast", "how different two colors look next to each other"], ["pattern", "colors or shapes that repeat"], ["monochrome", "made of only one color"]],
+      read: "Passage: \"Colors That Get Noticed.\"",
+      passage: "Some colors are easy to see from far away. A stop sign is red with white letters. A school bus is yellow with black stripes. These colors have high contrast. Contrast means how different two colors look next to each other. Black on yellow is high contrast. Yellow on white is low contrast, so it is hard to read. Artists use contrast too. A monochrome picture uses just one color. A pattern is colors or shapes that repeat, like red, blue, red, blue.",
+      kit: "4 file folders (privacy screens), tape measure, painter's tape, 2 books.",
+      circle: "Read the passage. Demo: take two small brick signs to the back of the room, a yellow shape on white and a black shape on yellow. Ask: \"Which one can you see?\" Say: \"High contrast is easy to see. That's why stop signs are red and white.\"",
+      build: "Rainbow and single-color builds.",
+      tiers: ["A rainbow wall with the colors in order: red, orange, yellow, green, blue, purple.", "A monochrome build that still shows details by using different brick shapes.", "A pattern build with one accent color that makes your eye go to one spot."],
+      comp: "Long-distance sign. Behind a file folder, each builder makes a flat brick wall, at most 16 studs wide, showing one letter or simple shape. Prop it against a book at the front. A volunteer who hasn't seen it starts 1 m away and steps back. Measure the farthest spot where they can still name it. The farthest sign wins.",
+      checks: ["\"Which colors have high contrast?\"", "\"Point to a pattern in the room.\""],
+      sideways: [["Everyone wants the same colors", "each sign uses only 2 colors."], ["The volunteer peeks", "signs stay behind folders until it's their turn."], ["The room is too small", "use the hallway, or start at 50 cm."]],
+      seniors: "Teams build signs and test them from across the room. Talking point: favorite colors of cars, kitchens, or clothes over the decades. Memory care: sort bricks by color together. It's calm and familiar."
+    },
+    {
+      theme: "Bridges Over Water", power: "Persistence", tagline: "Trying again after a fall",
+      objective: "Students can show that an arch bridge holds more weight than a flat bridge made of the same bricks.",
+      vocab: [["arch", "a curved shape that pushes weight out to the sides"], ["span", "the distance a bridge crosses"], ["deck", "the flat part of a bridge you travel on"]],
+      read: "Passage: \"Bridges That Last.\"",
+      passage: "A bridge helps people cross a river or a road. The distance a bridge crosses is called its span. The flat part you walk or drive on is the deck. Long ago, the Romans built bridges out of stone. Many of them are still standing after two thousand years! Their secret was the arch. An arch is a curved shape. When weight presses on top, the arch pushes the weight out to the sides and down into the ground. That is why an arch can hold more than a flat beam.",
+      kit: "2 books per table, cup with string, 100+ pennies, ruler, painter's tape (for the river).",
+      circle: "Read the passage. Demo: set two books 15 cm apart. Build a flat plate bridge across, hang the cup, and add pennies until it sags. Then build an arch by stepping bricks out from each book like stairs until they meet in the middle, and test again. Ask: \"Same bricks. Why did the arch hold more?\" Say: \"An arch pushes the weight out to the books.\"",
+      build: "Tape a river 15 cm wide on each table. Build a bridge across it as part of a river scene.",
+      tiers: ["A bridge across the 15 cm river that a car can roll over.", "An arch bridge made by stepping the bricks out from each side.", "A 20 cm span with an arch underneath and a flat deck on top, in river-scene colors."],
+      comp: "Penny bridge rematch. Set two books 20 cm apart. Build a bridge across with nothing touching the table in between. Hang the cup from the middle of the deck and add pennies 5 at a time. Most pennies before the bridge touches the table wins. Anyone who beats their Term 1 penny score gets a Persistence shout-out.",
+      checks: ["\"Why does an arch hold more than a flat bridge?\"", "\"Show me an arch with your arms.\""],
+      sideways: [["The arch slides apart at the bottom", "push the books in tight against both ends so they hold the arch in."], ["Not enough long bricks", "use plates for the deck."], ["A bridge breaks early", "give one rebuild. It's the Persistence week."]],
+      seniors: "Teams build a flat bridge and an arch bridge and compare penny counts. Talking point: famous bridges people have crossed, and old stone bridges near home. Memory care: build a simple arch together, one step at a time from each side."
+    },
+    {
+      theme: "Animal Habitats", power: "Curiosity", tagline: "Asking how nature works",
+      objective: "Students can explain how an animal's home protects it from weather and predators.",
+      vocab: [["shelter", "a place that keeps you safe from weather"], ["predator", "an animal that hunts other animals"], ["burrow", "a hole or tunnel an animal digs for its home"]],
+      read: "Habitat fact hunt: tablet research in pairs. Find 2 facts about how one animal's home keeps it safe and write them on a sticky note. Grades 1 and 2: you read 3 short fact cards aloud (beaver lodge, rabbit burrow, bird nest) and kids pick one.",
+      research: true,
+      passage: "",
+      kit: "File folder (the wind), cookie sheet (the earthquake), 4 books (the snow), sticky notes.",
+      circle: "Do 5 minutes of research. Demo: show a picture of a beaver lodge. Ask: \"How does this keep the beaver safe?\" (Thick walls of sticks and mud, and a door under the water that predators can't reach.) Say: \"Every home is built for the animal that lives in it.\"",
+      build: "Build your animal and its shelter, using colors from its habitat.",
+      tiers: ["An animal and a shelter it fits inside, in habitat colors.", "The shelter has a roof and only one way in.", "A hidden entrance a predator wouldn't find, and a Builder Card line that says how the shelter protects the animal."],
+      comp: "Storm shelter. Each animal goes inside its shelter. Round 1, wind: wave the file folder 5 times, 20 cm away. Round 2, earthquake: 5 seconds on the cookie sheet. Shelters still standing with the animal inside go on to Round 3, snow: add books on the roof one at a time. The shelter holding the most books wins.",
+      checks: ["\"How does your shelter keep your animal safe?\"", "\"What is a predator? Name one.\""],
+      sideways: [["No tablets or no Wi-Fi", "use the fact cards for everyone."], ["The animal is too big for its shelter", "use a 2x2 brick as a stand-in for the test."], ["Shelters blow over in Round 1", "make the base wider and overlap the walls, like Strong Foundations."]],
+      seniors: "Skip the tablets. Talk about birds or animals that nested near home, and pets' houses people have built. Run the storm rounds by teams. Memory care: build a birdhouse together."
+    },
+    {
+      theme: "Gallery Exhibition", power: "Presentation", tagline: "Showcasing work",
+      objective: "Students can present their favorite build and explain one idea behind it using a vocabulary word from the term.",
+      vocab: [["curator", "a person who picks the work for a show"]],
+      vocabNote: "Review all 27 words from the term. New word:",
+      read: "Each student reads their favorite past Builder Card to a partner.",
+      passage: "",
+      kit: "Everything from the term, set up as stations. Sticky notes for compliments.",
+      circle: "Walk through the 9 Superpowers. Quick vocabulary game: you say a definition, and kids shout the word. Explain the gallery: \"Today you are curators. You pick your best work and show it to everyone.\"",
+      build: "Rematch. Each student picks one past test (submarine pressure test, moon landing, battering ram, robot strongman, windy day, crowd test, long-distance sign, arch bridge, or storm shelter) and tries to beat their own score. Tier 3 builders can help a younger or newer builder after they finish.",
+      tiers: [],
+      comp: "Gallery setup and walk. 20 min: each builder sets up a mini exhibit of up to 3 builds with a title card. 20 min: gallery walk. Each builder stands by their exhibit and reads their Builder Card, which says \"My build is ___ because ___\" with one vocabulary word. Visitors leave one sticky note compliment that names a real detail.",
+      cleanup: "A certificate for everyone, naming the Superpower they showed most. Awards: Best Exhibit, Most Improved Record, Best Compliment Giver.",
+      checks: ["Each student says one word they learned this term and what it means."],
+      sideways: [["Shy presenters", "let them present to you first, or a partner reads the card while they point."], ["Families arrive early", "hand them sticky notes and invite them to leave compliments."], ["Running long", "skip the rematch and go straight to the gallery."]],
+      seniors: "Hold a gallery for residents and staff. Each team explains its favorite build. A good moment to invite families or post photos in the community newsletter, with consent."
+    }
+  ]
+};
+
 // Terms 2-4 weeks: [theme, [learning goals], [activities], superpower, superpower tagline]
 const LATER = {
   2: {
@@ -634,14 +796,18 @@ const COURSES = [{
 for (const t of TERMS.slice(1)) {
   for (const lv of LEVELS) {
     const c = LATER[t.n][lv.id];
+    const plan = LESSON_PLANS[`${t.n}-${lv.id}`];
     const last = c.weeks.length - 1;
-    const weeks = c.weeks.map(([theme, goals, acts, power, tagline], i) => ({ n: i + 1, key: i === last ? "w8" : i >= 7 ? `w${i + 2}` : `w${i + 1}`, theme, goals, acts, power, tagline }));
-    COURSES.push({ id: `t${t.n}-${lv.key}`, term: t, level: lv, title: c.focus.split(":")[0], focus: c.focus, lesson: false, weeks });
+    const weekKey = (i) => i === last ? "w8" : i >= 7 ? `w${i + 2}` : `w${i + 1}`;
+    const weeks = plan
+      ? plan.map((w, i) => ({ n: i + 1, key: weekKey(i), tagline: "", goals: [], acts: [], ...w }))
+      : c.weeks.map(([theme, goals, acts, power, tagline], i) => ({ n: i + 1, key: weekKey(i), theme, goals, acts, power, tagline }));
+    COURSES.push({ id: `t${t.n}-${lv.key}`, term: t, level: lv, title: c.focus.split(":")[0], focus: c.focus, lesson: Boolean(plan), weeks });
   }
 }
 for (const c of COURSES) {
   for (const w of c.weeks) {
-    w.text = [w.theme, w.power, w.tagline, w.objective, (w.vocab || []).map((v) => v.join(" ")).join(" "), w.read, w.kit, w.circle, w.build,
+    w.text = [w.theme, w.power, w.tagline, w.objective, (w.vocab || []).map((v) => v.join(" ")).join(" "), w.read, w.passage, w.kit, w.circle, w.build,
       ...(w.tiers || []), w.comp, w.cleanup, ...(w.checks || []), ...(w.sideways || []).map((s) => s.join(": ")), w.seniors, ...w.goals, ...w.acts]
       .filter(Boolean).join(" · ");
   }
@@ -704,11 +870,19 @@ function renderMap() {
         <span class="studs" aria-hidden="true">${"<i></i>".repeat(c.weeks.length)}</span>
         <span class="first">${esc(c.title)}</span>
         <span class="focus">${esc(first)}…</span>
+        ${c.lesson ? `<span class="badge">Lesson plans · Tiers 1–3</span>` : ""}
       </button>`);
     });
   });
   map.innerHTML = parts.join("");
   map.classList.toggle("filtered", state.level !== "all");
+}
+
+// The passage with its vocabulary words in bold, the way it's printed for students.
+function passageHTML(w) {
+  const words = w.vocab.map(([word]) => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const text = esc(w.passage).replace(new RegExp(`\\b((?:${words.join("|")})s?)\\b`, "gi"), "<b>$1</b>");
+  return `<details class="passage"><summary>Read the passage</summary><p>${text}</p></details>`;
 }
 
 function lessonHTML(w) {
@@ -719,7 +893,7 @@ function lessonHTML(w) {
     <p class="objective"><b>Objective.</b> ${esc(w.objective)}</p>
     <div class="prep">
       <div><span class="label">Vocabulary</span>${w.vocabNote ? `<span class="hint">${esc(w.vocabNote)}</span>` : ""}${vocab}</div>
-      <div><span class="label">Read &amp; Learn</span>${w.research ? `<span class="flag">Tablet research</span>` : ""}<p>${esc(w.read)}</p></div>
+      <div><span class="label">Read &amp; Learn</span>${w.research ? `<span class="flag">Tablet research</span>` : ""}<p>${esc(w.read)}</p>${w.passage ? passageHTML(w) : ""}</div>
       <div><span class="label">Test kit</span><p>${esc(w.kit)}</p></div>
     </div>
     <div class="blocks">
@@ -753,11 +927,11 @@ function renderDetail() {
   if (!c) { el.innerHTML = ""; el.hidden = true; return; }
   el.hidden = false;
   const lv = c.level;
-  const heading = c.lesson ? `${c.term.title} · ${c.title}` : `${c.term.title} · ${lv.name}`;
+  const heading = lv.id === "all" ? `${c.term.title} · ${c.title}` : `${c.term.title} · ${lv.name}`;
   el.innerHTML = `
     <div class="dhead">
       <div class="meta">
-        <span class="lvtag ${lv.id}">${c.lesson ? "All levels · Tiers 1–3" : lv.name}</span>
+        <span class="lvtag ${lv.id}">${c.lesson ? `${lv.name} · Tiers 1–3` : lv.name}</span>
         <h2>${esc(heading)}</h2>
         <p class="focus">${esc(c.focus)}</p>
       </div>
