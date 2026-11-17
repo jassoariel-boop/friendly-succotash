@@ -59,6 +59,24 @@ Same format (`LESSON_PLANS["2-int"]`). Passages run 105 to 130 words for popcorn
 
 Weeks 1 and 8 need a gear bag that is not in the 10696 box (Technic gears in 2 sizes, axles, Technic bricks with holes). Each has a no-gears fallback in its troubleshooting. Week 3 is written for plain bricks and plates; Technic beams are optional. Week 6 uses the phone flashlight from the tote instead of light bricks.
 
+## Term 3 and Term 4 Beginner lesson plans
+Same format (`LESSON_PLANS["3-beg"]`, `LESSON_PLANS["4-beg"]`), beginner-length passages for echo reading, tote-only tests.
+
+| Week | Term 3 Beginner | Test | Term 4 Beginner | Test |
+| --- | --- | --- | --- | --- |
+| 1 | Fantasy Creatures | Longest neck balanced by a tail | All-Time Favorites | Beat your best: biggest improvement |
+| 2 | Amusement Park | Thrill ride: steepest ramp that keeps the passenger | Fairy Tale Scenes | Huff and puff: folder wind from closer and closer |
+| 3 | Emergency Vehicles | Ladder rescue: longest reach with a penny cup | Dinosaur World | Dino weigh-in: pennies on the back |
+| 4 | Jungle Adventure | Temple tower: tallest stepped temple that holds a book | Farm & Countryside | Silo fill: most pennies poured in |
+| 5 | City Services | Trash pickup: pennies hauled and dumped onto the tray | Secret Agent Base | Vault challenge: hidden penny, 60-second search |
+| 6 | Winter Wonderland | Sled race: smooth bottoms, less friction | Celebration Party | Waiter walk: cake carried across the room on a tray |
+| 7 | Music & Performance | Shaker test: most pennies with no escapes | Friendship Collaboration | Two-hand tower with a partner |
+| 8 | Playground Design | Swing test: pennies in a swinging cup | Toy Inventor | Toy lab: play, drop and shake tests |
+| 9 | Rescue Bridges | Rescue crossing: loaded car pushed across | Build-Off Rematch | Record day: growth over 3 tries |
+| 10 | Dream Project Day | Dream showcase: each build passes a term test | Year-End Showcase | Gallery, growth cards and graduation |
+
+Term 3 Week 9 needs one test car built ahead of time that can carry the cup.
+
 Every course runs 10 weeks (the two added weeks sit before each final week). Week keys stay `w1`-`w7`, then `w9`, `w10`, and `w8` for the final week, so tracker check-offs made before the change keep their dates.
 
 Week 3 needs one "battering ram" car built ahead of time from the 10696 box. Week 4 uses any turning piece (a wheel on its pin) as a joint, so it does not depend on hinge pieces.
